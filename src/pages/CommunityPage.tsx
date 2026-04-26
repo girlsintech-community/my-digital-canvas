@@ -470,7 +470,7 @@ const SLIDESHOW_ROW2 = [
 const CommunityPage = () => {
   const [showAllSessions, setShowAllSessions] = useState(false);
   const [showAllSpaces, setShowAllSpaces] = useState(false);
-  const [showEventsAttended, setShowEventsAttended] = useState(false);
+  
   const [showEventsOrganised, setShowEventsOrganised] = useState(false);
   const [showHackathons, setShowHackathons] = useState(false);
   const visibleSessions = showAllSessions ? SESSIONS : SESSIONS.slice(0, INITIAL_SESSIONS);
