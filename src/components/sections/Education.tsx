@@ -12,6 +12,13 @@ const EDUCATION = [
     
   },
   {
+    institution: "Udacity",
+    link: "https://www.udacity.com/",
+    period: "March 2026 – April 2026",
+    program: "AWS AI & ML Scholar",
+    detail: "",
+  },
+  {
     institution: "McKinsey & Company",
     period: "Oct 2025 – Dec 2025",
     program: "McKinsey Forward Learning Programme — Fellow",
