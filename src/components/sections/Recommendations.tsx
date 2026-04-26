@@ -4,6 +4,30 @@ import SectionHeading from "./SectionHeading";
 
 const RECS = [
   {
+    name: "Shivam Garg",
+    title: "Developer Relation @ HeLaLabs (L1) | Culture + Community x Developer Growth | Program Manager @GSSoC 23 | Contributor @Chainlink @Hivechain @COREchain",
+    linkedin: "https://www.linkedin.com/in/meshivamgarg/",
+    date: "April 20, 2026",
+    relation: "Shivam managed Manik directly",
+    text: "There are people you work with and then there are people you feel lucky to have crossed paths with, Manik is the second kind, easily, effortlessly. We didn\'t just work together, we built things, broke things, laughed through chaos, and somewhere in between, I got to witness the kind of person he really is. And honestly, it\'s rare; rare in the most beautiful way. Manik carries this quiet fire, not loud, not showy, but deeply intentional. Everything he touches has a bit of him in it — a bit of care, a bit of honesty, a bit of heart (a lot of heart, actually). He doesn\'t just show up to do the work, he shows up to mean it. In a world that constantly nudges you to fit in, to smoothen your edges, to become a more acceptable version of yourself, he does the opposite. He protects his edges. He questions the obvious. He walks away from the easy middle when it feels too empty, too average, too not him. And that\'s what makes him, HIM. There\'s a softness to his strength, a sincerity in the way he connects, and a kind of emotional honesty that you can\'t fake even if you tried. You trust him, not because he says the right things, but because you feel that he means them. Wherever he goes next, I know one thing for sure — he won\'t just leave behind work done. He\'ll leave behind a feeling. A mark. A story people will remember and smile about. And yeah, if you ever get a chance to work with him, take it. Wholeheartedly recommending him.",
+  },
+  {
+    name: "Shruti Sharma (Youth Ki Awaaz)",
+    title: "I ghostwrite for social causes • gender advocates & NGOs | 60+ articles published | Youth Ki Awaaz",
+    linkedin: "https://www.linkedin.com/in/shruti-sharma-81a079369",
+    date: "April 25, 2026",
+    relation: "Manik was senior to Shruti but didn\'t manage Shruti directly",
+    text: "As a junior, I have had the privilege of receiving guidance from Manik, and his mentorship has been instrumental in my professional development. He is a standout professional who balances deep intellectual strategy with a highly effective, inclusive leadership style. He has a unique ability to break down complex challenges into actionable insights, consistently fostering an environment where those around him feel empowered to excel. His commitment to high standards, paired with his ability to lead with both clarity and empathy, makes him an invaluable asset to any team.",
+  },
+  {
+    name: "Deepti Midha",
+    title: "Intern @PwC Acceleration Center India",
+    linkedin: "https://www.linkedin.com/",
+    date: "April 25, 2026",
+    relation: "Deepti managed Manik directly",
+    text: "I\'ve had the opportunity to work closely with Manik, and I can confidently say he is one of the most dedicated and thoughtful individuals I\'ve come across. Manik has a natural ability to bring people together and build meaningful communities. His passion for creating impact is evident in everything he does, whether it\'s mentoring students, leading initiatives, or contributing to larger ecosystem-building efforts. What truly stands out is his consistency, positive attitude, and willingness to go the extra mile to support others. He is reliable, proactive, and always approaches challenges with a solution-oriented mindset. Beyond his professional strengths, Manik is also a genuinely supportive and approachable person, making him a great teammate to work with. I strongly recommend Manik for any opportunity—he will be a valuable asset wherever he goes.",
+  },
+  {
     name: "Dr. Aayushi Gautam",
     title: "Assistant Professor | PhD | Computer Vision | Deep Learning | Image Processing",
     linkedin: "https://www.linkedin.com/in/dr-aayushi-gautam-7a2b25165/",
