@@ -211,6 +211,7 @@ const TWITTER_SPACES = [
 const INITIAL_SPACES = 3;
 
 const SESSIONS = [
+  { title: "Vibe Coding 0 to 1 Workshop", link: "https://youtu.be/zzBp4GQLgFc?si=-VIwU3Oe0RxtEWLF", speakers: [{ name: "Vrijraj Singh", role: "Speaker", linkedin: "https://www.linkedin.com/in/vrijrajsingh/" }] },
   { title: "A Panel Discussion on Google WE Scholarship", link: "https://youtu.be/T92Vx4-Giy4?si=ZfO5VyQlaLM0gEu7", speakers: [{ name: "Ridhy Arora", role: "WE Scholar 2024", linkedin: "https://www.linkedin.com/in/ridhy-arora-097784258/" }, { name: "Kavya Choudhary", role: "WE Scholar 2024", linkedin: "https://www.linkedin.com/in/kavya1610/" }, { name: "Sravya Uppalapati", role: "WE Scholar 2024", linkedin: "https://www.linkedin.com/in/sravyauppalapati16/" }] },
   { title: "Google STEP Internship Mentorship Session", link: "https://youtu.be/N3iP6_oaum0?si=jXy-XsHsepa7VqxL", speakers: [{ name: "Jigisha Arora", role: "SWE Intern'25 at Google", linkedin: "https://www.linkedin.com/in/jigisha-arora-212ab5256/" }] },
   { title: "GSOC Mentorship Session", link: "https://youtu.be/qYo1UFocUwo?si=JsEUaK1Sl7j3_4gL", speakers: [{ name: "Nishant Singhal", role: "GSOC Mentor", linkedin: "https://www.linkedin.com/in/nishant-singhal19/" }, { name: "Angel Sharma", role: "Backend Intern at Mercari Inc., GSOC'24", linkedin: "https://www.linkedin.com/in/angel-sharma-2a5240260/" }] },
@@ -304,11 +305,11 @@ const SESSIONS = [
 const INITIAL_SESSIONS = 6;
 
 const EVENTS_ATTENDED = [
-  "Date with Dev", "Devfest Jalandhar 2023", "Devfest Chandigarh 2023", "Devfest Noida 2023", "MUN", "CNCF Chandigarh 2023", "WOW Delhi", "D2D Chandigarh Conf", "GitHub Field Day", "IO Dehradun", "GCCD Chandigarh 2024", "InBM 2024", "Devfest 2024", "BSCon", "Build with AI at CGC University", "E Summit IIT Delhi", "Union Labs Meetup", "Chandigarh Meetup", "IWD: Redefine Possible", "AI Workshop", "Founders & Funders", "Aethir Event", "Tech Talk 1.0", "Nova Meetup", "Metamorphosis", "ETH Global Pragma", "AR Workshop", "E-Cell Event", "Water Day", "Conclave on Skill Development for MSME Sector 2025", "DPG Dialogue", "Devfest Noida 2025", "GenAI Hackathon", "Haryana Manufacturing Conclave", "Arise Summit", "Techsprint Screening", "Techsprint Finale", "Floral Fest", "MUG Chandigarh Meetup", "Tech Talk 2.0", "AI for Atmanirbhar Bharat", "AI for Impact Summit", "Gitinfinity", "Progressive Punjab Summit", "Hack N Win 3.0", "Entrepreneurship Awareness Session", "IOT Convergence", "Builder's Lab Mentorship Session",
+  "Date with Dev", "Devfest Jalandhar 2023", "Devfest Chandigarh 2023", "Devfest Noida 2023", "MUN", "CNCF Chandigarh 2023", "WOW Delhi", "D2D Chandigarh Conf", "GitHub Field Day", "IO Dehradun", "GCCD Chandigarh 2024", "InBM 2024", "Devfest 2024", "BSCon", "Build with AI at CGC University", "E Summit IIT Delhi", "Union Labs Meetup", "Chandigarh Meetup", "IWD: Redefine Possible", "AI Workshop", "Founders & Funders", "Aethir Event", "Tech Talk 1.0", "Nova Meetup", "Metamorphosis", "ETH Global Pragma", "AR Workshop", "E-Cell Event", "Water Day", "Conclave on Skill Development for MSME Sector 2025", "DPG Dialogue", "Devfest Noida 2025", "GenAI Hackathon", "Haryana Manufacturing Conclave", "Arise Summit", "Techsprint Screening", "Techsprint Finale", "Floral Fest", "MUG Chandigarh Meetup", "Tech Talk 2.0", "AI for Atmanirbhar Bharat", "AI for Impact Summit", "Gitinfinity", "Progressive Punjab Summit", "Hack N Win 3.0", "Entrepreneurship Awareness Session", "IOT Convergence", "Builder's Lab Mentorship Session", "Bharat Secure Summit", "TiECon Chandigarh 2026", "IMP Pitch", "IdeaX", "Build with AI Mohali 2026",
 ];
 
 const EVENTS_ORGANISED = [
-  "Cybersecurity Workshop (2023)", "Ethical Hacking Workshop", "Cyber Security Roadmap", "Road to Blockchain", "Kotlin Conf", "EmpowerHer", "ML Cohort", "Hack Aura", "Code at Christmas", "EmpowerHer 2.0", "Blockmeet", "Hack Fest", "Google Solution Challenge", "Road to Devcon", "Code & Connect Noida", "Code & Connect Delhi", "Code & Connect Chennai", "Code & Connect Bangalore", "Hackemon", "Starknet Roadshow", "Bitcoin Pizza Party", "HackArCode", "Chandigarh Meetup", "GCCD 2025", "Devfest Chandigarh 2025", "25x Meetups at Letz Connect",
+  "Cybersecurity Workshop (2023)", "Ethical Hacking Workshop", "Cyber Security Roadmap", "Road to Blockchain", "Kotlin Conf", "EmpowerHer", "ML Cohort", "Hack Aura", "Code at Christmas", "EmpowerHer 2.0", "Blockmeet", "Hack Fest", "Google Solution Challenge", "Road to Devcon", "Code & Connect Noida", "Code & Connect Delhi", "Code & Connect Chennai", "Code & Connect Bangalore", "Hackemon", "Starknet Roadshow", "Bitcoin Pizza Party", "HackArCode", "Chandigarh Meetup", "GCCD 2025", "Devfest Chandigarh 2025", "25x Meetups at Letz Connect", "Vibe Coding 0 to 1 Workshop", "I2P Fellowship",
 ];
 
 const HACKATHONS_ATTENDED = [
@@ -487,7 +488,7 @@ const CommunityPage = () => {
           <SectionHeading>Community Contributions</SectionHeading>
 
           {/* Image Slideshow */}
-          <div className="mt-10 mb-16 overflow-hidden">
+          <div className="mt-8 mb-6 overflow-hidden">
             <style>{`
               @keyframes scroll-left {
                 0% { transform: translateX(0); }
@@ -513,7 +514,7 @@ const CommunityPage = () => {
           </div>
 
           {/* Communities I Built */}
-          <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground mt-12 mb-6 text-center">Communities I Built</h3>
+          <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground mt-4 mb-6 text-center">Communities I Built</h3>
           <div className="space-y-5">
             {COMMUNITIES_BUILT.map((c) => (
               <CommunityCard key={c.org} {...c} />
