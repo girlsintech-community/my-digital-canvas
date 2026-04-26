@@ -535,22 +535,17 @@ const CommunityPage = () => {
           <div className="mt-16">
             <SectionHeading>Events — Organised & Attended</SectionHeading>
 
-            {/* Attended */}
-            <div className="border border-border rounded-lg p-5 sm:p-6 mt-8">
-              <div className="flex items-center justify-between mb-3">
+            {/* Attended — link to dedicated subpage */}
+            <a
+              href="/events-attended"
+              className="block border border-border rounded-lg p-5 sm:p-6 mt-8 hover:border-foreground/40 transition-colors"
+            >
+              <div className="flex items-center justify-between">
                 <h4 className="font-serif text-lg font-semibold text-foreground">Events Attended ({EVENTS_ATTENDED.length})</h4>
-                <button onClick={() => setShowEventsAttended(!showEventsAttended)} className="text-muted-foreground hover:text-foreground transition-colors">
-                  <ChevronDown size={18} className={`transition-transform duration-200 ${showEventsAttended ? "rotate-180" : ""}`} />
-                </button>
+                <ExternalLink size={18} className="text-muted-foreground" />
               </div>
-              {showEventsAttended && (
-                <div className="flex flex-wrap gap-2 animate-fade-in">
-                  {EVENTS_ATTENDED.map((e, i) => (
-                    <span key={i} className="text-xs px-3 py-1.5 rounded-full border border-border text-muted-foreground">{e}</span>
-                  ))}
-                </div>
-              )}
-            </div>
+              <p className="text-sm text-muted-foreground mt-2">Browse the full list with details, pictures and a short gallery.</p>
+            </a>
 
             {/* Organised */}
             <div className="border border-border rounded-lg p-5 sm:p-6 mt-4">
