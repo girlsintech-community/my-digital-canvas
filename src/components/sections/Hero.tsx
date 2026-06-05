@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Youtube, Instagram, Github, Linkedin, Twitter, MessageCircle, Send, Calendar } from "lucide-react";
-import profileImg from "@/assets/profile-bw.jpg";
+import profileImg from "@/assets/profile.jpg";
 
 const SOCIALS = [
   { icon: Youtube, href: "https://www.youtube.com/@themanikdiaries", label: "YouTube" },
@@ -112,7 +112,7 @@ const Hero = () => {
       <section className="px-4 sm:px-6 pb-16 sm:pb-24 md:pb-32">
         <div className="max-w-5xl mx-auto flex justify-center">
           <div className="w-[18rem] h-[18rem] sm:w-[22rem] sm:h-[22rem] md:w-[36rem] md:h-[36rem] overflow-hidden border border-border shadow-lg">
-            <img src={profileImg} alt="Manik" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+            <img src={profileImg} alt="Manik" className="w-full h-full object-cover" />
           </div>
         </div>
       </section>
