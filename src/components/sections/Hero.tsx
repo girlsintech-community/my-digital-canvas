@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Youtube, Instagram, Github, Linkedin, Twitter, MessageCircle, Send, Calendar } from "lucide-react";
-import profileImg from "@/assets/profile-bw.jpg";
+import profileImg from "@/assets/profile.jpg";
 
 const SOCIALS = [
   { icon: Youtube, href: "https://www.youtube.com/@themanikdiaries", label: "YouTube" },
