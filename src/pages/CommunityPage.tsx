@@ -3,6 +3,7 @@ import { Youtube, Twitter, ExternalLink, ChevronDown } from "lucide-react";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import SectionHeading from "@/components/sections/SectionHeading";
+import { getYouTubeThumb } from "@/lib/youtube";
 
 const COMMUNITIES_BUILT = [
   {
