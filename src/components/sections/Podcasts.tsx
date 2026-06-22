@@ -1,6 +1,7 @@
 import { Youtube } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import SectionHeading from "./SectionHeading";
+import { getYouTubeThumb } from "@/lib/youtube";
 
 const DEFAULT_PODCASTS = [
   {
