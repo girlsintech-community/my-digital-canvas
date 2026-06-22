@@ -141,3 +141,30 @@
     content: none !important;
   }
 }
+
+/* Google Translate cleanup */
+.goog-te-banner-frame,
+.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* High contrast accessibility mode */
+.a11y-contrast {
+  filter: contrast(1.35);
+}
+.a11y-contrast a,
+.a11y-contrast button {
+  text-decoration: underline;
+}
+
