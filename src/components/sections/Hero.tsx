@@ -75,7 +75,7 @@ const Hero = () => {
           </p>
           <div className="h-8 sm:h-10 flex items-center justify-center mb-8 sm:mb-10">
             <span className="font-sans text-base sm:text-lg font-medium tracking-widest text-foreground">
-              I am a <span className="text-primary">{typedRole}</span>
+              I am {/^[aeiou]/i.test(typedRole) ? "an" : "a"} <span className="text-primary">{typedRole}</span>
               <span className="animate-pulse">|</span>
             </span>
           </div>
