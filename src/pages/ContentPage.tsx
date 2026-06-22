@@ -226,9 +226,10 @@ const ContentPage = () => {
                 href={a.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between gap-4 py-5 border-b border-border hover:border-foreground transition-colors text-left"
+                className="group flex items-center gap-4 py-5 border-b border-border hover:border-foreground transition-colors text-left"
               >
-                <h3 className="font-serif text-base sm:text-lg md:text-xl text-foreground group-hover:text-muted-foreground transition-colors leading-snug">
+                <ArticleThumb platform={category.platform} title={a.title} />
+                <h3 className="flex-1 min-w-0 font-serif text-base sm:text-lg md:text-xl text-foreground group-hover:text-muted-foreground transition-colors leading-snug">
                   {a.title}
                 </h3>
                 <span className="shrink-0 text-muted-foreground group-hover:text-foreground transition-colors">
