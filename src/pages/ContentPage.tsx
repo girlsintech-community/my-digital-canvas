@@ -263,11 +263,18 @@ const ContentPage = () => {
           <div className="mt-20">
             <SectionHeading>Podcasts</SectionHeading>
             <div className="space-y-4 mt-8">
-              {PODCASTS.map((p) => (
+              {PODCASTS.map((p) => {
+                const thumb = getYouTubeThumb(p.youtube);
+                return (
                 <div
                   key={p.youtube}
                   className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 border-b border-border py-5 text-center md:text-left"
                 >
+                  {thumb && (
+                    <a href={p.youtube} target="_blank" rel="noopener noreferrer" className="shrink-0 block w-32 sm:w-40 aspect-video overflow-hidden rounded-md border border-border bg-muted">
+                      <img src={thumb} alt={`${p.title} thumbnail`} loading="lazy" className="w-full h-full object-cover" />
+                    </a>
+                  )}
                   <div className="flex-1 min-w-0">
                     <h3 className="font-serif text-base md:text-lg font-medium text-foreground leading-snug">
                       {p.title}
