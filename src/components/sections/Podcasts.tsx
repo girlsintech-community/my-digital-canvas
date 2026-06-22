@@ -75,7 +75,8 @@ const Podcasts = () => {
                 Watch
               </a>
             </div>
-          ))}
+            );
+          })}
         </div>
         <button
           onClick={() => navigate("/podcasts")}
