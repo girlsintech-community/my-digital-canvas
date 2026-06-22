@@ -303,7 +303,8 @@ const ContentPage = () => {
                     Watch
                   </a>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
