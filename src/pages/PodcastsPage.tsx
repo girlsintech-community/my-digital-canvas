@@ -158,7 +158,8 @@ const PodcastsPage = () => {
                   Watch
                 </a>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
