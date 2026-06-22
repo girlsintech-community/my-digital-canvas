@@ -3,6 +3,7 @@ import { Youtube, Twitter, ExternalLink, ChevronDown } from "lucide-react";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import SectionHeading from "@/components/sections/SectionHeading";
+import { getYouTubeThumb } from "@/lib/youtube";
 
 const COMMUNITIES_BUILT = [
   {
@@ -388,8 +389,15 @@ const SessionRow = ({ title, link, speakers }: {
   title: string;
   link: string;
   speakers: { name: string; role: string; linkedin: string }[];
-}) => (
+}) => {
+  const thumb = getYouTubeThumb(link);
+  return (
   <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6 border-b border-border py-4">
+    {thumb && (
+      <a href={link} target="_blank" rel="noopener noreferrer" className="shrink-0 block w-28 sm:w-36 aspect-video overflow-hidden rounded-md border border-border bg-muted">
+        <img src={thumb} alt={`${title} thumbnail`} loading="lazy" className="w-full h-full object-cover" />
+      </a>
+    )}
     <div className="flex-1 min-w-0">
       <h3 className="font-serif text-base font-medium text-foreground leading-snug">{title}</h3>
       <p className="text-sm text-muted-foreground mt-1">
@@ -418,7 +426,8 @@ const SessionRow = ({ title, link, speakers }: {
       Watch
     </a>
   </div>
-);
+  );
+};
 
 const SLIDESHOW_ROW1 = [
   "https://media.licdn.com/dms/image/v2/D5622AQGUtglwImzBzQ/feedshare-shrink_480/feedshare-shrink_480/0/1721922851065?e=1776902400&v=beta&t=HBai5J05pclpH-zjRYVdNy6c44Ndv4PDDA4PhKoqthw",
