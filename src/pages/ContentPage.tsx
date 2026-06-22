@@ -3,6 +3,8 @@ import { ArrowUpRight, Youtube } from "lucide-react";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import SectionHeading from "@/components/sections/SectionHeading";
+import ArticleThumb from "@/components/ArticleThumb";
+import { getYouTubeThumb } from "@/lib/youtube";
 
 type ArticleCategory = {
   label: string;
