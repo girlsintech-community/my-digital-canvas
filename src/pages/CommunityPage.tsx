@@ -322,7 +322,7 @@ const CommunityCard = ({ org, link, role, period, bullets }: {
 }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className="border border-border rounded-lg p-5 sm:p-6 hover:border-foreground/20 transition-colors">
+    <div className="glass-card rounded-2xl p-5 sm:p-6 hover:border-foreground/20 transition-colors">
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
         <div className="flex-1">
           <div className="flex items-center gap-2">
@@ -355,7 +355,7 @@ const CommunityCard = ({ org, link, role, period, bullets }: {
 const VolunteerCard = ({ org, link, role, period, bullets }: { org: string; link?: string; role: string; period?: string; bullets: string[] }) => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <div className="border border-border rounded-lg p-4 sm:p-5 hover:border-foreground/20 transition-colors">
+    <div className="glass-card rounded-2xl p-4 sm:p-5 hover:border-foreground/20 transition-colors">
       <div className="flex items-center justify-between gap-2 mb-2">
         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 flex-1">
           <div className="flex items-center gap-2">
@@ -547,7 +547,7 @@ const CommunityPage = () => {
             {/* Attended — link to dedicated subpage */}
             <a
               href="/events-attended"
-              className="block border border-border rounded-lg p-5 sm:p-6 mt-8 hover:border-foreground/40 transition-colors"
+              className="block glass-card rounded-2xl p-5 sm:p-6 mt-8 hover:border-foreground/40 transition-colors"
             >
               <div className="flex items-center justify-between">
                 <h4 className="font-serif text-lg font-semibold text-foreground">Events Attended ({EVENTS_ATTENDED.length})</h4>
@@ -557,7 +557,7 @@ const CommunityPage = () => {
             </a>
 
             {/* Organised */}
-            <div className="border border-border rounded-lg p-5 sm:p-6 mt-4">
+            <div className="glass-card rounded-2xl p-5 sm:p-6 mt-4">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-serif text-lg font-semibold text-foreground">Events Organised ({EVENTS_ORGANISED.length})</h4>
                 <button onClick={() => setShowEventsOrganised(!showEventsOrganised)} className="text-muted-foreground hover:text-foreground transition-colors">
@@ -574,7 +574,7 @@ const CommunityPage = () => {
             </div>
 
             {/* Hackathons */}
-            <div className="border border-border rounded-lg p-5 sm:p-6 mt-4">
+            <div className="glass-card rounded-2xl p-5 sm:p-6 mt-4">
               <div className="flex items-center justify-between mb-3">
                 <h4 className="font-serif text-lg font-semibold text-foreground">Hackathons Attended ({HACKATHONS_ATTENDED.length})</h4>
                 <button onClick={() => setShowHackathons(!showHackathons)} className="text-muted-foreground hover:text-foreground transition-colors">
