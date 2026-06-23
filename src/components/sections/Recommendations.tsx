@@ -90,7 +90,7 @@ const RecCard = ({ r }: { r: typeof RECS[0] }) => {
   const preview = r.text.slice(0, 120) + "...";
 
   return (
-    <blockquote className="border border-border rounded-lg p-4 sm:p-6 overflow-hidden">
+    <blockquote className="glass-card rounded-2xl p-4 sm:p-6 overflow-hidden">
       <p className="font-serif text-sm italic text-foreground leading-relaxed mb-3 break-words">
         "{expanded ? r.text : preview}"
       </p>
