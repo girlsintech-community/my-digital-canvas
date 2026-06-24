@@ -39,7 +39,7 @@ const WallOfLove = () => {
           {TESTIMONIALS.map((t) => (
             <blockquote
               key={t.person}
-              className="glass-card rounded-2xl p-5 sm:p-8 text-left break-inside-avoid mb-4 sm:mb-6"
+              className="border border-border rounded-lg p-5 sm:p-8 bg-card text-left break-inside-avoid mb-4 sm:mb-6"
             >
               <span className="font-serif text-3xl sm:text-4xl text-border leading-none select-none">"</span>
               <p className="font-serif text-sm sm:text-base italic text-foreground leading-relaxed -mt-2 mb-4 sm:mb-5">

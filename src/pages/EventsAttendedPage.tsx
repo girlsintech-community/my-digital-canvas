@@ -62,7 +62,7 @@ const EventsAttendedPage = () => {
           {/* Highlighted */}
           <div className="space-y-4">
             {HIGHLIGHTED.map((e) => (
-              <div key={e.name} className="glass-card rounded-2xl p-5 hover:border-foreground/30 transition-colors">
+              <div key={e.name} className="border border-border rounded-lg p-5 hover:border-foreground/30 transition-colors">
                 <h3 className="font-serif text-lg font-semibold text-foreground">{e.name}</h3>
                 {(e.date || e.location) && (
                   <p className="text-xs text-muted-foreground mt-1">

@@ -1,40 +1,35 @@
-# Admin Dashboard + Bento Glass Cards
 
-Lovable Cloud is now enabled. This unlocks real auth + persistent storage so any edit you make in the admin reflects instantly for every visitor.
 
-## Phase 1 — Auth & Admin Shell
-- Add **email/password auth** (your account: `manik23265@gmail.com`).
-- Create `profiles` table (auto-created on signup) and a separate `user_roles` table with an `admin` role (security best practice, prevents privilege escalation).
-- After you sign up once, I'll grant your account the `admin` role via SQL.
-- Hidden entry: clicking the ❤️ in the footer navigates to `/admin/login`.
-- `/admin` dashboard route, protected by an `admin` role check.
+## Plan: Fix Mobile Issues
 
-## Phase 2 — Editable Content Tables
-Create database tables (with RLS: public read, admin-only write) for these sections, with admin CRUD UIs:
-1. **Events Attended** (title, date, location, description, gallery images)
-2. **Events Organised** (title, date, description)
-3. **Podcasts** (title, YouTube URL, description)
-4. **Diary entries** (title, body, date, mood)
-5. **Recommendations** (name, role, text, date)
-6. **Work Experience** (role, company, dates, bullets)
-7. **Articles** (title, platform, URL, date)
+### Problems Identified
 
-Each section component is migrated to read from the DB (with the existing hardcoded content seeded as initial rows). Image uploads use Lovable Cloud Storage.
+1. **Resume page not loading on mobile**: The resume route `/resume` likely fails on direct navigation or refresh because the server doesn't handle client-side routes. This is a known SPA issue — but since this is Vite with BrowserRouter, it should work in preview. More likely the issue is that mobile nav links for "resume" use `href="/resume"` which triggers a full page reload. Need to use `navigate()` for internal routes.
 
-Sections that stay hardcoded for now (low edit frequency): Hero, About, Skills, Education, Certifications, Extracurriculars, Wall of Love. We can move these later anytime.
+2. **Mobile menu button centered**: Line 31 in Nav.tsx uses `justify-center` — the hamburger button appears centered. Need `justify-end` on mobile.
 
-## Phase 3 — Bento Glass-morphism Card Redesign
-- Add a reusable `BentoCard` component with backdrop-blur, translucent surface, subtle gradient border, soft inner glow, and hover lift.
-- Apply across all card-like surfaces: Wall of Love, Community events, Work Experience, Recommendations, Podcasts, Articles, Diary entries.
-- Keep the minimal B&W aesthetic intact (glass over the existing background, no color shift).
+3. **Social links opening in browser instead of app**: The social links use `target="_blank"` which forces browser. Need to use deep link / intent URLs for mobile apps.
 
-## Technical notes
-- Auth uses Lovable Cloud (Supabase under the hood). No password hash in `.env` — the password lives only in your account in the auth system, properly hashed server-side. This is more secure than the hashed-env approach we discussed and means edits sync to all visitors automatically.
-- All tables use RLS: anyone can read, only users with the `admin` role can write.
-- Image uploads go to a Cloud Storage bucket.
+### Changes
 
-## Out of scope (this round)
-- "Code rewrites itself from the admin UI" — not buildable on a static site as I explained; Cloud is the standard alternative and gives the same end result for visitors.
-- Editing the very low-frequency sections (Hero text, Skills list). Easy to add later.
+#### 1. Fix Nav.tsx — Menu button alignment + resume navigation
+- Change the nav container from `justify-center` to `justify-between` (or `justify-end` on mobile) so the hamburger menu appears top-right.
+- For the "resume" link (and any non-hash link), use `e.preventDefault()` + `navigate()` instead of default anchor behavior to avoid full page reloads that break SPA routing.
 
-Approve and I'll start with Phase 1 (auth + shell + heart-emoji entry).
+#### 2. Fix Hero.tsx — Social deep links for mobile apps
+- Replace social URLs with intent-friendly URLs where possible:
+  - YouTube: `https://www.youtube.com/@themanikdiaries` (YouTube app intercepts this automatically)
+  - Instagram: `https://instagram.com/manik.3000` (Instagram app intercepts this)
+  - Twitter/X: `https://twitter.com/themanikdiaries` (X app intercepts this)
+  - LinkedIn: same URL (app intercepts)
+  - GitHub: same URL
+- Remove `target="_blank"` and `rel="noopener noreferrer"` — these force the browser. Without them, mobile OS will offer to open in the native app if installed.
+
+#### 3. Resume page scroll fix
+- Add `window.scrollTo(0, 0)` on mount in Resume.tsx to ensure the page starts at top.
+
+### Files to Edit
+- `src/components/sections/Nav.tsx` — menu alignment + SPA navigation for internal routes
+- `src/components/sections/Hero.tsx` — remove `target="_blank"` to allow app deep linking
+- `src/pages/Resume.tsx` — scroll to top on mount
+

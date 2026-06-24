@@ -80,7 +80,7 @@ const Awards = () => {
         <SectionHeading>Awards & Honors</SectionHeading>
         <div className="space-y-5 mt-8">
           {visible.map((a) => (
-            <div key={a.title} className="flex gap-4 glass-card rounded-2xl p-5 hover:border-foreground/20 transition-colors">
+            <div key={a.title} className="flex gap-4 border border-border rounded-lg p-5 hover:border-foreground/20 transition-colors">
               <Award size={20} className="text-muted-foreground shrink-0 mt-1" />
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">

@@ -173,7 +173,7 @@ const DiaryPage = () => (
             return (
               <div
                 key={s.title}
-                className="break-inside-avoid glass-card rounded-2xl p-6 hover:border-primary/40 transition-colors"
+                className="break-inside-avoid border border-border rounded-lg p-6 bg-card hover:border-primary/40 transition-colors"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <Icon size={20} className="text-primary" />

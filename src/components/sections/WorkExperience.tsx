@@ -51,7 +51,7 @@ const WorkExperience = () => {
       <SectionHeading>Work Experience</SectionHeading>
       <div className="space-y-6 mt-8">
         {EXPERIENCE.map((e) => (
-          <div key={e.company} className="glass-card rounded-2xl p-5 sm:p-6 hover:border-foreground/20 transition-colors">
+          <div key={e.company} className="border border-border rounded-lg p-5 sm:p-6 hover:border-foreground/20 transition-colors">
             <div className="flex items-start justify-between gap-2">
               <div className="flex-1">
                 <div className="flex items-center gap-2">
