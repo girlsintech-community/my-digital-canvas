@@ -9,7 +9,7 @@ const About = () => (
       >
         I bring growth <span className="italic">wherever I go.</span>
       </SectionHeading>
-      <div className="space-y-6 text-muted-foreground leading-relaxed mt-8 text-base md:text-lg text-left md:text-center">
+      <div className="space-y-6 text-muted-foreground leading-relaxed text-base md:text-lg text-left">
         <p>
           Hey, I'm <strong className="text-foreground">Manik</strong> — a <strong className="text-foreground">builder</strong>, <strong className="text-foreground">community architect</strong>, and <strong className="text-foreground">growth catalyst</strong> based in <strong className="text-foreground">Chandigarh, India</strong>. I founded{" "}
           <a href="https://www.linkedin.com/company/girlsleadingtech/" target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-4 hover:text-primary transition-colors font-semibold">Girls Leading Tech</a>, a <strong className="text-foreground">non-profit community of 3,300+ women in tech</strong> across 900+ colleges and 25+ Indian states — hosting <strong className="text-foreground">55+ mentorship sessions</strong>, hackathons like{" "}
