@@ -118,7 +118,12 @@ const RecCard = ({ r }: { r: typeof RECS[0] }) => {
 const Recommendations = () => (
   <section id="recommendations" className="py-12 md:py-16 overflow-hidden">
     <div className="text-center">
-      <SectionHeading><span className="text-base sm:text-lg md:text-xl">Recommendations</span></SectionHeading>
+      <SectionHeading
+        eyebrow="Kind words"
+        description="Recommendations from mentors, collaborators, and community leaders I've had the privilege to work with."
+      >
+        Recommendations
+      </SectionHeading>
       <div className="space-y-6 text-left">
         {RECS.map((r) => (
           <RecCard key={r.name} r={r} />
