@@ -48,7 +48,12 @@ const WorkExperience = () => {
 
   return (
     <section id="experience" className="py-12 md:py-16">
-      <SectionHeading>Work Experience</SectionHeading>
+      <SectionHeading
+        eyebrow="Career"
+        description="Roles where I've shipped products, grown communities, and led go-to-market from zero."
+      >
+        Work Experience
+      </SectionHeading>
       <div className="space-y-6 mt-8">
         {EXPERIENCE.map((e) => (
           <div key={e.company} className="border border-border rounded-lg p-5 sm:p-6 hover:border-foreground/20 transition-colors">
