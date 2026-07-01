@@ -90,7 +90,12 @@ const Articles = () => {
   return (
     <section id="articles" className="py-20 md:py-28 px-6 border-t border-border">
       <div className="max-w-3xl mx-auto text-center">
-        <SectionHeading>Articles & Threads</SectionHeading>
+        <SectionHeading
+          eyebrow="Writing"
+          description="Long-form notes, essays, and threads on building in public, community, and the journey so far."
+        >
+          Articles & Threads
+        </SectionHeading>
 
         {/* Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
