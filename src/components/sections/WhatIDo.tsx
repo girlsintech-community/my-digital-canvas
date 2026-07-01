@@ -16,18 +16,18 @@ const CARDS = [
   },
 ];
 
+import SectionHeading from "./SectionHeading";
+
 const WhatIDo = () => (
   <section id="whatido" className="py-20 md:py-28 px-6 border-t border-border bg-background">
-    <div className="max-w-4xl mx-auto text-center">
-      <span className="text-xs font-sans font-medium tracking-widest text-muted-foreground uppercase">
-        What I Do
-      </span>
-      <h2 className="font-serif text-4xl md:text-6xl font-bold text-foreground mt-4 mb-14 leading-tight">
+    <div className="max-w-5xl mx-auto">
+      <SectionHeading
+        eyebrow="What I Do"
+        description="Three things I keep coming back to, products, communities, and content, all pointed at the same north star."
+      >
         Building at the intersection of{" "}
-        <span className="italic text-foreground">
-          people, products & purpose.
-        </span>
-      </h2>
+        <span className="italic">people, products & purpose.</span>
+      </SectionHeading>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
         {CARDS.map((c) => (
           <div
