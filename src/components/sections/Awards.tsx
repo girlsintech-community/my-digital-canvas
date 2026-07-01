@@ -77,8 +77,14 @@ const Awards = () => {
   return (
     <section id="awards" className="py-20 md:py-28 px-6 border-t border-border">
       <div className="max-w-3xl mx-auto">
-        <SectionHeading>Awards & Honors</SectionHeading>
-        <div className="space-y-5 mt-8">
+        <SectionHeading
+          eyebrow="Recognition"
+          description="A few moments where the work got noticed, from scholarships to global director titles."
+        >
+          Awards & Honors
+        </SectionHeading>
+        <div className="space-y-5">
+
           {visible.map((a) => (
             <div key={a.title} className="flex gap-4 border border-border rounded-lg p-5 hover:border-foreground/20 transition-colors">
               <Award size={20} className="text-muted-foreground shrink-0 mt-1" />

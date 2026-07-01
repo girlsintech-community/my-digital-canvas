@@ -19,14 +19,17 @@ const SOCIALS = [
 const Connect = () => (
   <section id="connect" className="py-20 md:py-28 px-6 border-t border-border">
     <div className="max-w-3xl mx-auto text-center">
-      <SectionHeading>Let's Connect</SectionHeading>
-      <p className="text-muted-foreground mb-8 max-w-md mx-auto leading-relaxed">
-        Got an idea, a collaboration, or just want to say hello? I'd love to hear from you.
-      </p>
+      <SectionHeading
+        eyebrow="Get in touch"
+        description="Got an idea, a collaboration, or just want to say hello? My inbox is always open."
+      >
+        Let's Connect
+      </SectionHeading>
       <a
         href="mailto:manik.officialwork@gmail.com"
         className="inline-flex items-center gap-2 border border-foreground text-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-foreground hover:text-background transition-colors"
       >
+
         <Mail size={16} />
         manik.officialwork@gmail.com
       </a>

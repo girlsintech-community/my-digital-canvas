@@ -30,7 +30,12 @@ const HACKATHONS = [
 
 const Extracurriculars = () => (
   <section id="extracurriculars" className="py-12 md:py-16">
-    <SectionHeading>Extracurriculars</SectionHeading>
+    <SectionHeading
+      eyebrow="Beyond work"
+      description="Hackathons, achievements, and side quests that made the journey more colorful."
+    >
+      Extracurriculars
+    </SectionHeading>
 
     <div className="space-y-8 mt-8">
       <div>

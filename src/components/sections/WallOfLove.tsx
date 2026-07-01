@@ -33,9 +33,15 @@ const WallOfLove = () => {
 
   return (
     <section id="testimonials" className="py-16 md:py-28 px-4 sm:px-6 border-t border-border">
-      <div className="max-w-4xl mx-auto text-center">
-        <SectionHeading>Wall of Love</SectionHeading>
+      <div className="max-w-4xl mx-auto">
+        <SectionHeading
+          eyebrow="Wall of Love"
+          description="Kind words from people I've worked with, learned from, and built alongside."
+        >
+          What people say
+        </SectionHeading>
         <div className="columns-1 md:columns-2 gap-4 sm:gap-6">
+
           {TESTIMONIALS.map((t) => (
             <blockquote
               key={t.person}

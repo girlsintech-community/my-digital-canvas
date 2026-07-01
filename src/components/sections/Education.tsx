@@ -117,7 +117,12 @@ const EducationItem = ({ e }: { e: typeof EDUCATION[0] }) => {
 
 const Education = () => (
   <section id="education" className="py-12 md:py-16">
-    <SectionHeading>Education</SectionHeading>
+    <SectionHeading
+      eyebrow="Academics"
+      description="The classrooms, campuses, and programs that shaped how I think and learn."
+    >
+      Education
+    </SectionHeading>
     <div className="space-y-8 mt-8">
       {EDUCATION.map((e) => (
         <EducationItem key={e.institution} e={e} />

@@ -8,7 +8,12 @@ const SKILLS = {
 
 const Skills = () => (
   <section id="skills" className="py-12 md:py-16">
-    <SectionHeading>Skills</SectionHeading>
+    <SectionHeading
+      eyebrow="Toolkit"
+      description="The stack, soft skills, and superpowers I bring to every table."
+    >
+      Skills
+    </SectionHeading>
     <div className="space-y-6 mt-8">
       {Object.entries(SKILLS).map(([category, skills]) => (
         <div key={category}>

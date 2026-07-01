@@ -26,7 +26,12 @@ const CERTS = [
 
 const Certifications = () => (
   <section id="certifications" className="py-12 md:py-16">
-    <SectionHeading>Certifications</SectionHeading>
+    <SectionHeading
+      eyebrow="Credentials"
+      description="Programs and certifications I've completed to keep the toolkit sharp."
+    >
+      Certifications
+    </SectionHeading>
     <div className="space-y-8 mt-8">
       {CERTS.map((c) => (
         <div key={c.category}>
