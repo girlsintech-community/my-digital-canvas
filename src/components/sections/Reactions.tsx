@@ -41,9 +41,12 @@ const Reactions = () => {
   return (
     <div className="border-t border-border bg-accent/30 py-8 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto text-center">
-        <p className="text-sm font-medium text-foreground mb-1">How Does My Space Make You Feel?</p>
-        <p className="text-xs text-muted-foreground mb-5">
-          Click a reaction to let me know!
+        <span className="block text-xs font-sans font-medium tracking-[0.2em] text-muted-foreground uppercase mb-3">
+          Reactions
+        </span>
+        <p className="font-serif text-xl md:text-2xl text-foreground mb-2">How does my space make you feel?</p>
+        <p className="text-sm text-muted-foreground mb-6">
+          Pick one, you only get a single tap.
         </p>
         <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
           {REACTIONS.map((r) => (
