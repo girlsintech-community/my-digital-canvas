@@ -1,13 +1,14 @@
+import SectionHeading from "./SectionHeading";
+
 const About = () => (
   <section id="about" className="py-20 md:py-28 px-6 border-t border-border">
-    <div className="max-w-3xl mx-auto text-center">
-      <span className="text-xs font-sans font-medium tracking-widest text-muted-foreground uppercase">
-        About
-      </span>
-      <h2 className="font-serif text-4xl md:text-6xl font-bold text-foreground mt-4 mb-4 leading-tight">
-        I bring growth{" "}
-        <span className="italic text-foreground">wherever I go.</span>
-      </h2>
+    <div className="max-w-3xl mx-auto">
+      <SectionHeading
+        eyebrow="About"
+        description="A short story of who I am, what I've built, and why I keep showing up for people."
+      >
+        I bring growth <span className="italic">wherever I go.</span>
+      </SectionHeading>
       <div className="space-y-6 text-muted-foreground leading-relaxed mt-8 text-base md:text-lg text-left md:text-center">
         <p>
           Hey, I'm <strong className="text-foreground">Manik</strong> — a <strong className="text-foreground">builder</strong>, <strong className="text-foreground">community architect</strong>, and <strong className="text-foreground">growth catalyst</strong> based in <strong className="text-foreground">Chandigarh, India</strong>. I founded{" "}
