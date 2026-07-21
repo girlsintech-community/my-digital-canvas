@@ -93,9 +93,21 @@ const Nav = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
         <div className="hidden md:flex items-center gap-3">
-          <span className="text-xs font-mono text-muted-foreground tracking-wide">
-            {istTime} IST
+          <span className="text-xs font-mono text-muted-foreground tracking-wide tabular-nums">
+            {currentTime}
           </span>
+          <select
+            value={zone}
+            onChange={(e) => setZone(e.target.value)}
+            aria-label="Change timezone"
+            className="text-xs font-mono bg-transparent text-muted-foreground hover:text-foreground border border-border rounded px-1.5 py-0.5 cursor-pointer focus:outline-none focus:ring-1 focus:ring-ring"
+          >
+            {TIMEZONES.map((t) => (
+              <option key={t.zone} value={t.zone} className="bg-background text-foreground">
+                {t.label}
+              </option>
+            ))}
+          </select>
           <VisitorCounter />
         </div>
         <div className="hidden md:flex items-center gap-6">
