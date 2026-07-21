@@ -70,7 +70,11 @@ const setGoogleTranslateCookie = (lang: string) => {
   }
 };
 
-const AccessibilityWidget = () => {
+interface AccessibilityWidgetProps {
+  isMobile?: boolean;
+}
+
+const AccessibilityWidget = ({ isMobile = false }: AccessibilityWidgetProps) => {
   const [open, setOpen] = useState(false);
   const [fontScale, setFontScale] = useState<number>(() => {
     const v = localStorage.getItem(FONT_KEY);
@@ -134,7 +138,7 @@ const AccessibilityWidget = () => {
   };
 
   return (
-    <>
+    <div className="relative inline-flex items-center">
       {/* Hidden Google Translate mount */}
       <div id="google_translate_element" style={{ display: "none" }} />
 
@@ -142,16 +146,17 @@ const AccessibilityWidget = () => {
         onClick={() => setOpen((o) => !o)}
         aria-label="Accessibility options"
         aria-expanded={open}
-        className="notranslate fixed bottom-4 left-4 z-[100] w-12 h-12 rounded-full bg-foreground text-background shadow-lg flex items-center justify-center hover:scale-105 transition-transform"
+        className="text-muted-foreground hover:text-foreground transition-colors p-1 flex items-center focus:outline-none"
+        title="Accessibility options"
       >
-        {open ? <X size={20} /> : <Accessibility size={22} />}
+        {open ? <X size={isMobile ? 20 : 18} /> : <Accessibility size={isMobile ? 20 : 18} />}
       </button>
 
       {open && (
         <div
           role="dialog"
           aria-label="Accessibility panel"
-          className="notranslate fixed bottom-20 left-4 z-[100] w-[20rem] max-w-[calc(100vw-2rem)] max-h-[70vh] overflow-y-auto bg-background border border-border shadow-xl rounded-lg p-5 text-foreground"
+          className="notranslate fixed top-16 right-4 sm:right-[15%] z-[100] w-[20rem] max-w-[calc(100vw-2rem)] max-h-[75vh] overflow-y-auto bg-background/95 backdrop-blur-md border border-border shadow-2xl rounded-2xl p-5 text-foreground"
         >
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-serif text-lg font-medium">Accessibility</h2>
@@ -230,7 +235,7 @@ const AccessibilityWidget = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

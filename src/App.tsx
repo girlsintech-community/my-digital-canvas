@@ -5,7 +5,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import IntroAnimation from "@/components/IntroAnimation";
-import AccessibilityWidget from "@/components/AccessibilityWidget";
 import Index from "./pages/Index.tsx";
 import Resume from "./pages/Resume.tsx";
 import CommunityPage from "./pages/CommunityPage.tsx";
@@ -51,7 +50,6 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-        <AccessibilityWidget />
       </TooltipProvider>
     </QueryClientProvider>
   );
