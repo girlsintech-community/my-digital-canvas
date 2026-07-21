@@ -7,7 +7,6 @@ import WhatIDo from "@/components/sections/WhatIDo";
 import Awards from "@/components/sections/Awards";
 import WallOfLove from "@/components/sections/WallOfLove";
 import Connect from "@/components/sections/Connect";
-import Reactions from "@/components/sections/Reactions";
 import Footer from "@/components/sections/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -34,7 +33,6 @@ const Index = () => {
       <Awards />
       <WallOfLove />
       <Connect />
-      <Reactions />
       <Footer />
       <ScrollToTop />
     </div>
