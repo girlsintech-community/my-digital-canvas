@@ -96,9 +96,9 @@
     overflow-x: hidden;
   }
 
-  main, footer > div, nav > div {
-    padding-left: clamp(1rem, 5vw, 4rem);
-    padding-right: clamp(1rem, 5vw, 4rem);
+  main, footer, section {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
   }
 
   p {
