@@ -13,14 +13,26 @@ const NAV_LINKS = [
   { label: "Connect", href: "/connect" },
 ];
 
-const useIST = () => {
+const TIMEZONES = [
+  { label: "IST", zone: "Asia/Kolkata" },
+  { label: "UTC", zone: "UTC" },
+  { label: "NYC", zone: "America/New_York" },
+  { label: "LA", zone: "America/Los_Angeles" },
+  { label: "LON", zone: "Europe/London" },
+  { label: "BER", zone: "Europe/Berlin" },
+  { label: "DXB", zone: "Asia/Dubai" },
+  { label: "SGP", zone: "Asia/Singapore" },
+  { label: "TYO", zone: "Asia/Tokyo" },
+  { label: "SYD", zone: "Australia/Sydney" },
+];
+
+const useZoneTime = (zone: string) => {
   const [time, setTime] = useState("");
   useEffect(() => {
     const update = () => {
-      const now = new Date();
       setTime(
-        now.toLocaleTimeString("en-IN", {
-          timeZone: "Asia/Kolkata",
+        new Date().toLocaleTimeString("en-US", {
+          timeZone: zone,
           hour: "2-digit",
           minute: "2-digit",
           second: "2-digit",
@@ -31,7 +43,7 @@ const useIST = () => {
     update();
     const id = setInterval(update, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [zone]);
   return time;
 };
 
@@ -45,7 +57,10 @@ const Nav = () => {
   });
   const location = useLocation();
   const navigate = useNavigate();
-  const istTime = useIST();
+  const [zone, setZone] = useState<string>(() => localStorage.getItem("tz") || "Asia/Kolkata");
+  const currentTz = TIMEZONES.find((t) => t.zone === zone) || TIMEZONES[0];
+  const currentTime = useZoneTime(zone);
+  useEffect(() => { localStorage.setItem("tz", zone); }, [zone]);
 
   useEffect(() => {
     if (dark) {
