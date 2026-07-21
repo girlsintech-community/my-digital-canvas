@@ -63,33 +63,33 @@ const Hero = () => {
   return (
     <section className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
-        {/* Intro row: photo + name/role */}
+        {/* Intro: photo + name/role. Mobile stacks name-above, image-middle. */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 mb-8">
-          <div className="w-28 h-28 sm:w-36 sm:h-36 shrink-0 overflow-hidden rounded-full border border-border shadow-sm">
-            <img src={profileImg} alt="Manik" className="w-full h-full object-cover" loading="eager" />
-          </div>
-          <div className="flex-1 text-center sm:text-left">
+          <div className="w-full sm:w-auto sm:flex-1 text-center sm:text-left order-1 sm:order-2">
             <p className="font-sans text-xs tracking-[0.2em] text-muted-foreground uppercase mb-2">
               Hi, I am
             </p>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-3">
               Manik
             </h1>
-            <p className="font-sans text-sm sm:text-base text-muted-foreground">
+            <p className="font-sans text-sm sm:text-base text-muted-foreground whitespace-nowrap">
               I am {/^[aeiou]/i.test(typedRole) ? "an" : "a"}{" "}
               <span className="text-foreground font-medium">{typedRole}</span>
               <span className="animate-pulse text-foreground">|</span>
             </p>
           </div>
+          <div className="w-56 h-56 sm:w-36 sm:h-36 shrink-0 overflow-hidden rounded-2xl border border-border shadow-sm order-2 sm:order-1">
+            <img src={profileImg} alt="Manik" className="w-full h-full object-cover" loading="eager" />
+          </div>
         </div>
 
         {/* Tagline */}
-        <p className="font-serif text-lg sm:text-xl italic text-muted-foreground text-center sm:text-left mb-8 leading-relaxed">
+        <p className="font-serif text-lg sm:text-xl italic text-muted-foreground text-center sm:text-left mb-8 leading-relaxed no-justify">
           "I build for impact and bring people together."
         </p>
 
         {/* Milestones */}
-        <ul className="space-y-2 mb-8 border-l-2 border-border pl-4 sm:pl-5">
+        <ul className="space-y-2 mb-8 border-l-2 border-border pl-4 sm:pl-5 no-justify">
           {MILESTONES.map((m, i) => (
             <li key={i} className="text-sm sm:text-[0.95rem] text-muted-foreground leading-relaxed">
               {m}
