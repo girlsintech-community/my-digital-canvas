@@ -61,62 +61,60 @@ const Hero = () => {
   const typedRole = useTypingAnimation(ROLES);
 
   return (
-    <>
-      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
-          <p className="font-sans text-sm sm:text-base tracking-widest text-muted-foreground uppercase mb-2">
-            Hi, I am
-          </p>
-          <h1 className="font-serif text-5xl sm:text-7xl md:text-9xl font-bold tracking-tight text-foreground mb-4 sm:mb-6">
-            Manik
-          </h1>
-          <p className="font-serif text-lg sm:text-xl md:text-2xl italic text-muted-foreground mb-6 sm:mb-8">
-            "I build for impact and bring people together."
-          </p>
-          <div className="h-8 sm:h-10 flex items-center justify-center mb-8 sm:mb-10">
-            <span className="font-sans text-base sm:text-lg font-medium tracking-widest text-foreground">
-              I am {/^[aeiou]/i.test(typedRole) ? "an" : "a"} <span className="text-primary">{typedRole}</span>
-              <span className="animate-pulse">|</span>
-            </span>
+    <section className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
+      <div className="max-w-3xl mx-auto">
+        {/* Intro row: photo + name/role */}
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 mb-8">
+          <div className="w-28 h-28 sm:w-36 sm:h-36 shrink-0 overflow-hidden rounded-full border border-border shadow-sm">
+            <img src={profileImg} alt="Manik" className="w-full h-full object-cover" loading="eager" />
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 px-2">
-            {SOCIALS.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label={s.label}
-              >
-                <s.icon size={18} className="sm:w-6 sm:h-6" />
-              </a>
-            ))}
+          <div className="flex-1 text-center sm:text-left">
+            <p className="font-sans text-xs tracking-[0.2em] text-muted-foreground uppercase mb-2">
+              Hi, I am
+            </p>
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-3">
+              Manik <span className="inline-block animate-[wave_2s_ease-in-out_infinite] origin-[70%_70%]">👋</span>
+            </h1>
+            <p className="font-sans text-sm sm:text-base text-muted-foreground">
+              I am {/^[aeiou]/i.test(typedRole) ? "an" : "a"}{" "}
+              <span className="text-foreground font-medium">{typedRole}</span>
+              <span className="animate-pulse text-foreground">|</span>
+            </p>
           </div>
         </div>
-      </section>
 
-      {/* Milestones */}
-      <section className="px-4 sm:px-6 pb-10 sm:pb-16">
-        <div className="max-w-2xl mx-auto">
-          <ul className="space-y-2">
-            {MILESTONES.map((m, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm sm:text-base text-muted-foreground">
-                <span className="text-foreground mt-1.5 shrink-0">&#8226;</span>
-                <span>{m}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+        {/* Tagline */}
+        <p className="font-serif text-lg sm:text-xl italic text-muted-foreground text-center sm:text-left mb-8 leading-relaxed">
+          "I build for impact and bring people together."
+        </p>
 
-      {/* Photo */}
-      <section className="px-4 sm:px-6 pb-16 sm:pb-24 md:pb-32">
-        <div className="max-w-5xl mx-auto flex justify-center">
-          <div className="w-[18rem] h-[18rem] sm:w-[22rem] sm:h-[22rem] md:w-[36rem] md:h-[36rem] overflow-hidden border border-border shadow-lg">
-            <img src={profileImg} alt="Manik" className="w-full h-full object-cover" />
-          </div>
+        {/* Milestones */}
+        <ul className="space-y-2 mb-8 border-l-2 border-border pl-4 sm:pl-5">
+          {MILESTONES.map((m, i) => (
+            <li key={i} className="text-sm sm:text-[0.95rem] text-muted-foreground leading-relaxed">
+              {m}
+            </li>
+          ))}
+        </ul>
+
+        {/* Socials */}
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-3 pt-2 border-t border-border">
+          <span className="text-xs font-sans tracking-[0.2em] text-muted-foreground uppercase w-full sm:w-auto text-center sm:text-left sm:mr-2">
+            Find me on
+          </span>
+          {SOCIALS.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label={s.label}
+            >
+              <s.icon size={16} className="sm:w-[18px] sm:h-[18px]" />
+            </a>
+          ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
