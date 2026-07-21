@@ -1,131 +1,101 @@
-import { useState } from "react";
-import { ExternalLink, ChevronDown } from "lucide-react";
-import SectionHeading from "./SectionHeading";
-
 const EDUCATION = [
   {
     institution: "CMX Academy",
-    link: "https://www.cmxhub.com/",
+    location: "San Francisco, California, United States",
+    program: "MBA in Community Management and Community Building",
     period: "June 2024 – March 2026",
-    program: "MBA in Community Building",
-    detail: "",
-    
+    link: "https://www.cmxhub.com/",
   },
   {
     institution: "Udacity",
-    link: "https://www.udacity.com/",
-    period: "March 2026 – April 2026",
     program: "AWS AI & ML Scholar",
-    detail: "",
+    period: "March 2026 – April 2026",
+    link: "https://www.udacity.com/",
   },
   {
     institution: "McKinsey & Company",
-    period: "Oct 2025 – Dec 2025",
     program: "McKinsey Forward Learning Programme — Fellow",
-    detail: "Learned frameworks like APR, EPIC, SMART and how to be more adaptable, resilient while communicating effectively for impact.",
+    period: "Oct 2025 – Dec 2025",
     link: "https://www.mckinsey.com/",
+    bullets: [
+      "Learned frameworks like APR, EPIC, SMART and how to be more adaptable, resilient while communicating effectively for impact.",
+    ],
   },
   {
     institution: "The Community Collective",
-    period: "2024 – 2025",
     program: "Community Building & Leadership Programme",
-    detail: "Secured full scholarship of $6,000 to be a part of Cohort 6, Cohort 7 and Chaos Pilot Program among 100+ candidates worldwide.",
+    period: "2024 – 2025",
     link: "https://thecommunitycollective.co/",
+    bullets: [
+      "Secured full scholarship of $6,000 to be a part of Cohort 6, Cohort 7 and Chaos Pilot Program among 100+ candidates worldwide.",
+    ],
   },
   {
     institution: "Aspire Institute",
-    period: "March 2025 – May 2025",
     program: "Leadership Development Program",
+    period: "March 2025 – May 2025",
     link: "https://www.aspireleaders.org/",
   },
   {
-    institution: "Chandigarh Group of Colleges Landran, Punjab",
-    link: "https://www.cgc.edu.in/",
+    institution: "Chandigarh Group of Colleges Landran",
+    location: "Punjab",
+    program: "B.Tech Computer Science Engineering (CGPA: 7.83)",
     period: "2023 – 2027",
-    program: "B.Tech Computer Science Engineering",
-    detail: "CGPA — 7.83",
-    expandable: [
-      "<strong>3rd Year:</strong>",
-      "Founded Letz Connect — To bridge the gap between juniors & seniors.",
-      "GDGoC — Mentor",
-      "Built Auto Community — For students to go together in Auto.",
-      "<strong>2nd Year:</strong>",
-      "Lamit Club (Web3 Club) — President",
-      "GDGoC — Community Relations Head",
-      "Department of International Affairs — Coordinator",
-      "Head Coordinator for HackFest 2025 — A National Level Hackathon supported by SAP.",
-      "<strong>1st Year:</strong>",
-      "GDSC — Member",
-      "Tech Amigos (Technical Club) — Member",
-      "THM (Cyber Security Club) — Marketing Team",
+    link: "https://www.cgc.edu.in/",
+    bullets: [
+      "3rd Year: Founded Letz Connect, GDGoC Mentor, Built Auto Community",
+      "2nd Year: Lamit Club President, GDGoC Community Relations Head, Department of International Affairs Coordinator, Head Coordinator for HackFest 2025",
+      "1st Year: GDSC Member, Tech Amigos Member, THM Club Marketing Team",
     ],
   },
   {
     institution: "Police DAV Public School",
+    program: "CBSE Class 12th — Non Medical (Physics, Chemistry, Maths, Music) — 90%",
     period: "2021 – 2023",
-    program: "CBSE Class 12th — Non Medical (Physics, Chemistry, Maths, Music)",
-    detail: "Percentage — 90%",
   },
   {
     institution: "Bell Toll Public High School",
+    program: "ICSE Class 10th — Science — 91%",
     period: "2008 – 2021",
-    program: "ICSE Class 10th — Science",
-    detail: "Percentage — 91%",
   },
 ];
 
-const EducationItem = ({ e }: { e: typeof EDUCATION[0] }) => {
-  const [expanded, setExpanded] = useState(false);
-  const hasExpandable = "expandable" in e && (e as any).expandable?.length > 0;
-
-  return (
-    <div className="border-b border-border pb-6 last:border-b-0 last:pb-0">
-      <div className="flex items-start justify-between gap-2">
-        <div className="flex-1">
-          <h3 className="font-serif text-lg sm:text-xl font-semibold text-foreground inline-flex items-center gap-2">
-            {e.link ? (
-              <a href={e.link} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors inline-flex items-center gap-2">
-                {e.institution} <ExternalLink size={14} />
-              </a>
-            ) : e.institution}
-          </h3>
-          <p className="text-sm text-muted-foreground mt-1">
-            {e.program}, {e.period}
-          </p>
-          {e.detail && <p className="text-sm text-muted-foreground mt-1">{e.detail}</p>}
-        </div>
-        {hasExpandable && (
-          <button onClick={() => setExpanded(!expanded)} className="text-muted-foreground hover:text-foreground transition-colors shrink-0 mt-1">
-            <ChevronDown size={18} className={`transition-transform duration-200 ${expanded ? "rotate-180" : ""}`} />
-          </button>
-        )}
-      </div>
-      {expanded && hasExpandable && (
-        <ul className="mt-3 space-y-1 pl-4 animate-fade-in">
-          {(e as any).expandable.map((item: string, i: number) => (
-            <li
-              key={i}
-              className={`text-sm text-muted-foreground leading-relaxed ${item.startsWith("<strong>") ? "list-none font-semibold mt-3 first:mt-0" : "list-disc"}`}
-              dangerouslySetInnerHTML={{ __html: item }}
-            />
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-};
-
 const Education = () => (
-  <section id="education" className="py-12 md:py-16">
-    <SectionHeading
-      eyebrow="Academics"
-      description="The classrooms, campuses, and programs that shaped how I think and learn."
-    >
-      Education
-    </SectionHeading>
-    <div className="space-y-8 mt-8">
-      {EDUCATION.map((e) => (
-        <EducationItem key={e.institution} e={e} />
+  <section id="education" className="mb-8">
+    <div className="border-b border-foreground/30 pb-1 mb-4">
+      <h2 className="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase text-foreground">
+        Education
+      </h2>
+    </div>
+    <div className="space-y-5">
+      {EDUCATION.map((e, index) => (
+        <div key={index} className="text-left">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between">
+            <h3 className="font-bold text-foreground text-base sm:text-[1.05rem]">
+              {e.institution}
+            </h3>
+            <span className="font-serif italic text-muted-foreground text-sm shrink-0">
+              {e.period}
+            </span>
+          </div>
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mt-0.5">
+            <p className="font-serif italic text-muted-foreground text-sm">
+              {e.program}
+            </p>
+            {e.location && (
+              <span className="font-serif italic text-muted-foreground text-xs sm:text-sm shrink-0">
+                {e.location}
+              </span>
+            )}
+          </div>
+          {e.bullets && e.bullets.length > 0 && (
+            <ul className="mt-2 list-disc list-outside pl-5 space-y-1 text-sm text-foreground/90 leading-relaxed">
+              {e.bullets.map((b, i) => (
+                <li key={i} dangerouslySetInnerHTML={{ __html: b }} />
+              ))}
+            </ul>
+          )}
+        </div>
       ))}
     </div>
   </section>

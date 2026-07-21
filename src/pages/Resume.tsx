@@ -31,12 +31,29 @@ const Resume = () => {
               View Resume
             </a>
           </div>
-          <WorkExperience />
-          <Education />
-          <Skills />
-          <Certifications />
-          <Extracurriculars />
-          <Recommendations />
+          <div className="border border-border rounded-2xl p-6 sm:p-10 shadow-sm bg-card print:border-none print:shadow-none print:p-0">
+            {/* Resume CV Header */}
+            <div className="text-center pb-6 mb-6 border-b border-foreground/20">
+              <h1 className="font-serif text-3xl sm:text-4xl font-bold tracking-wider uppercase text-foreground mb-1">
+                MANIK
+              </h1>
+              <p className="font-serif italic text-sm sm:text-base text-muted-foreground mb-2">
+                Builder • Community Architect • Growth Catalyst
+              </p>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                Chandigarh, India · manik.officialwork@gmail.com ·{" "}
+                <a href="https://www.linkedin.com/in/mrmanik/" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">linkedin.com/in/mrmanik</a> ·{" "}
+                <a href="https://github.com/manik-007" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">github.com/manik-007</a>
+              </p>
+            </div>
+
+            <WorkExperience />
+            <Education />
+            <Skills />
+            <Certifications />
+            <Extracurriculars />
+            <Recommendations />
+          </div>
         </div>
       </div>
       <Footer />

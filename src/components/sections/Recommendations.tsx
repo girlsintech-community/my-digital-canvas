@@ -116,29 +116,26 @@ const RecCard = ({ r }: { r: typeof RECS[0] }) => {
 };
 
 const Recommendations = () => (
-  <section id="recommendations" className="py-12 md:py-16 overflow-hidden">
-    <div className="text-center">
-      <SectionHeading
-        eyebrow="Kind words"
-        description="Recommendations from mentors, collaborators, and community leaders I've had the privilege to work with."
-      >
+  <section id="recommendations" className="mb-8 text-left">
+    <div className="border-b border-foreground/30 pb-1 mb-4">
+      <h2 className="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase text-foreground">
         Recommendations
-      </SectionHeading>
-      <div className="space-y-6 text-left">
-        {RECS.map((r) => (
-          <RecCard key={r.name} r={r} />
-        ))}
-      </div>
-      <div className="mt-8">
-        <a
-          href="https://forms.gle/4HmEmcESEF1eFqyi6"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
-        >
-          Recommend Me
-        </a>
-      </div>
+      </h2>
+    </div>
+    <div className="space-y-6 text-left">
+      {RECS.map((r) => (
+        <RecCard key={r.name} r={r} />
+      ))}
+    </div>
+    <div className="mt-6 text-center">
+      <a
+        href="https://forms.gle/4HmEmcESEF1eFqyi6"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center px-5 py-2.5 rounded-full text-xs font-medium border border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
+      >
+        Recommend Me
+      </a>
     </div>
   </section>
 );

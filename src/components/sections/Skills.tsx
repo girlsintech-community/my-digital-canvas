@@ -1,5 +1,3 @@
-import SectionHeading from "./SectionHeading";
-
 const SKILLS = {
   "Technical Skills": ["Python", "Version Control"],
   "Non-Technical Skills": ["Community Building", "Business Analysis", "Social Media Management", "Content Creation", "Content Writing", "Podcasting"],
@@ -7,24 +5,17 @@ const SKILLS = {
 };
 
 const Skills = () => (
-  <section id="skills" className="py-12 md:py-16">
-    <SectionHeading
-      eyebrow="Toolkit"
-      description="The stack, soft skills, and superpowers I bring to every table."
-    >
-      Skills
-    </SectionHeading>
-    <div className="space-y-6 mt-8">
+  <section id="skills" className="mb-8">
+    <div className="border-b border-foreground/30 pb-1 mb-4">
+      <h2 className="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase text-foreground">
+        Skills & Toolkit
+      </h2>
+    </div>
+    <div className="space-y-3 text-left">
       {Object.entries(SKILLS).map(([category, skills]) => (
-        <div key={category}>
-          <h3 className="font-serif text-lg font-semibold text-foreground mb-3">{category}</h3>
-          <div className="flex flex-wrap gap-2">
-            {skills.map((skill) => (
-              <span key={skill} className="text-xs px-3 py-1.5 rounded-full border border-border text-foreground">
-                {skill}
-              </span>
-            ))}
-          </div>
+        <div key={category} className="text-sm">
+          <span className="font-bold text-foreground">{category}: </span>
+          <span className="text-foreground/90">{skills.join(", ")}</span>
         </div>
       ))}
     </div>

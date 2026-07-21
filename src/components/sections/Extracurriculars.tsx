@@ -1,5 +1,3 @@
-import SectionHeading from "./SectionHeading";
-
 const ACHIEVEMENTS = [
   "Internal Finalist at Smart India Hackathon in 2023, 2024, 2025.",
   "Won National Science Day in Coding Category in 2023.",
@@ -29,38 +27,37 @@ const HACKATHONS = [
 ];
 
 const Extracurriculars = () => (
-  <section id="extracurriculars" className="py-12 md:py-16">
-    <SectionHeading
-      eyebrow="Beyond work"
-      description="Hackathons, achievements, and side quests that made the journey more colorful."
-    >
-      Extracurriculars
-    </SectionHeading>
+  <section id="extracurriculars" className="mb-8 text-left">
+    <div className="border-b border-foreground/30 pb-1 mb-4">
+      <h2 className="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase text-foreground">
+        Extracurriculars & Leadership
+      </h2>
+    </div>
 
-    <div className="space-y-8 mt-8">
+    <div className="space-y-4">
       <div>
-        <h3 className="font-serif text-lg font-semibold text-foreground mb-3">Achievements</h3>
+        <h3 className="font-serif italic font-semibold text-foreground text-sm mb-1">Achievements</h3>
         <ul className="list-disc list-outside pl-5 space-y-1">
           {ACHIEVEMENTS.map((a, i) => (
-            <li key={i} className="text-sm text-foreground leading-relaxed">{a}</li>
+            <li key={i} className="text-sm text-foreground/90 leading-relaxed">{a}</li>
           ))}
         </ul>
       </div>
 
       <div>
-        <h3 className="font-serif text-lg font-semibold text-foreground mb-3">Leadership Roles</h3>
+        <h3 className="font-serif italic font-semibold text-foreground text-sm mb-1">Leadership Roles</h3>
         <ul className="list-disc list-outside pl-5 space-y-1">
           {ROLES.map((r, i) => (
-            <li key={i} className="text-sm text-foreground leading-relaxed">{r}</li>
+            <li key={i} className="text-sm text-foreground/90 leading-relaxed">{r}</li>
           ))}
         </ul>
       </div>
 
       <div>
-        <h3 className="font-serif text-lg font-semibold text-foreground mb-3">Hackathons Attended</h3>
+        <h3 className="font-serif italic font-semibold text-foreground text-sm mb-1">Hackathons Attended</h3>
         <ul className="list-disc list-outside pl-5 space-y-1">
           {HACKATHONS.map((h, i) => (
-            <li key={i} className="text-sm text-foreground leading-relaxed">{h}</li>
+            <li key={i} className="text-sm text-foreground/90 leading-relaxed">{h}</li>
           ))}
         </ul>
       </div>
