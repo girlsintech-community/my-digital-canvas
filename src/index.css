@@ -93,8 +93,22 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><text y='20' font-size='20'>😊</text></svg>") 12 12, auto;
     overflow-x: hidden;
+  }
+
+  main, footer, section {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  p {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+  }
+
+  h1, h2, h3, h4, h5, h6, .no-justify, .no-justify p {
+    text-align: inherit;
   }
 
   html {

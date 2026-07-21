@@ -6,7 +6,7 @@ import About from "@/components/sections/About";
 import WhatIDo from "@/components/sections/WhatIDo";
 import Awards from "@/components/sections/Awards";
 import WallOfLove from "@/components/sections/WallOfLove";
-import Connect from "@/components/sections/Connect";
+
 import Footer from "@/components/sections/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -32,7 +32,6 @@ const Index = () => {
       <WhatIDo />
       <Awards />
       <WallOfLove />
-      <Connect />
       <Footer />
       <ScrollToTop />
     </div>
