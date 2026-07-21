@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "Wall of Love", href: "/wall-of-love" },
   { label: "Diary", href: "/diary" },
   { label: "Resume", href: "/resume" },
-  { label: "Connect", href: "#connect" },
+  { label: "Connect", href: "/connect" },
 ];
 
 const useIST = () => {
