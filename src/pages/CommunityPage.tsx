@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Youtube, Twitter, ExternalLink, ChevronDown } from "lucide-react";
 import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
@@ -392,15 +393,15 @@ const SessionRow = ({ title, link, speakers }: {
 }) => {
   const thumb = getYouTubeThumb(link);
   return (
-  <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6 border-b border-border py-4">
+  <div className="flex flex-row items-start gap-3 sm:gap-5 border-b border-border py-3.5 text-left">
     {thumb && (
-      <a href={link} target="_blank" rel="noopener noreferrer" className="shrink-0 block w-28 sm:w-36 aspect-video overflow-hidden rounded-md border border-border bg-muted">
+      <a href={link} target="_blank" rel="noopener noreferrer" className="shrink-0 block w-24 sm:w-36 aspect-video overflow-hidden rounded-md border border-border bg-muted">
         <img src={thumb} alt={`${title} thumbnail`} loading="lazy" className="w-full h-full object-cover" />
       </a>
     )}
     <div className="flex-1 min-w-0">
-      <h3 className="font-serif text-base font-medium text-foreground leading-snug">{title}</h3>
-      <p className="text-sm text-muted-foreground mt-1">
+      <h3 className="font-serif text-sm sm:text-base font-medium text-foreground leading-snug">{title}</h3>
+      <p className="text-xs sm:text-sm text-muted-foreground mt-1">
         {speakers.map((s, i) => (
           <span key={i}>
             {i > 0 && ", "}
@@ -411,7 +412,7 @@ const SessionRow = ({ title, link, speakers }: {
             ) : (
               <span>{s.name}</span>
             )}
-            {s.role && <span className="text-xs"> ({s.role})</span>}
+            {s.role && <span className="text-[11px] sm:text-xs"> ({s.role})</span>}
           </span>
         ))}
       </p>
@@ -420,9 +421,9 @@ const SessionRow = ({ title, link, speakers }: {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="shrink-0 inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+      className="shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground hover:text-muted-foreground transition-colors pt-0.5"
     >
-      <Youtube size={16} />
+      <Youtube size={15} />
       Watch
     </a>
   </div>
@@ -545,8 +546,8 @@ const CommunityPage = () => {
             <SectionHeading>Events — Organised & Attended</SectionHeading>
 
             {/* Attended — link to dedicated subpage */}
-            <a
-              href="/events-attended"
+            <Link
+              to="/events-attended"
               className="block border border-border rounded-lg p-5 sm:p-6 mt-8 hover:border-foreground/40 transition-colors"
             >
               <div className="flex items-center justify-between">
@@ -554,7 +555,7 @@ const CommunityPage = () => {
                 <ExternalLink size={18} className="text-muted-foreground" />
               </div>
               <p className="text-sm text-muted-foreground mt-2">Browse the full list with details, pictures and a short gallery.</p>
-            </a>
+            </Link>
 
             {/* Organised */}
             <div className="border border-border rounded-lg p-5 sm:p-6 mt-4">

@@ -123,18 +123,18 @@ const PodcastsPage = () => {
               return (
               <div
                 key={p.youtube}
-                className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 border-b border-border py-5 text-center md:text-left"
+                className="flex flex-row items-start gap-3 sm:gap-5 border-b border-border py-4 text-left"
               >
                 {thumb && (
-                  <a href={p.youtube} target="_blank" rel="noopener noreferrer" className="shrink-0 block w-32 sm:w-40 aspect-video overflow-hidden rounded-md border border-border bg-muted">
+                  <a href={p.youtube} target="_blank" rel="noopener noreferrer" className="shrink-0 block w-24 sm:w-36 aspect-video overflow-hidden rounded-md border border-border bg-muted">
                     <img src={thumb} alt={`${p.title} thumbnail`} loading="lazy" className="w-full h-full object-cover" />
                   </a>
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-serif text-base md:text-lg font-medium text-foreground leading-snug">
+                  <h3 className="font-serif text-sm sm:text-base md:text-lg font-medium text-foreground leading-snug">
                     {p.title}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                     with{" "}
                     <a
                       href={p.guestLinkedIn}
@@ -144,7 +144,7 @@ const PodcastsPage = () => {
                     >
                       {p.guest}
                     </a>
-                    <span className="mx-2">,</span>
+                    <span className="mx-1.5">,</span>
                     {p.guestRole}
                   </p>
                 </div>
@@ -152,9 +152,9 @@ const PodcastsPage = () => {
                   href={p.youtube}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="shrink-0 inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-muted-foreground transition-colors"
+                  className="shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground hover:text-muted-foreground transition-colors pt-0.5"
                 >
-                  <Youtube size={16} />
+                  <Youtube size={15} />
                   Watch
                 </a>
               </div>
