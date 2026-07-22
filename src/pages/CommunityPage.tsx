@@ -6,6 +6,12 @@ import Footer from "@/components/sections/Footer";
 import SectionHeading from "@/components/sections/SectionHeading";
 import { getYouTubeThumb } from "@/lib/youtube";
 
+import community1 from "@/assets/community/community-1.jpg";
+import community2 from "@/assets/community/community-2.jpg";
+import community3 from "@/assets/community/community-3.jpg";
+import community4 from "@/assets/community/community-4.jpg";
+import community5 from "@/assets/community/community-5.jpg";
+
 const COMMUNITIES_BUILT = [
   {
     org: "Girls Leading Tech",
@@ -431,50 +437,28 @@ const SessionRow = ({ title, link, speakers }: {
 };
 
 const SLIDESHOW_ROW1 = [
+  community1,
+  community2,
+  community3,
+  community4,
+  community5,
   "https://media.licdn.com/dms/image/v2/D5622AQGUtglwImzBzQ/feedshare-shrink_480/feedshare-shrink_480/0/1721922851065?e=1776902400&v=beta&t=HBai5J05pclpH-zjRYVdNy6c44Ndv4PDDA4PhKoqthw",
   "https://media.licdn.com/dms/image/v2/D5622AQGKaWcJrIfDKg/feedshare-shrink_480/B56ZyGAHzlJMAo-/0/1771774705098?e=1776902400&v=beta&t=F2CQHXQ6sA_YwT4vJ53qQv9LwfoyLEn5JlG95upP-Ec",
   "https://media.licdn.com/dms/image/v2/D5622AQG5xz-vkW9n7g/feedshare-shrink_480/B56Zu9Ijw2H4As-/0/1768404697777?e=1776902400&v=beta&t=dfCYADoICpuIxGPdl-cX-6bFCg9X3J6wPRaSQDw-9KQ",
   "https://media.licdn.com/dms/image/v2/D5622AQHBND3A3gDoFQ/feedshare-shrink_480/B56ZqK9VIVHAAY-/0/1763267937254?e=1776902400&v=beta&t=8coUkKiE_qUKv9VbBrrL6Pw1xGoI9zccYySdp-4u4jQ",
   "https://media.licdn.com/dms/image/v2/D5622AQHRthflrvexEQ/feedshare-shrink_480/B56ZtwNODNJ8AY-/0/1767114086260?e=1776902400&v=beta&t=DsZfkqDm6PpuLqm0HE98M3R2_RJ6CBeBKO-jtGPMZqM",
-  "https://media.licdn.com/dms/image/v2/D5622AQFbwSk-DJx-Lg/feedshare-shrink_480/B56ZpaNEqGHYAY-/0/1762450002578?e=1776902400&v=beta&t=fxOg_D8tVxtsZg6vSLFrTA_hg2Hmslm05-_KtV7r0do",
-  "https://media.licdn.com/dms/image/v2/D5622AQEx6RuQzOgxcA/feedshare-shrink_480/B56ZnBby1FHAAY-/0/1759886941832?e=1776902400&v=beta&t=VOKu7DK6HRxmZnbLpqF9kTCZAUpVi7LiWNqGGmC6LzQ",
-  "https://media.licdn.com/dms/image/v2/D5622AQEmiOGmLLftkA/feedshare-shrink_480/B56ZklOYGEHIAY-/0/1757266157009?e=1776902400&v=beta&t=LAwc-jkbG1_pOYKMC51_O1VRhgQdcpvkm75-R7CUdN0",
-  "https://media.licdn.com/dms/image/v2/D4E22AQFvaMQhI1TALA/feedshare-shrink_480/B4EZimgW7XHoAY-/0/1755140159660?e=1776902400&v=beta&t=hhJHCTN5bz6M9B--LkUFgvB-JRXUBx43IpCjyBcaZbg",
-  "https://media.licdn.com/dms/image/v2/D5622AQEMMNBhi6O-hw/feedshare-shrink_480/B56Zf9q2EwHUAc-/0/1752307567366?e=1776902400&v=beta&t=TBdKot_ATcEMJ7YzwzazgkNjm3mlZ41Jug8HpcoWs5Q",
-  "https://media.licdn.com/dms/image/v2/D5622AQGr4kMcSBjIPg/feedshare-shrink_480/B56Zf3mhIIHYAc-/0/1752205762769?e=1776902400&v=beta&t=SeDQgaAOC8JsOdk2YKq_l-FGaL79TD6R5dYBEV0mvb4",
-  "https://media.licdn.com/dms/image/v2/D5622AQEhPc6lu-CB_w/feedshare-shrink_480/feedshare-shrink_480/0/1708841922270?e=1776902400&v=beta&t=ke2lt7yqoymRNGFYrnIlCt277GDGDqwvO40nWhlr4ms",
-  "https://media.licdn.com/dms/image/v2/D5622AQGT-K6zWnz9Bw/feedshare-shrink_480/B56Zb7xhImHcA8-/0/1747980799416?e=1776902400&v=beta&t=WVUSpv4EdjC_XN3TNzRafJBBB45U85jXBO_G8tZxmqE",
-  "https://media.licdn.com/dms/image/v2/D5622AQHk5i6neN_FVw/feedshare-shrink_480/B56ZZ7KTO0GUAY-/0/1745823021670?e=1776902400&v=beta&t=TaFUNl1H-CUPVdrejvmfPaoAJqIBZzf5oXOcd3S2q4g",
-  "https://media.licdn.com/dms/image/v2/D5622AQGCE_5Qsfn0lg/feedshare-shrink_480/B56ZXStliGHEAc-/0/1742996933456?e=1776902400&v=beta&t=wnQ6b5gaQYxJCe0PoDN5RPQxz4gQkSYhGrwUa1KUaZk",
-  "https://media.licdn.com/dms/image/v2/D5622AQGmQL9sPIpsKQ/feedshare-shrink_480/B56ZVsgCBZHEAY-/0/1741282094970?e=1776902400&v=beta&t=4q8hfTLLsp3D1PtZ0TouuAPjRvjVZ7873QpkkJTWO4c",
-  "https://media.licdn.com/dms/image/v2/D5622AQGPibPPtRG-LQ/feedshare-shrink_480/B56ZTUYRuYGoAc-/0/1738729924746?e=1776902400&v=beta&t=DntcTdI57vByCeYbhBBb9g8C8Ju-p3UNHpbZPH6MnE8",
-  "https://media.licdn.com/dms/image/v2/D5622AQEqp51nrzL6sQ/feedshare-shrink_480/B56ZTGqa5cGoAc-/0/1738499802386?e=1776902400&v=beta&t=mTAXcQcHpMfoLSauJyKeud2BuEmJzuK0OOM8KaZdG5w",
-  "https://media.licdn.com/dms/image/v2/D5622AQFjTlZdahWcEw/feedshare-shrink_480/B56ZSThoI8GsAY-/0/1737641856683?e=1776902400&v=beta&t=5CT587SUJ9y0SBw8aP1mWM7jKKCwq3pZTwa7BmhzZmk",
 ];
 
 const SLIDESHOW_ROW2 = [
+  community5,
+  community4,
+  community3,
+  community2,
+  community1,
   "https://media.licdn.com/dms/image/v2/D4D22AQEY-aP_d3vyRA/feedshare-shrink_480/B4DZPf1x8dGkA4-/0/1734627240000?e=1776902400&v=beta&t=UeAzZ8J3Mb4VeUcxxSqZsXhyla3cnLyFAlH4Dn8jIuw",
   "https://media.licdn.com/dms/image/v2/D5622AQFYU0o1j0jfMg/feedshare-shrink_480/feedshare-shrink_480/0/1733316575832?e=1776902400&v=beta&t=DDNJOEaIwcvt6eX-1lRFO2zw1C5vjoamUayNMRs5hCc",
   "https://media.licdn.com/dms/image/v2/D5622AQGeHKy72th5nQ/feedshare-shrink_480/feedshare-shrink_480/0/1732691952947?e=1776902400&v=beta&t=4ORYvcEtxQoQJO4oyqybmW_r6ildmAgrFmAwFCUEP5c",
   "https://media.licdn.com/dms/image/v2/D5622AQHegZiriCQ13g/feedshare-shrink_480/feedshare-shrink_480/0/1727966678820?e=1776902400&v=beta&t=wgxGnECM9vrtxYShH9VPOvJbphQ_sNN2Bm1ZEvHtUdw",
-  "https://media.licdn.com/dms/image/v2/D5622AQEQFR74uf24WA/feedshare-shrink_480/feedshare-shrink_480/0/1727847997277?e=1776902400&v=beta&t=-Xqm8p4zqFdjC6yyUKDlBdHOcjVHFY6Bk-B0PSm1S8I",
-  "https://media.licdn.com/dms/image/v2/D5622AQH8BleI_Sr28Q/feedshare-shrink_480/feedshare-shrink_480/0/1726384970600?e=1776902400&v=beta&t=_qT6UTLJKQSJBlKAq8qVn_iB7QipOslGCQkFRsUGSjw",
-  "https://media.licdn.com/dms/image/v2/D5622AQGRrgRLRe73UA/feedshare-shrink_480/feedshare-shrink_480/0/1721672567830?e=1776902400&v=beta&t=aq6-NFXoL1wn0SHGjrCZPMUzOvZvluwTdAWjB3sN4qU",
-  "https://media.licdn.com/dms/image/v2/D5622AQGeFaziO3SD0g/feedshare-shrink_480/feedshare-shrink_480/0/1720333491433?e=1776902400&v=beta&t=IebJ7Vkw3Huh-qTe-Zy2cUFx_DgnyvV1mTlqiTWbkC4",
-  "https://media.licdn.com/dms/image/v2/D5622AQFSp4D18fOg-Q/feedshare-shrink_480/feedshare-shrink_480/0/1719217996721?e=1776902400&v=beta&t=OtsZ1Xg97c6CcDcy7obAriY6JmKGS86cRlLRh7VvmfA",
-  "https://media.licdn.com/dms/image/v2/D5622AQFMSCguPn4nMQ/feedshare-shrink_480/feedshare-shrink_480/0/1713856455477?e=1776902400&v=beta&t=jSnAPhlam2mwh_QOEgUaSM-sGlYbBVYjRH80pFyV8RU",
-  "https://media.licdn.com/dms/image/v2/D5622AQG-xCsCfi0Tzg/feedshare-shrink_480/feedshare-shrink_480/0/1712340081445?e=1776902400&v=beta&t=5m-1roIs9Z3kaCUJn_5pZ6-JPuJH6Q8z20pK46voyxI",
-  "https://media.licdn.com/dms/image/v2/D5622AQHMAJ-heb0XrA/feedshare-shrink_480/feedshare-shrink_480/0/1711125611838?e=1776902400&v=beta&t=kKG292I7BoiwuUb_kcY58wuiUmc2G5oKseSAo53x9PQ",
-  "https://media.licdn.com/dms/image/v2/D5622AQHbwSyi0vh0Yw/feedshare-shrink_480/feedshare-shrink_480/0/1711432597209?e=1776902400&v=beta&t=0XRzoMs8cGhM56Ymn9KQ1cxw2Wlxlu9-CMVDBfRslPA",
-  "https://media.licdn.com/dms/image/v2/D5622AQHeknWoM-AJAw/feedshare-shrink_480/feedshare-shrink_480/0/1710749225185?e=1776902400&v=beta&t=3KxjRyf2_nRbPsganfhZYotDmEuT6f0tr468V4nvwDo",
-  "https://media.licdn.com/dms/image/v2/D5622AQHGCJnqaVaFNA/feedshare-shrink_480/feedshare-shrink_480/0/1710082590507?e=1776902400&v=beta&t=MTmPe2KgYUxipDgpb9K69IjzdCk4FgDxSbf2OYnPYVQ",
-  "https://media.licdn.com/dms/image/v2/D5622AQG4fLWrFFZy_A/feedshare-shrink_480/feedshare-shrink_480/0/1709214401579?e=1776902400&v=beta&t=FEVsiCzrl0OiJXfY3TKJUNccihPkO_0wUGgwNPC4SbA",
-  "https://media.licdn.com/dms/image/v2/D5622AQHLFrv3ppn_eg/feedshare-shrink_480/feedshare-shrink_480/0/1699188470293?e=1776902400&v=beta&t=s9p_YX-12cJtjgY4qceb_7_BOSTyEMHaF2134fAhzeg",
-  "https://media.licdn.com/dms/image/v2/D5622AQESoILbUJ1YkA/feedshare-shrink_480/feedshare-shrink_480/0/1702142611846?e=1776902400&v=beta&t=-M78H7Gly4-KKN0oOeSgEfTYexyxXhysui4iVd7KJdA",
-  "https://media.licdn.com/dms/image/v2/D4E22AQEACs4B5YTOhQ/feedshare-shrink_480/feedshare-shrink_480/0/1707840292818?e=1776902400&v=beta&t=MuyayhYqog3Ow9-7zLHtTQp9IznThv1ZxZGHuQQTQ48",
-  "https://media.licdn.com/dms/image/v2/D5622AQH8Cbcqr6bYmA/feedshare-shrink_480/feedshare-shrink_480/0/1704090625891?e=1776902400&v=beta&t=XUvWb8e17UAyPw2Gb0i0fx5IXODYwBOTLVgQAWMBdHY",
-  "https://media.licdn.com/dms/image/v2/D5622AQGb36-5oehBZA/feedshare-shrink_480/feedshare-shrink_480/0/1706958691967?e=1776902400&v=beta&t=cBHnAA-lnzq3r0zgNGITqIM_4ITGl3oqK4UwTwyWMNo",
-  "https://media.licdn.com/dms/image/v2/D5622AQH92eF5T3yd1Q/feedshare-shrink_480/feedshare-shrink_480/0/1695439344179?e=1776902400&v=beta&t=wvB2uhCJHF59-uKtgliP27josMwHCMMRq6pCMsHxcPs",
 ];
 
 const CommunityPage = () => {

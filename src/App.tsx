@@ -5,6 +5,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import IntroAnimation from "@/components/IntroAnimation";
+import AboutPage from "./pages/AboutPage.tsx";
+import ImpactPage from "./pages/ImpactPage.tsx";
 import Index from "./pages/Index.tsx";
 import Resume from "./pages/Resume.tsx";
 import CommunityPage from "./pages/CommunityPage.tsx";
@@ -38,6 +40,8 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/impact" element={<ImpactPage />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/community" element={<CommunityPage />} />
             <Route path="/diary" element={<DiaryPage />} />

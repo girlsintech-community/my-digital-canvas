@@ -221,25 +221,25 @@ const WallOfLovePage = () => {
       <div className="pt-24 pb-12 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <SectionHeading>Wall of Love</SectionHeading>
-          <div className="columns-1 md:columns-2 gap-4 sm:gap-6 mt-8">
+          <div className="columns-1 md:columns-2 gap-6 sm:gap-8 mt-8">
             {TESTIMONIALS.map((t) => (
               <blockquote
                 key={t.person}
-                className="border border-border rounded-lg p-5 sm:p-8 bg-card text-left break-inside-avoid mb-4 sm:mb-6"
+                className="border border-border rounded-xl p-7 sm:p-9 md:p-10 bg-card/80 text-left break-inside-avoid mb-6 sm:mb-8 shadow-sm hover:border-primary/40 transition-colors"
               >
-                <span className="font-serif text-3xl sm:text-4xl text-border leading-none select-none">"</span>
-                <p className="font-serif text-sm sm:text-base italic text-foreground leading-relaxed -mt-2 mb-4 sm:mb-5">
+                <span className="font-serif text-3xl sm:text-4xl text-primary/40 leading-none select-none block mb-2">"</span>
+                <p className="font-serif text-sm sm:text-base italic text-foreground/90 leading-relaxed mb-6 px-1">
                   {t.text}
                 </p>
-                <footer className="flex items-center justify-between">
+                <footer className="flex items-center justify-between pt-4 border-t border-border/50">
                   <div>
                     <p className="font-sans text-sm font-semibold text-foreground">{t.person}</p>
                     {"role" in t && t.role && (
-                      <p className="font-sans text-xs text-muted-foreground">{t.role}</p>
+                      <p className="font-sans text-xs text-muted-foreground mt-0.5">{t.role}</p>
                     )}
                   </div>
                   {t.linkedin && (
-                    <a href={t.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex-shrink-0 ml-2">
+                    <a href={t.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors flex-shrink-0 ml-3">
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
                   )}

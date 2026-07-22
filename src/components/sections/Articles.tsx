@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import SectionHeading from "./SectionHeading";
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 type ArticleCategory = {
   label: string;

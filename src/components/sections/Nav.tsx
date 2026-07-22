@@ -7,6 +7,7 @@ import AccessibilityWidget from "@/components/AccessibilityWidget";
 const WORK_SUB_LINKS = [
   { label: "Content", href: "/content" },
   { label: "Community", href: "/community" },
+  { label: "Impact", href: "/impact" },
   { label: "Testimonials", href: "/wall-of-love" },
 ];
 

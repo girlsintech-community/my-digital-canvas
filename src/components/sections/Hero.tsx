@@ -23,7 +23,7 @@ const MILESTONES = [
   "Scaled a YouTube channel from 0 to 148K at the age of 16.",
   "Built a non-profit community of 4K girls in tech to empower & support them at the age of 19.",
   "Met 5,000+ people at the age of 21.",
-  "Currently learning AI & upskilling myself to get a good job at Bangalore.",
+  "Currently learning AI & upskilling myself.",
 ];
 
 const useTypingAnimation = (words: string[], typingSpeed = 100, deletingSpeed = 60, pauseDuration = 1500) => {
