@@ -6,20 +6,23 @@ import Footer from "@/components/sections/Footer";
 import SectionHeading from "@/components/sections/SectionHeading";
 import { getYouTubeThumb } from "@/lib/youtube";
 
-import community1 from "@/assets/community/community-1.jpg";
-import community2 from "@/assets/community/community-2.jpg";
-import community3 from "@/assets/community/community-3.jpg";
-import community4 from "@/assets/community/community-4.jpg";
-import community5 from "@/assets/community/community-5.jpg";
+const ALL_COMMUNITY_IMAGES = Object.values(
+  import.meta.glob("@/assets/community/*.jpg", { eager: true, import: "default" })
+) as string[];
+
+const thirdLength = Math.ceil(ALL_COMMUNITY_IMAGES.length / 3);
+const SLIDESHOW_ROW1 = ALL_COMMUNITY_IMAGES.slice(0, thirdLength);
+const SLIDESHOW_ROW2 = ALL_COMMUNITY_IMAGES.slice(thirdLength, thirdLength * 2);
+const SLIDESHOW_ROW3 = ALL_COMMUNITY_IMAGES.slice(thirdLength * 2);
 
 const COMMUNITIES_BUILT = [
   {
     org: "Girls Leading Tech",
     link: "https://www.linkedin.com/company/girlsleadingtech/",
-    role: "Builder",
+    role: "Founder & Builder",
     period: "June 2024 – Present",
     bullets: [
-      "Founded Girls Leading Tech from a WhatsApp group of 5 girls into a thriving community of <strong>3,300+ members</strong> across <strong>900+ colleges</strong> and <strong>25+ Indian states</strong>.",
+      "Founded Girls Leading Tech from a WhatsApp group of 5 girls into a thriving community of <strong>4,000+ members</strong> across <strong>900+ colleges</strong> and <strong>25+ Indian states</strong>.",
       "Built and managed a <strong>15-member core team</strong>, driving operations, events, partnerships, and growth strategy.",
       "Hosted <strong>55+ mentorship sessions</strong>, 5 coffee chats, 4 GLT Spotlights, 20 Twitter spaces, and several unique initiatives including contests, \"How to Crack\" series, Valentine's Week, EmpowerHer on International Women's Day, and Yoga Day Special Session.",
       "Collaborated with leading women-in-tech platforms like <strong>SheCanCode</strong> and featured speakers from <strong>Google, Amazon, Microsoft, Uber, Flipkart, Infosys, SAP, Salesforce</strong>, and more.",
@@ -327,31 +330,37 @@ const HACKATHONS_ATTENDED = [
 const CommunityCard = ({ org, link, role, period, bullets }: {
   org: string; link?: string; role: string; period?: string; bullets: string[];
 }) => {
-  const [expanded, setExpanded] = useState(false);
   return (
-    <div className="border border-border rounded-lg p-5 sm:p-6 hover:border-foreground/20 transition-colors">
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 mb-3">
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <h3 className="font-serif text-lg sm:text-xl font-bold text-foreground">{org}</h3>
-            {link && (
-              <a href={link} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                <ExternalLink size={14} />
-              </a>
-            )}
-          </div>
-          <p className="text-xs text-muted-foreground mt-0.5">{role}{period ? `, ${period}` : ""}</p>
-        </div>
-        {bullets.length > 0 && (
-          <button onClick={() => setExpanded(!expanded)} className="text-muted-foreground hover:text-foreground transition-colors self-start mt-1">
-            <ChevronDown size={18} className={`transition-transform duration-200 ${expanded ? "rotate-180" : ""}`} />
-          </button>
+    <div className="border border-border/80 rounded-xl p-5 sm:p-6 bg-card/40 text-left hover:border-foreground/30 transition-colors shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+        <h4 className="font-bold text-foreground text-base sm:text-lg">
+          {role}
+        </h4>
+        {period && (
+          <span className="font-serif italic text-muted-foreground text-xs sm:text-sm shrink-0">
+            {period}
+          </span>
         )}
       </div>
-      {expanded && bullets.length > 0 && (
-        <ul className="list-disc list-outside pl-5 space-y-1.5 animate-fade-in">
+      <div className="mb-2">
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-serif italic font-semibold text-foreground text-sm sm:text-base hover:underline inline-flex items-center gap-1.5"
+          >
+            {org}
+            <ExternalLink size={13} className="opacity-75" />
+          </a>
+        ) : (
+          <span className="font-serif italic font-semibold text-foreground text-sm sm:text-base">{org}</span>
+        )}
+      </div>
+      {bullets.length > 0 && (
+        <ul className="list-disc list-outside pl-5 space-y-1.5 text-sm text-foreground/90 leading-relaxed mt-2.5">
           {bullets.map((b, i) => (
-            <li key={i} className="text-sm text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: b }} />
+            <li key={i} dangerouslySetInnerHTML={{ __html: b }} />
           ))}
         </ul>
       )}
@@ -360,31 +369,37 @@ const CommunityCard = ({ org, link, role, period, bullets }: {
 };
 
 const VolunteerCard = ({ org, link, role, period, bullets }: { org: string; link?: string; role: string; period?: string; bullets: string[] }) => {
-  const [expanded, setExpanded] = useState(false);
   return (
-    <div className="border border-border rounded-lg p-4 sm:p-5 hover:border-foreground/20 transition-colors">
-      <div className="flex items-center justify-between gap-2 mb-2">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 flex-1">
-          <div className="flex items-center gap-2">
-            <h3 className="font-serif text-base font-semibold text-foreground">{org}</h3>
-            {link && (
-              <a href={link} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                <ExternalLink size={14} />
-              </a>
-            )}
-          </div>
-          <span className="text-xs text-muted-foreground">{role}{period ? `, ${period}` : ""}</span>
-        </div>
-        {bullets.length > 0 && (
-          <button onClick={() => setExpanded(!expanded)} className="text-muted-foreground hover:text-foreground transition-colors shrink-0">
-            <ChevronDown size={16} className={`transition-transform duration-200 ${expanded ? "rotate-180" : ""}`} />
-          </button>
+    <div className="border border-border/80 rounded-xl p-5 sm:p-6 bg-card/40 text-left hover:border-foreground/30 transition-colors shadow-sm">
+      <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1 mb-1">
+        <h4 className="font-bold text-foreground text-base sm:text-lg">
+          {role}
+        </h4>
+        {period && (
+          <span className="font-serif italic text-muted-foreground text-xs sm:text-sm shrink-0">
+            {period}
+          </span>
         )}
       </div>
-      {expanded && bullets.length > 0 && (
-        <ul className="list-disc list-outside pl-4 space-y-1 animate-fade-in">
+      <div className="mb-2">
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-serif italic font-semibold text-foreground text-sm sm:text-base hover:underline inline-flex items-center gap-1.5"
+          >
+            {org}
+            <ExternalLink size={13} className="opacity-75" />
+          </a>
+        ) : (
+          <span className="font-serif italic font-semibold text-foreground text-sm sm:text-base">{org}</span>
+        )}
+      </div>
+      {bullets.length > 0 && (
+        <ul className="list-disc list-outside pl-5 space-y-1.5 text-sm text-foreground/90 leading-relaxed mt-2.5">
           {bullets.map((b, i) => (
-            <li key={i} className="text-sm text-muted-foreground leading-relaxed" dangerouslySetInnerHTML={{ __html: b }} />
+            <li key={i} dangerouslySetInnerHTML={{ __html: b }} />
           ))}
         </ul>
       )}
@@ -436,30 +451,7 @@ const SessionRow = ({ title, link, speakers }: {
   );
 };
 
-const SLIDESHOW_ROW1 = [
-  community1,
-  community2,
-  community3,
-  community4,
-  community5,
-  "https://media.licdn.com/dms/image/v2/D5622AQGUtglwImzBzQ/feedshare-shrink_480/feedshare-shrink_480/0/1721922851065?e=1776902400&v=beta&t=HBai5J05pclpH-zjRYVdNy6c44Ndv4PDDA4PhKoqthw",
-  "https://media.licdn.com/dms/image/v2/D5622AQGKaWcJrIfDKg/feedshare-shrink_480/B56ZyGAHzlJMAo-/0/1771774705098?e=1776902400&v=beta&t=F2CQHXQ6sA_YwT4vJ53qQv9LwfoyLEn5JlG95upP-Ec",
-  "https://media.licdn.com/dms/image/v2/D5622AQG5xz-vkW9n7g/feedshare-shrink_480/B56Zu9Ijw2H4As-/0/1768404697777?e=1776902400&v=beta&t=dfCYADoICpuIxGPdl-cX-6bFCg9X3J6wPRaSQDw-9KQ",
-  "https://media.licdn.com/dms/image/v2/D5622AQHBND3A3gDoFQ/feedshare-shrink_480/B56ZqK9VIVHAAY-/0/1763267937254?e=1776902400&v=beta&t=8coUkKiE_qUKv9VbBrrL6Pw1xGoI9zccYySdp-4u4jQ",
-  "https://media.licdn.com/dms/image/v2/D5622AQHRthflrvexEQ/feedshare-shrink_480/B56ZtwNODNJ8AY-/0/1767114086260?e=1776902400&v=beta&t=DsZfkqDm6PpuLqm0HE98M3R2_RJ6CBeBKO-jtGPMZqM",
-];
 
-const SLIDESHOW_ROW2 = [
-  community5,
-  community4,
-  community3,
-  community2,
-  community1,
-  "https://media.licdn.com/dms/image/v2/D4D22AQEY-aP_d3vyRA/feedshare-shrink_480/B4DZPf1x8dGkA4-/0/1734627240000?e=1776902400&v=beta&t=UeAzZ8J3Mb4VeUcxxSqZsXhyla3cnLyFAlH4Dn8jIuw",
-  "https://media.licdn.com/dms/image/v2/D5622AQFYU0o1j0jfMg/feedshare-shrink_480/feedshare-shrink_480/0/1733316575832?e=1776902400&v=beta&t=DDNJOEaIwcvt6eX-1lRFO2zw1C5vjoamUayNMRs5hCc",
-  "https://media.licdn.com/dms/image/v2/D5622AQGeHKy72th5nQ/feedshare-shrink_480/feedshare-shrink_480/0/1732691952947?e=1776902400&v=beta&t=4ORYvcEtxQoQJO4oyqybmW_r6ildmAgrFmAwFCUEP5c",
-  "https://media.licdn.com/dms/image/v2/D5622AQHegZiriCQ13g/feedshare-shrink_480/feedshare-shrink_480/0/1727966678820?e=1776902400&v=beta&t=wgxGnECM9vrtxYShH9VPOvJbphQ_sNN2Bm1ZEvHtUdw",
-];
 
 const CommunityPage = () => {
   const [showAllSessions, setShowAllSessions] = useState(false);
@@ -492,15 +484,15 @@ const CommunityPage = () => {
                 0% { transform: translateX(-50%); }
                 100% { transform: translateX(0); }
               }
-              .slideshow-row-left { animation: scroll-left 60s linear infinite; }
-              .slideshow-row-right { animation: scroll-right 60s linear infinite; }
+              .slideshow-row-left { animation: scroll-left 45s linear infinite; }
+              .slideshow-row-right { animation: scroll-right 45s linear infinite; }
               .slideshow-row-left:hover, .slideshow-row-right:hover { animation-play-state: paused; }
             `}</style>
-            {[SLIDESHOW_ROW1, SLIDESHOW_ROW2].map((row, rowIdx) => (
+            {[SLIDESHOW_ROW1, SLIDESHOW_ROW2, SLIDESHOW_ROW3].map((row, rowIdx) => (
               <div key={rowIdx} className="overflow-hidden mb-3 last:mb-0">
-                <div className={`flex gap-3 w-max ${rowIdx === 0 ? "slideshow-row-left" : "slideshow-row-right"}`}>
+                <div className={`flex gap-3 w-max ${rowIdx % 2 === 0 ? "slideshow-row-left" : "slideshow-row-right"}`}>
                   {[...row, ...row].map((src, i) => (
-                    <img key={i} src={src} alt="" className="h-32 sm:h-40 w-auto rounded-lg object-cover flex-shrink-0" loading="eager" decoding="async" />
+                    <img key={i} src={src} alt="" className="h-28 sm:h-36 w-auto rounded-lg object-cover flex-shrink-0" loading="eager" decoding="async" />
                   ))}
                 </div>
               </div>
@@ -508,17 +500,27 @@ const CommunityPage = () => {
           </div>
 
           {/* Communities I Built */}
-          <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground mt-4 mb-6 text-center">Communities I Built</h3>
-          <div className="space-y-5">
-            {COMMUNITIES_BUILT.map((c) => (
-              <CommunityCard key={c.org} {...c} />
-            ))}
+          <div className="mt-12 text-left">
+            <div className="border-b border-foreground/30 pb-2 mb-6">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold uppercase text-foreground tracking-wider">
+                Communities I Built
+              </h3>
+            </div>
+            <div className="space-y-6">
+              {COMMUNITIES_BUILT.map((c) => (
+                <CommunityCard key={c.org} {...c} />
+              ))}
+            </div>
           </div>
 
           {/* Communities in Which I Volunteered */}
-          <div className="mt-16">
-            <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-foreground mb-6 text-center">Communities in Which I Volunteered</h3>
-            <div className="space-y-4">
+          <div className="mt-16 text-left">
+            <div className="border-b border-foreground/30 pb-2 mb-6">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold uppercase text-foreground tracking-wider">
+                Communities in Which I Volunteered
+              </h3>
+            </div>
+            <div className="space-y-5">
               {VOLUNTEERING.map((v, i) => (
                 <VolunteerCard key={`${v.org}-${v.role}-${i}`} {...v} />
               ))}

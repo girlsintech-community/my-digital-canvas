@@ -8,7 +8,7 @@ const STATS = [
 
 const Community = () => (
   <section id="community" className="py-20 md:py-28 px-6 border-t border-border bg-background">
-    <div className="max-w-4xl mx-auto text-center">
+    <div className="max-w-3xl mx-auto text-center">
       <SectionHeading
         eyebrow="The Community I Am Building"
         description="A 4,000-girl-strong movement across India, building a future where every girl in tech feels seen, supported, and unstoppable."

@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import IntroAnimation from "@/components/IntroAnimation";
+import ScrollToTop from "@/components/ScrollToTop";
 import AboutPage from "./pages/AboutPage.tsx";
 import ImpactPage from "./pages/ImpactPage.tsx";
 import Index from "./pages/Index.tsx";
@@ -38,6 +39,7 @@ const App = () => {
         <Sonner />
         {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<AboutPage />} />

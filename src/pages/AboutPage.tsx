@@ -119,7 +119,7 @@ const AboutPage = () => {
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary" />
-                  Founder, Girls Leading Tech (3,300+ Members)
+                  Founder, Girls Leading Tech (4,000+ Members)
                 </li>
               </ul>
             </div>
@@ -138,7 +138,6 @@ const AboutPage = () => {
         </main>
       </div>
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

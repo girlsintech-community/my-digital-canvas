@@ -32,7 +32,7 @@ const Podcasts = () => {
 
   return (
     <section id="podcasts" className="py-20 md:py-28 px-6 border-t border-border">
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-3xl mx-auto text-center">
         <SectionHeading
           eyebrow="On the mic"
           description="Conversations I've had with builders, founders, and friends across the internet."

@@ -114,8 +114,8 @@ const PodcastsPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <div className="pt-24 pb-12 px-6">
-        <div className="max-w-4xl mx-auto">
+      <div className="pt-24 pb-12 px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto">
           <SectionHeading>Podcasts</SectionHeading>
           <div className="space-y-4 mt-8">
             {PODCASTS.map((p) => {

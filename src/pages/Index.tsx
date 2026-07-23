@@ -8,7 +8,6 @@ import Awards from "@/components/sections/Awards";
 import WallOfLove from "@/components/sections/WallOfLove";
 
 import Footer from "@/components/sections/Footer";
-import ScrollToTop from "@/components/ScrollToTop";
 
 const Index = () => {
   const location = useLocation();
@@ -33,7 +32,6 @@ const Index = () => {
       <Awards />
       <WallOfLove />
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

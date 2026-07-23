@@ -201,7 +201,7 @@ const ContentPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
       <div className="pt-24 pb-12 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           {/* Articles Section */}
           <SectionHeading>Articles & Threads</SectionHeading>
           <div className="flex flex-wrap justify-center gap-2 mb-10 mt-6">

@@ -55,6 +55,37 @@ export interface ArticleItem {
   category?: string;
 }
 
+export interface WhatIDoCard {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface EducationItem {
+  id: string;
+  institution: string;
+  program: string;
+  period: string;
+  location?: string;
+  link?: string;
+  bullets?: string[];
+}
+
+export interface AwardItem {
+  id: string;
+  title: string;
+  issuer: string;
+  date: string;
+  description: string;
+  link?: string;
+}
+
+export interface CertCategory {
+  id: string;
+  category: string;
+  items: { name: string; link?: string }[];
+}
+
 export interface SiteContent {
   hero: {
     name: string;
@@ -62,6 +93,8 @@ export interface SiteContent {
     bioParagraph1: string;
     bioParagraph2: string;
     location: string;
+    milestones: string[];
+    roles: string[];
   };
   about: {
     eyebrow: string;
@@ -69,9 +102,24 @@ export interface SiteContent {
     description: string;
     paragraphs: string[];
     detailedBio: string[];
+    recognitions: string[];
   };
+  whatIDo: WhatIDoCard[];
   work: WorkItem[];
   impact: ImpactItem[];
+  education: EducationItem[];
+  awards: AwardItem[];
+  certifications: CertCategory[];
+  extracurriculars: {
+    achievements: string[];
+    leadershipRoles: string[];
+    hackathonsAttended: string[];
+  };
+  skills: {
+    technical: string[];
+    nonTechnical: string[];
+    interpersonal: string[];
+  };
   testimonials: TestimonialItem[];
   eventsOrganised: EventItem[];
   sessionsOrganised: SessionItem[];
@@ -81,17 +129,25 @@ export interface SiteContent {
 export const DEFAULT_SITE_CONTENT: SiteContent = {
   hero: {
     name: "Manik",
-    tagline: "I build communities, champion women in tech, and bring growth wherever I go.",
-    bioParagraph1: "Hey, I'm Manik — a builder, community architect, and growth catalyst based in Chandigarh, India. Founder of Girls Leading Tech (3,300+ women in tech across 900+ colleges).",
+    tagline: "I build for impact and bring people together.",
+    bioParagraph1: "Hey, I'm Manik — a builder, community architect, and growth catalyst based in Chandigarh, India. Founder of Girls Leading Tech (4,000+ women in tech across 900+ colleges).",
     bioParagraph2: "Ex-Business Development Manager @ BlockOn Ventures, Ex-Community Manager @ ProPeers & Association for Cyber Security. Youngest CMX Director Worldwide, STEM Educator Award winner, and McKinsey Forward Fellow.",
     location: "Chandigarh, India",
+    milestones: [
+      "Started YouTube at the age of 14.",
+      "Scaled a YouTube channel from 0 to 148K at the age of 16.",
+      "Built a non-profit community of 4K girls in tech to empower & support them at the age of 19.",
+      "Met 5,000+ people at the age of 21.",
+      "Currently learning AI & upskilling myself.",
+    ],
+    roles: ["Builder", "Creator", "Educator", "Podcaster", "Public Speaker", "Leader", "Writer", "Traveller", "Engineer", "Mentor", "Changemaker"],
   },
   about: {
     eyebrow: "About Manik",
     heading: "I bring growth wherever I go.",
     description: "A short story of who I am, what I've built, and why I keep showing up for people.",
     paragraphs: [
-      "Hey, I'm Manik — a builder, community architect, and growth catalyst based in Chandigarh, India. I founded Girls Leading Tech, a non-profit community of 3,300+ women in tech across 900+ colleges and 25+ Indian states — hosting 55+ mentorship sessions, hackathons like HackAura (1,700+ hackers) and Global AI Buildathon (700+ hackers), and featuring speakers from Google, Amazon, Microsoft, Uber, Salesforce, and more.",
+      "Hey, I'm Manik — a builder, community architect, and growth catalyst based in Chandigarh, India. I founded Girls Leading Tech, a non-profit community of 4,000+ women in tech across 900+ colleges and 25+ Indian states — hosting 55+ mentorship sessions, hackathons like HackAura (1,700+ hackers) and Global AI Buildathon (700+ hackers), and featuring speakers from Google, Amazon, Microsoft, Uber, Salesforce, and more.",
       "As a Business Development Manager at BlockOn Ventures, I managed partnerships and on-ground operations for 8 exclusive events during ETH Global India Week. I've also served as Community Manager at ProPeers and the Association of Cyber Security.",
       "Recognised as the Youngest CMX Director Worldwide by CMX, a STEM Educator Award winner, and a McKinsey Forward Fellow — I bring a relentless drive to create meaningful impact through community, content, and collaboration.",
     ],
@@ -100,7 +156,30 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       "Building Girls Leading Tech from scratch taught me that real community isn't built on vanity metrics — it's built on trust, consistency, and genuine care. Over the past few years, we've enabled thousands of young women to break into tech, land global mentorships, and win hackathons.",
       "Beyond community building, my work spans strategic business development in Web3 with BlockOn Ventures, cybersecurity outreach, podcast hosting, and educational advocacy. Whether I'm negotiating partnerships for ETH Global India Week or mentoring a first-time developer, I bring the same energy: high execution, zero fluff, and human-first leadership.",
     ],
+    recognitions: [
+      "Youngest CMX Director Worldwide",
+      "STEM Educator Award Winner",
+      "McKinsey Forward Fellow",
+      "Founder, Girls Leading Tech (4,000+ Members)",
+    ],
   },
+  whatIDo: [
+    {
+      id: "wido1",
+      title: "Build Products",
+      description: "I turn ideas into tangible products and experiences — from side projects to full-scale platforms that solve real problems for real people.",
+    },
+    {
+      id: "wido2",
+      title: "Grow Communities",
+      description: "I build tribes, not audiences. From zero to thousands — I create communities where people genuinely belong and grow together.",
+    },
+    {
+      id: "wido3",
+      title: "Create Content",
+      description: "Writing on Medium & LinkedIn, podcasting, and producing videos on YouTube — sharing stories, ideas, and lessons along the way.",
+    },
+  ],
   work: [
     {
       id: "w1",
@@ -146,7 +225,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   impact: [
     {
       id: "imp1",
-      metric: "3,300+",
+      metric: "4,000+",
       title: "Women in Tech Empowered",
       description: "Built Girls Leading Tech across 900+ colleges & 25+ states with zero funding.",
       category: "Community",
@@ -173,6 +252,149 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       category: "Growth",
     },
   ],
+  education: [
+    {
+      id: "edu1",
+      institution: "CMX Academy",
+      location: "San Francisco, California, United States",
+      program: "MBA in Community Management and Community Building",
+      period: "June 2024 – March 2026",
+      link: "https://www.cmxhub.com/",
+    },
+    {
+      id: "edu2",
+      institution: "Udacity",
+      program: "AWS AI & ML Scholar",
+      period: "March 2026 – April 2026",
+      link: "https://www.udacity.com/",
+    },
+    {
+      id: "edu3",
+      institution: "McKinsey & Company",
+      program: "McKinsey Forward Learning Programme — Fellow",
+      period: "Oct 2025 – Dec 2025",
+      link: "https://www.mckinsey.com/",
+      bullets: [
+        "Learned frameworks like APR, EPIC, SMART and how to be more adaptable, resilient while communicating effectively for impact.",
+      ],
+    },
+    {
+      id: "edu4",
+      institution: "The Community Collective",
+      program: "Community Building & Leadership Programme",
+      period: "2024 – 2025",
+      link: "https://thecommunitycollective.co/",
+      bullets: [
+        "Secured full scholarship of $6,000 to be a part of Cohort 6, Cohort 7 and Chaos Pilot Program among 100+ candidates worldwide.",
+      ],
+    },
+    {
+      id: "edu5",
+      institution: "Aspire Institute",
+      program: "Leadership Development Program",
+      period: "March 2025 – May 2025",
+      link: "https://www.aspireleaders.org/",
+    },
+    {
+      id: "edu6",
+      institution: "Chandigarh Group of Colleges Landran",
+      location: "Punjab",
+      program: "B.Tech Computer Science Engineering (CGPA: 7.83)",
+      period: "2023 – 2027",
+      link: "https://www.cgc.edu.in/",
+      bullets: [
+        "3rd Year: Founded Letz Connect, GDGoC Mentor, Built Auto Community",
+        "2nd Year: Lamit Club President, GDGoC Community Relations Head, Department of International Affairs Coordinator, Head Coordinator for HackFest 2025",
+        "1st Year: GDSC Member, Tech Amigos Member, THM Club Marketing Team",
+      ],
+    },
+  ],
+  awards: [
+    {
+      id: "aw1",
+      title: "STEM Educator Award — Community STEM Champion",
+      issuer: "SheCanCode",
+      date: "May 2025",
+      description: "Shortlisted and emerged as a winner for the STEM Educator Award under the Community STEM Champion category.",
+      link: "https://www.linkedin.com/feed/update/urn:li:activity:7330160430851440640",
+    },
+    {
+      id: "aw2",
+      title: "CMX Director of the Month",
+      issuer: "CMX",
+      date: "Oct 2024",
+      description: "",
+      link: "https://www.linkedin.com/feed/update/urn:li:activity:7259609977458216960",
+    },
+    {
+      id: "aw3",
+      title: "CMX — Most Promising Director Debut",
+      issuer: "CMX",
+      date: "",
+      description: "",
+    },
+    {
+      id: "aw4",
+      title: "Full Scholarship for Cohort #6 & Cohort #7",
+      issuer: "The Community Collective",
+      date: "Mar 2025",
+      description: "One of six individuals selected for a full scholarship worth $2,600 from a pool of over 50 applicants worldwide, twice.",
+    },
+  ],
+  certifications: [
+    {
+      id: "cert_cat1",
+      category: "Community",
+      items: [
+        { name: "Community Building & Management by The Community Collective", link: "https://media.licdn.com/dms/image/v2/D562DAQG4DdTpbBNawA/profile-treasury-image-shrink_160_160/B56ZbTYzo0H4Ak-/0/1747303219328?e=1775278800&v=beta&t=BTfPkTS9G2VrtbS5YTbWsTtKb-ynnyXb1K3PMpbBaI8" },
+        { name: "Community Automation Course by The Community Collective", link: "" },
+        { name: "The Community Led Event Program Playbook", link: "https://www.linkedin.com/in/mrmanik/overlay/Certifications/1660443723/treasury/" },
+        { name: "Basic Zero to One: Course on Building Meaningful Communities", link: "https://gumroad.com/d/a7ffd6d02db6a8faf2d314da16bd6204" },
+      ],
+    },
+    {
+      id: "cert_cat2",
+      category: "Technical",
+      items: [
+        { name: "Blockchain Fundamentals", link: "https://www.linkedin.com/learning/certificates/55c1ff1c8d60c60f7bfa535d313a439d35ff23afaf5149c07abce14d66e67f61/" },
+        { name: "Full Stack Web Development by Apna College", link: "" },
+        { name: "Google AI Essentials", link: "https://www.credly.com/badges/ae5ffb08-25d5-4e78-ac7c-542c3965864c/public_url" },
+        { name: "Google Professional Cyber Security Certificate", link: "https://www.credly.com/badges/b90a600d-2912-4c89-aa56-9e8e3acd1cb1/public_url" },
+      ],
+    },
+  ],
+  extracurriculars: {
+    achievements: [
+      "Internal Finalist at Smart India Hackathon in 2023, 2024, 2025.",
+      "Won National Science Day in Coding Category in 2023.",
+      "Won Techtonic Talks, an IRL Podcast Shooting Competition in 2026.",
+      "Head Coordinator at Hack Heist in 2025.",
+      "Represented Brazil as a Finance Minister in Model United Nations 2024.",
+    ],
+    leadershipRoles: [
+      "President of Lamit Club",
+      "Marketing Head of THM Club",
+      "Community Relations Head, Google Developer Group CGC",
+      "Coordinator, Department of International Affairs",
+      "Mentor, GDG On Campus",
+      "Builder, Letz Connect",
+      "Builder, Girls Leading Tech",
+    ],
+    hackathonsAttended: [
+      "Hack This Fall 2024 at Karnavati University, Gujarat",
+      "SIH 2023",
+      "SIH 2024",
+      "SIH 2025",
+      "0 to 1 Hackathon at Chandigarh University",
+      "Vibe-a-thon",
+      "Figma Make-a-thon",
+    ],
+  },
+  skills: {
+    technical: ["Python", "Version Control", "React", "TypeScript", "HTML/CSS", "Git"],
+    nonTechnical: ["Community Building", "Business Analysis", "Social Media Management", "Content Creation", "Content Writing", "Podcasting"],
+    interpersonal: ["Leadership", "Public Speaking", "Team Work", "Effective Communication", "Creative", "Analytical Thinker", "Problem Solver", "Decision Making"],
+  },
   testimonials: [
     {
       id: "t1",
@@ -271,15 +493,6 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       speakerRole: "SWE Intern at Google",
       speakerLinkedin: "https://www.linkedin.com/in/jigisha-arora-212ab5256/",
     },
-    {
-      id: "s4",
-      title: "Mentorship Session on Uber She++ & STAR Programs",
-      type: "hosted",
-      link: "https://youtu.be/1bm_ARA1zfo?si=6cjYV6596LtTzdCV",
-      speakerName: "Radhika Bansal",
-      speakerRole: "Software Developer at Uber",
-      speakerLinkedin: "https://www.linkedin.com/in/radhika403/",
-    },
   ],
   articlesWritten: [
     {
@@ -303,20 +516,6 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       link: "https://manik007.hashnode.dev/why-i-started-girls-in-tech",
       category: "Community",
     },
-    {
-      id: "a4",
-      title: "2024: The Most Dynamic and Introspective Year",
-      platform: "LinkedIn",
-      link: "https://www.linkedin.com/pulse/2024-most-dynamic-introspective-year-manik--b1vyc",
-      category: "Reflection",
-    },
-    {
-      id: "a5",
-      title: "Tips to Make a Killer Tech Resume",
-      platform: "X (Twitter)",
-      link: "https://x.com/manik23265/status/1797148197032460725",
-      category: "Career Thread",
-    },
   ],
 };
 
@@ -331,10 +530,16 @@ export const getSiteContent = (): SiteContent => {
     return {
       ...DEFAULT_SITE_CONTENT,
       ...parsed,
-      hero: { ...DEFAULT_SITE_CONTENT.hero, ...parsed.hero },
-      about: { ...DEFAULT_SITE_CONTENT.about, ...parsed.about },
+      hero: { ...DEFAULT_SITE_CONTENT.hero, ...(parsed.hero || {}) },
+      about: { ...DEFAULT_SITE_CONTENT.about, ...(parsed.about || {}) },
+      extracurriculars: { ...DEFAULT_SITE_CONTENT.extracurriculars, ...(parsed.extracurriculars || {}) },
+      skills: { ...DEFAULT_SITE_CONTENT.skills, ...(parsed.skills || {}) },
+      whatIDo: parsed.whatIDo || DEFAULT_SITE_CONTENT.whatIDo,
       work: parsed.work || DEFAULT_SITE_CONTENT.work,
       impact: parsed.impact || DEFAULT_SITE_CONTENT.impact,
+      education: parsed.education || DEFAULT_SITE_CONTENT.education,
+      awards: parsed.awards || DEFAULT_SITE_CONTENT.awards,
+      certifications: parsed.certifications || DEFAULT_SITE_CONTENT.certifications,
       testimonials: parsed.testimonials || DEFAULT_SITE_CONTENT.testimonials,
       eventsOrganised: parsed.eventsOrganised || DEFAULT_SITE_CONTENT.eventsOrganised,
       sessionsOrganised: parsed.sessionsOrganised || DEFAULT_SITE_CONTENT.sessionsOrganised,

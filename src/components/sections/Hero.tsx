@@ -16,15 +16,7 @@ const SOCIALS = [
   { icon: () => <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M22.351 8.019l-6.37-6.37a5.63 5.63 0 00-7.962 0l-6.37 6.37a5.63 5.63 0 007.962 0l6.37-6.37a5.63 5.63 0 000-7.962zM12 15.953a3.953 3.953 0 110-7.906 3.953 3.953 0 010 7.906z"/></svg>, href: "https://manik007.hashnode.dev/", label: "Hashnode" },
 ];
 
-const ROLES = ["Builder", "Creator", "Educator", "Podcaster", "Public Speaker", "Leader", "Writer", "Traveller", "Engineer", "Mentor", "Changemaker"];
-
-const MILESTONES = [
-  "Started YouTube at the age of 14.",
-  "Scaled a YouTube channel from 0 to 148K at the age of 16.",
-  "Built a non-profit community of 4K girls in tech to empower & support them at the age of 19.",
-  "Met 5,000+ people at the age of 21.",
-  "Currently learning AI & upskilling myself.",
-];
+import { useSiteContent } from "@/hooks/useSiteContent";
 
 const useTypingAnimation = (words: string[], typingSpeed = 100, deletingSpeed = 60, pauseDuration = 1500) => {
   const [displayText, setDisplayText] = useState("");
@@ -32,7 +24,8 @@ const useTypingAnimation = (words: string[], typingSpeed = 100, deletingSpeed = 
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentWord = words[wordIndex];
+    if (!words || words.length === 0) return;
+    const currentWord = words[wordIndex % words.length] || words[0];
     let timeout: ReturnType<typeof setTimeout>;
 
     if (!isDeleting && displayText === currentWord) {
@@ -57,7 +50,10 @@ const useTypingAnimation = (words: string[], typingSpeed = 100, deletingSpeed = 
 };
 
 const Hero = () => {
-  const typedRole = useTypingAnimation(ROLES);
+  const siteContent = useSiteContent();
+  const heroRoles = siteContent.hero?.roles || ["Builder", "Creator", "Educator", "Podcaster"];
+  const milestones = siteContent.hero?.milestones || [];
+  const typedRole = useTypingAnimation(heroRoles);
 
   return (
     <section className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
@@ -69,7 +65,7 @@ const Hero = () => {
               Hi, I am
             </p>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-3">
-              Manik
+              {siteContent.hero?.name || "Manik"}
             </h1>
             <p className="font-sans text-sm sm:text-base text-muted-foreground whitespace-nowrap flex items-center justify-center sm:justify-start">
               I am {/^[aeiou]/i.test(typedRole) ? "an" : "a"}&nbsp;
@@ -84,17 +80,19 @@ const Hero = () => {
 
         {/* Tagline */}
         <p className="font-serif text-lg sm:text-xl italic text-muted-foreground text-center sm:text-left mb-8 leading-relaxed no-justify">
-          "I build for impact and bring people together."
+          "{siteContent.hero?.tagline || "I build for impact and bring people together."}"
         </p>
 
         {/* Milestones */}
-        <ul className="space-y-2 mb-8 border-l-2 border-border pl-4 sm:pl-5 no-justify">
-          {MILESTONES.map((m, i) => (
-            <li key={i} className="text-sm sm:text-[0.95rem] text-muted-foreground leading-relaxed">
-              {m}
-            </li>
-          ))}
-        </ul>
+        {milestones.length > 0 && (
+          <ul className="space-y-2 mb-8 border-l-2 border-border pl-4 sm:pl-5 no-justify">
+            {milestones.map((m, i) => (
+              <li key={i} className="text-sm sm:text-[0.95rem] text-muted-foreground leading-relaxed">
+                {m}
+              </li>
+            ))}
+          </ul>
+        )}
 
         {/* Socials */}
         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-3 pt-2 border-t border-border">

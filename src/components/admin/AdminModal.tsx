@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { X, Lock, LogOut, Save, RotateCcw, Plus, Trash2, Calendar, Video, FileText, Sparkles } from "lucide-react";
-import { getSiteContent, saveSiteContent, resetSiteContent, SiteContent, WorkItem, ImpactItem, TestimonialItem, EventItem, SessionItem, ArticleItem } from "@/lib/contentStore";
+import { X, Lock, LogOut, Save, RotateCcw, Plus, Trash2, Calendar, Video, FileText, Sparkles, Award, GraduationCap, Code, Heart, Briefcase, Layers } from "lucide-react";
+import { getSiteContent, saveSiteContent, resetSiteContent, SiteContent, WorkItem, ImpactItem, TestimonialItem, EventItem, SessionItem, ArticleItem, WhatIDoCard, EducationItem, AwardItem, CertCategory } from "@/lib/contentStore";
 import { toast } from "sonner";
 
 interface AdminModalProps {
@@ -16,7 +16,23 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
 
-  const [activeTab, setActiveTab] = useState<"hero" | "about" | "work" | "impact" | "testimonials" | "events" | "sessions" | "articles">("hero");
+  const [activeTab, setActiveTab] = useState<
+    | "hero"
+    | "about"
+    | "whatido"
+    | "work"
+    | "impact"
+    | "education"
+    | "awards"
+    | "certifications"
+    | "extracurriculars"
+    | "skills"
+    | "events"
+    | "sessions"
+    | "articles"
+    | "testimonials"
+  >("hero");
+
   const [content, setContent] = useState<SiteContent>(getSiteContent());
 
   if (!isOpen) return null;
@@ -42,15 +58,33 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
 
   const handleSave = () => {
     saveSiteContent(content);
-    toast.success("Website content saved and updated live!");
+    toast.success("Website content saved and updated across all sections!");
   };
 
   const handleReset = () => {
-    if (confirm("Are you sure you want to reset all content to defaults?")) {
+    if (confirm("Are you sure you want to reset all site content to original defaults?")) {
       resetSiteContent();
       setContent(getSiteContent());
       toast.info("Content reset to initial portfolio state.");
     }
+  };
+
+  // What I Do Helpers
+  const addWhatIDoCard = () => {
+    const newCard: WhatIDoCard = {
+      id: "wido_" + Date.now(),
+      title: "New Focus Area",
+      description: "Description of what you do in this area.",
+    };
+    setContent({ ...content, whatIDo: [...content.whatIDo, newCard] });
+  };
+  const updateWhatIDoCard = (index: number, updated: Partial<WhatIDoCard>) => {
+    const updatedCards = [...content.whatIDo];
+    updatedCards[index] = { ...updatedCards[index], ...updated };
+    setContent({ ...content, whatIDo: updatedCards });
+  };
+  const removeWhatIDoCard = (index: number) => {
+    setContent({ ...content, whatIDo: content.whatIDo.filter((_, i) => i !== index) });
   };
 
   // Work Helpers
@@ -63,7 +97,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
       period: "2026",
       type: "Full-time",
       website: "https://example.com",
-      bullets: ["Accomplishment or key responsibility"],
+      bullets: ["Key achievement or responsibility"],
     };
     setContent({ ...content, work: [newItem, ...content.work] });
   };
@@ -96,6 +130,110 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
     setContent({ ...content, impact: content.impact.filter((_, i) => i !== index) });
   };
 
+  // Education Helpers
+  const addEducationItem = () => {
+    const newItem: EducationItem = {
+      id: "edu_" + Date.now(),
+      institution: "Institution / College Name",
+      program: "Degree or Fellowship Program",
+      period: "2026",
+      location: "City, Country",
+      link: "",
+      bullets: [],
+    };
+    setContent({ ...content, education: [...content.education, newItem] });
+  };
+  const updateEducationItem = (index: number, updated: Partial<EducationItem>) => {
+    const updatedEdu = [...content.education];
+    updatedEdu[index] = { ...updatedEdu[index], ...updated };
+    setContent({ ...content, education: updatedEdu });
+  };
+  const removeEducationItem = (index: number) => {
+    setContent({ ...content, education: content.education.filter((_, i) => i !== index) });
+  };
+
+  // Award Helpers
+  const addAwardItem = () => {
+    const newItem: AwardItem = {
+      id: "aw_" + Date.now(),
+      title: "Award Title",
+      issuer: "Organization Name",
+      date: "2026",
+      description: "Brief details about the recognition.",
+      link: "",
+    };
+    setContent({ ...content, awards: [...content.awards, newItem] });
+  };
+  const updateAwardItem = (index: number, updated: Partial<AwardItem>) => {
+    const updatedAwards = [...content.awards];
+    updatedAwards[index] = { ...updatedAwards[index], ...updated };
+    setContent({ ...content, awards: updatedAwards });
+  };
+  const removeAwardItem = (index: number) => {
+    setContent({ ...content, awards: content.awards.filter((_, i) => i !== index) });
+  };
+
+  // Event Helpers
+  const addEventItem = () => {
+    const newItem: EventItem = {
+      id: "e_" + Date.now(),
+      title: "New Event Title",
+      type: "organised",
+      date: "2026",
+      attendees: "100+",
+      link: "",
+    };
+    setContent({ ...content, eventsOrganised: [newItem, ...content.eventsOrganised] });
+  };
+  const updateEventItem = (index: number, updated: Partial<EventItem>) => {
+    const updatedEvents = [...content.eventsOrganised];
+    updatedEvents[index] = { ...updatedEvents[index], ...updated };
+    setContent({ ...content, eventsOrganised: updatedEvents });
+  };
+  const removeEventItem = (index: number) => {
+    setContent({ ...content, eventsOrganised: content.eventsOrganised.filter((_, i) => i !== index) });
+  };
+
+  // Session Helpers
+  const addSessionItem = () => {
+    const newItem: SessionItem = {
+      id: "s_" + Date.now(),
+      title: "Session Title",
+      type: "hosted",
+      link: "https://youtube.com",
+      speakerName: "Speaker Name",
+      speakerRole: "Role",
+    };
+    setContent({ ...content, sessionsOrganised: [newItem, ...content.sessionsOrganised] });
+  };
+  const updateSessionItem = (index: number, updated: Partial<SessionItem>) => {
+    const updatedSessions = [...content.sessionsOrganised];
+    updatedSessions[index] = { ...updatedSessions[index], ...updated };
+    setContent({ ...content, sessionsOrganised: updatedSessions });
+  };
+  const removeSessionItem = (index: number) => {
+    setContent({ ...content, sessionsOrganised: content.sessionsOrganised.filter((_, i) => i !== index) });
+  };
+
+  // Article Helpers
+  const addArticleItem = () => {
+    const newItem: ArticleItem = {
+      id: "a_" + Date.now(),
+      title: "Article Title",
+      platform: "Medium",
+      link: "https://medium.com",
+    };
+    setContent({ ...content, articlesWritten: [newItem, ...content.articlesWritten] });
+  };
+  const updateArticleItem = (index: number, updated: Partial<ArticleItem>) => {
+    const updatedArticles = [...content.articlesWritten];
+    updatedArticles[index] = { ...updatedArticles[index], ...updated };
+    setContent({ ...content, articlesWritten: updatedArticles });
+  };
+  const removeArticleItem = (index: number) => {
+    setContent({ ...content, articlesWritten: content.articlesWritten.filter((_, i) => i !== index) });
+  };
+
   // Testimonial Helpers
   const addTestimonialItem = () => {
     const newItem: TestimonialItem = {
@@ -116,78 +254,15 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
     setContent({ ...content, testimonials: content.testimonials.filter((_, i) => i !== index) });
   };
 
-  // Event Helpers
-  const addEventItem = () => {
-    const newItem: EventItem = {
-      id: "e_" + Date.now(),
-      title: "New Event Title",
-      type: "organised",
-      date: "2026",
-      attendees: "100+",
-      link: "https://example.com",
-    };
-    setContent({ ...content, eventsOrganised: [newItem, ...content.eventsOrganised] });
-  };
-  const updateEventItem = (index: number, updated: Partial<EventItem>) => {
-    const updatedEvents = [...content.eventsOrganised];
-    updatedEvents[index] = { ...updatedEvents[index], ...updated };
-    setContent({ ...content, eventsOrganised: updatedEvents });
-  };
-  const removeEventItem = (index: number) => {
-    setContent({ ...content, eventsOrganised: content.eventsOrganised.filter((_, i) => i !== index) });
-  };
-
-  // Session Helpers
-  const addSessionItem = () => {
-    const newItem: SessionItem = {
-      id: "s_" + Date.now(),
-      title: "New Session Title",
-      type: "hosted",
-      link: "https://youtube.com",
-      speakerName: "Speaker Name",
-      speakerRole: "Role / Company",
-      speakerLinkedin: "https://linkedin.com",
-    };
-    setContent({ ...content, sessionsOrganised: [newItem, ...content.sessionsOrganised] });
-  };
-  const updateSessionItem = (index: number, updated: Partial<SessionItem>) => {
-    const updatedSessions = [...content.sessionsOrganised];
-    updatedSessions[index] = { ...updatedSessions[index], ...updated };
-    setContent({ ...content, sessionsOrganised: updatedSessions });
-  };
-  const removeSessionItem = (index: number) => {
-    setContent({ ...content, sessionsOrganised: content.sessionsOrganised.filter((_, i) => i !== index) });
-  };
-
-  // Article Helpers
-  const addArticleItem = () => {
-    const newItem: ArticleItem = {
-      id: "a_" + Date.now(),
-      title: "New Article Title",
-      platform: "Medium",
-      link: "https://medium.com",
-      category: "Tech",
-    };
-    setContent({ ...content, articlesWritten: [newItem, ...content.articlesWritten] });
-  };
-  const updateArticleItem = (index: number, updated: Partial<ArticleItem>) => {
-    const updatedArticles = [...content.articlesWritten];
-    updatedArticles[index] = { ...updatedArticles[index], ...updated };
-    setContent({ ...content, articlesWritten: updatedArticles });
-  };
-  const removeArticleItem = (index: number) => {
-    setContent({ ...content, articlesWritten: content.articlesWritten.filter((_, i) => i !== index) });
-  };
-
   return (
     <div className="fixed inset-0 z-[100] bg-background/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-      <div className="relative w-full max-w-4xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[90vh] flex flex-col">
+      <div className="relative w-full max-w-5xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-muted/30">
           <div className="flex items-center gap-2">
             <Lock className="w-5 h-5 text-primary" />
             <h2 className="font-serif text-lg font-bold text-foreground">
-              {authenticated ? "Admin Control Panel" : "Admin Authentication"}
+              {authenticated ? "Full Website CMS Control Panel" : "Admin Authentication"}
             </h2>
           </div>
           <button
@@ -199,15 +274,15 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
         </div>
 
         {!authenticated ? (
-          /* Login Form */
+          /* Login Form - NO placeholder as requested */
           <div className="p-8 sm:p-12 space-y-6 max-w-md mx-auto w-full">
             <div className="text-center space-y-2">
               <div className="p-3 rounded-full bg-primary/10 text-primary w-fit mx-auto">
                 <Lock size={28} />
               </div>
-              <h3 className="font-serif text-xl font-bold text-foreground">Sign In to Admin Panel</h3>
+              <h3 className="font-serif text-xl font-bold text-foreground">Admin Sign In</h3>
               <p className="text-xs text-muted-foreground">
-                Enter your credentials to edit website elements & content.
+                Sign in to customize every section of your portfolio.
               </p>
             </div>
 
@@ -218,7 +293,6 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="manik23265@gmail.com"
                   required
                   className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                 />
@@ -230,7 +304,6 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••••••"
                   required
                   className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                 />
@@ -244,80 +317,41 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                 type="submit"
                 className="w-full py-2.5 rounded-lg bg-primary text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
               >
-                Unlock Admin Panel
+                Unlock CMS Panel
               </button>
             </form>
           </div>
         ) : (
-          /* Admin Dashboard */
+          /* Full Admin Dashboard */
           <div className="flex-1 flex flex-col overflow-hidden">
-            {/* Navigation Tabs */}
-            <div className="flex items-center justify-between px-6 py-2 border-b border-border bg-muted/20 overflow-x-auto gap-2">
+            {/* Navigation Tabs Bar */}
+            <div className="flex items-center justify-between px-6 py-2.5 border-b border-border bg-muted/20 overflow-x-auto gap-2">
               <div className="flex items-center gap-1.5 flex-wrap">
-                <button
-                  onClick={() => setActiveTab("hero")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    activeTab === "hero" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Hero & Bio
-                </button>
-                <button
-                  onClick={() => setActiveTab("about")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    activeTab === "about" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  About
-                </button>
-                <button
-                  onClick={() => setActiveTab("work")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    activeTab === "work" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Work ({content.work.length})
-                </button>
-                <button
-                  onClick={() => setActiveTab("impact")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    activeTab === "impact" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Impact ({content.impact.length})
-                </button>
-                <button
-                  onClick={() => setActiveTab("events")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    activeTab === "events" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Events ({content.eventsOrganised.length})
-                </button>
-                <button
-                  onClick={() => setActiveTab("sessions")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    activeTab === "sessions" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Sessions ({content.sessionsOrganised.length})
-                </button>
-                <button
-                  onClick={() => setActiveTab("articles")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    activeTab === "articles" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Articles ({content.articlesWritten.length})
-                </button>
-                <button
-                  onClick={() => setActiveTab("testimonials")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    activeTab === "testimonials" ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Testimonials ({content.testimonials.length})
-                </button>
+                {[
+                  { id: "hero", label: "Hero & Bio" },
+                  { id: "about", label: "About Page" },
+                  { id: "whatido", label: "What I Do" },
+                  { id: "work", label: `Work (${content.work.length})` },
+                  { id: "impact", label: `Impact (${content.impact.length})` },
+                  { id: "education", label: `Education (${content.education.length})` },
+                  { id: "awards", label: `Awards (${content.awards.length})` },
+                  { id: "extracurriculars", label: "Leadership & Extracurriculars" },
+                  { id: "skills", label: "Skills & Toolkit" },
+                  { id: "events", label: `Events (${content.eventsOrganised.length})` },
+                  { id: "sessions", label: `Sessions (${content.sessionsOrganised.length})` },
+                  { id: "articles", label: `Articles (${content.articlesWritten.length})` },
+                  { id: "testimonials", label: `Testimonials (${content.testimonials.length})` },
+                ].map((t) => (
+                  <button
+                    key={t.id}
+                    onClick={() => setActiveTab(t.id as any)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                      activeTab === t.id ? "bg-primary text-primary-foreground font-semibold" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {t.label}
+                  </button>
+                ))}
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
@@ -338,23 +372,35 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
               </div>
             </div>
 
-            {/* Tab Body */}
+            {/* Active Tab Content Panel */}
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
-              {/* HERO TAB */}
+              {/* HERO & BIO */}
               {activeTab === "hero" && (
-                <div className="space-y-4 max-w-2xl">
-                  <h3 className="font-serif font-bold text-lg text-foreground">Edit Hero Header Content</h3>
-                  <div>
-                    <label className="block text-xs font-medium mb-1">Display Name</label>
-                    <input
-                      type="text"
-                      value={content.hero.name}
-                      onChange={(e) => setContent({ ...content, hero: { ...content.hero, name: e.target.value } })}
-                      className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
-                    />
+                <div className="space-y-5 max-w-3xl">
+                  <h3 className="font-serif font-bold text-lg text-foreground">Hero Header & Bio Settings</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-medium mb-1">Display Name</label>
+                      <input
+                        type="text"
+                        value={content.hero.name}
+                        onChange={(e) => setContent({ ...content, hero: { ...content.hero, name: e.target.value } })}
+                        className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium mb-1">Base Location</label>
+                      <input
+                        type="text"
+                        value={content.hero.location}
+                        onChange={(e) => setContent({ ...content, hero: { ...content.hero, location: e.target.value } })}
+                        className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
+                      />
+                    </div>
                   </div>
+
                   <div>
-                    <label className="block text-xs font-medium mb-1">Tagline / Main Headline</label>
+                    <label className="block text-xs font-medium mb-1">Main Tagline</label>
                     <textarea
                       rows={2}
                       value={content.hero.tagline}
@@ -362,52 +408,56 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                       className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-xs font-medium mb-1">Hero Paragraph 1</label>
-                    <textarea
-                      rows={3}
-                      value={content.hero.bioParagraph1}
-                      onChange={(e) => setContent({ ...content, hero: { ...content.hero, bioParagraph1: e.target.value } })}
-                      className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
+                    <label className="block text-xs font-semibold mb-1">Typing Animation Roles (comma-separated)</label>
+                    <input
+                      type="text"
+                      value={content.hero.roles.join(", ")}
+                      onChange={(e) => setContent({ ...content, hero: { ...content.hero, roles: e.target.value.split(",").map((s) => s.trim()) } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
                     />
                   </div>
+
                   <div>
-                    <label className="block text-xs font-medium mb-1">Hero Paragraph 2</label>
+                    <label className="block text-xs font-semibold mb-1">Hero Timeline Milestones (1 per line)</label>
                     <textarea
-                      rows={3}
-                      value={content.hero.bioParagraph2}
-                      onChange={(e) => setContent({ ...content, hero: { ...content.hero, bioParagraph2: e.target.value } })}
-                      className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
+                      rows={5}
+                      value={content.hero.milestones.join("\n")}
+                      onChange={(e) => setContent({ ...content, hero: { ...content.hero, milestones: e.target.value.split("\n") } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
                     />
                   </div>
                 </div>
               )}
 
-              {/* ABOUT TAB */}
+              {/* ABOUT PAGE */}
               {activeTab === "about" && (
-                <div className="space-y-4 max-w-2xl">
-                  <h3 className="font-serif font-bold text-lg text-foreground">Edit Landing & Detailed About Section</h3>
-                  <div>
-                    <label className="block text-xs font-medium mb-1">Heading</label>
-                    <input
-                      type="text"
-                      value={content.about.heading}
-                      onChange={(e) => setContent({ ...content, about: { ...content.about, heading: e.target.value } })}
-                      className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium mb-1">Description / Eyebrow Subtitle</label>
-                    <input
-                      type="text"
-                      value={content.about.description}
-                      onChange={(e) => setContent({ ...content, about: { ...content.about, description: e.target.value } })}
-                      className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
-                    />
+                <div className="space-y-5 max-w-3xl">
+                  <h3 className="font-serif font-bold text-lg text-foreground">Landing & Standalone About Page Content</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-medium mb-1">Eyebrow Subtitle</label>
+                      <input
+                        type="text"
+                        value={content.about.eyebrow}
+                        onChange={(e) => setContent({ ...content, about: { ...content.about, eyebrow: e.target.value } })}
+                        className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium mb-1">Main Heading</label>
+                      <input
+                        type="text"
+                        value={content.about.heading}
+                        onChange={(e) => setContent({ ...content, about: { ...content.about, heading: e.target.value } })}
+                        className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border font-semibold"
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-3">
-                    <label className="block text-xs font-semibold text-foreground">Landing Page Bio Paragraphs</label>
+                    <label className="block text-xs font-semibold">Landing Page Bio Paragraphs (Supports HTML formatting)</label>
                     {content.about.paragraphs.map((p, idx) => (
                       <div key={idx} className="flex gap-2">
                         <textarea
@@ -435,13 +485,74 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                       onClick={() => setContent({ ...content, about: { ...content.about, paragraphs: [...content.about.paragraphs, "New bio paragraph..."] } })}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-border hover:bg-muted"
                     >
-                      <Plus size={14} /> Add Paragraph
+                      <Plus size={14} /> Add Landing Paragraph
                     </button>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold mb-1">Key Recognitions List (1 per line)</label>
+                    <textarea
+                      rows={4}
+                      value={(content.about.recognitions || []).join("\n")}
+                      onChange={(e) => setContent({ ...content, about: { ...content.about, recognitions: e.target.value.split("\n") } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
+                    />
                   </div>
                 </div>
               )}
 
-              {/* WORK TAB */}
+              {/* WHAT I DO */}
+              {activeTab === "whatido" && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-serif font-bold text-lg text-foreground">Manage What I Do Cards</h3>
+                    <button
+                      onClick={addWhatIDoCard}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-primary-foreground"
+                    >
+                      <Plus size={14} /> Add Focus Card
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {content.whatIDo.map((card, idx) => (
+                      <div key={card.id || idx} className="p-4 rounded-xl border border-border bg-card space-y-3">
+                        <div className="flex items-center justify-between border-b border-border/50 pb-2">
+                          <span className="font-mono text-xs text-primary font-bold">Focus #{idx + 1}</span>
+                          <button
+                            onClick={() => removeWhatIDoCard(idx)}
+                            className="p-1 text-rose-500 hover:bg-rose-500/10 rounded-lg text-xs flex items-center gap-1"
+                          >
+                            <Trash2 size={14} /> Delete
+                          </button>
+                        </div>
+                        <div className="space-y-2 text-xs">
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Card Title</label>
+                            <input
+                              type="text"
+                              value={card.title}
+                              onChange={(e) => updateWhatIDoCard(idx, { title: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border font-semibold"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Description</label>
+                            <textarea
+                              rows={2}
+                              value={card.description}
+                              onChange={(e) => updateWhatIDoCard(idx, { description: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* WORK EXPERIENCE */}
               {activeTab === "work" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -473,11 +584,11 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                               type="text"
                               value={item.role}
                               onChange={(e) => updateWorkItem(idx, { role: e.target.value })}
-                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border font-semibold"
                             />
                           </div>
                           <div>
-                            <label className="block text-muted-foreground mb-1">Company</label>
+                            <label className="block text-muted-foreground mb-1">Company Name</label>
                             <input
                               type="text"
                               value={item.company}
@@ -485,9 +596,27 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                               className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
                             />
                           </div>
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Period</label>
+                            <input
+                              type="text"
+                              value={item.period}
+                              onChange={(e) => updateWorkItem(idx, { period: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Location & Type</label>
+                            <input
+                              type="text"
+                              value={item.location}
+                              onChange={(e) => updateWorkItem(idx, { location: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                            />
+                          </div>
                         </div>
                         <div>
-                          <label className="block text-xs font-semibold mb-1">Bullets (1 per line)</label>
+                          <label className="block text-xs font-semibold mb-1">Bullet Points (1 per line)</label>
                           <textarea
                             rows={3}
                             value={item.bullets.join("\n")}
@@ -501,7 +630,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                 </div>
               )}
 
-              {/* IMPACT TAB */}
+              {/* IMPACT */}
               {activeTab === "impact" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -510,7 +639,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                       onClick={addImpactItem}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-primary-foreground"
                     >
-                      <Plus size={14} /> Add Impact Item
+                      <Plus size={14} /> Add Impact Metric
                     </button>
                   </div>
 
@@ -542,7 +671,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                               type="text"
                               value={item.title}
                               onChange={(e) => updateImpactItem(idx, { title: e.target.value })}
-                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border font-semibold"
                             />
                           </div>
                           <div>
@@ -561,7 +690,213 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                 </div>
               )}
 
-              {/* EVENTS TAB (Organised & Hosted) */}
+              {/* EDUCATION */}
+              {activeTab === "education" && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-serif font-bold text-lg text-foreground flex items-center gap-2">
+                      <GraduationCap className="w-5 h-5 text-primary" />
+                      Manage Education Section
+                    </h3>
+                    <button
+                      onClick={addEducationItem}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-primary-foreground"
+                    >
+                      <Plus size={14} /> Add Education
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {content.education.map((item, idx) => (
+                      <div key={item.id || idx} className="p-4 rounded-xl border border-border bg-card space-y-3">
+                        <div className="flex items-center justify-between border-b border-border/50 pb-2">
+                          <span className="font-mono text-xs text-primary font-bold">Education #{idx + 1}</span>
+                          <button
+                            onClick={() => removeEducationItem(idx)}
+                            className="p-1 text-rose-500 hover:bg-rose-500/10 rounded-lg text-xs flex items-center gap-1"
+                          >
+                            <Trash2 size={14} /> Delete
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Institution</label>
+                            <input
+                              type="text"
+                              value={item.institution}
+                              onChange={(e) => updateEducationItem(idx, { institution: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border font-semibold"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Program / Degree</label>
+                            <input
+                              type="text"
+                              value={item.program}
+                              onChange={(e) => updateEducationItem(idx, { program: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Period</label>
+                            <input
+                              type="text"
+                              value={item.period}
+                              onChange={(e) => updateEducationItem(idx, { period: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Location</label>
+                            <input
+                              type="text"
+                              value={item.location || ""}
+                              onChange={(e) => updateEducationItem(idx, { location: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* AWARDS */}
+              {activeTab === "awards" && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-serif font-bold text-lg text-foreground flex items-center gap-2">
+                      <Award className="w-5 h-5 text-primary" />
+                      Manage Awards & Honors
+                    </h3>
+                    <button
+                      onClick={addAwardItem}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-primary-foreground"
+                    >
+                      <Plus size={14} /> Add Award
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {content.awards.map((item, idx) => (
+                      <div key={item.id || idx} className="p-4 rounded-xl border border-border bg-card space-y-3">
+                        <div className="flex items-center justify-between border-b border-border/50 pb-2">
+                          <span className="font-mono text-xs text-primary font-bold">Award #{idx + 1}</span>
+                          <button
+                            onClick={() => removeAwardItem(idx)}
+                            className="p-1 text-rose-500 hover:bg-rose-500/10 rounded-lg text-xs flex items-center gap-1"
+                          >
+                            <Trash2 size={14} /> Delete
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Award Title</label>
+                            <input
+                              type="text"
+                              value={item.title}
+                              onChange={(e) => updateAwardItem(idx, { title: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border font-semibold"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-muted-foreground mb-1">Issuer</label>
+                            <input
+                              type="text"
+                              value={item.issuer}
+                              onChange={(e) => updateAwardItem(idx, { issuer: e.target.value })}
+                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-xs font-semibold mb-1">Description</label>
+                          <textarea
+                            rows={2}
+                            value={item.description}
+                            onChange={(e) => updateAwardItem(idx, { description: e.target.value })}
+                            className="w-full px-2.5 py-1.5 text-xs rounded-md bg-background border border-border"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* EXTRACURRICULARS */}
+              {activeTab === "extracurriculars" && (
+                <div className="space-y-5 max-w-3xl">
+                  <h3 className="font-serif font-bold text-lg text-foreground">Extracurriculars & Leadership</h3>
+                  <div>
+                    <label className="block text-xs font-semibold mb-1">Achievements (1 per line)</label>
+                    <textarea
+                      rows={4}
+                      value={(content.extracurriculars?.achievements || []).join("\n")}
+                      onChange={(e) => setContent({ ...content, extracurriculars: { ...content.extracurriculars, achievements: e.target.value.split("\n") } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold mb-1">Leadership Roles (1 per line)</label>
+                    <textarea
+                      rows={4}
+                      value={(content.extracurriculars?.leadershipRoles || []).join("\n")}
+                      onChange={(e) => setContent({ ...content, extracurriculars: { ...content.extracurriculars, leadershipRoles: e.target.value.split("\n") } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold mb-1">Hackathons Attended (1 per line)</label>
+                    <textarea
+                      rows={4}
+                      value={(content.extracurriculars?.hackathonsAttended || []).join("\n")}
+                      onChange={(e) => setContent({ ...content, extracurriculars: { ...content.extracurriculars, hackathonsAttended: e.target.value.split("\n") } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* SKILLS */}
+              {activeTab === "skills" && (
+                <div className="space-y-5 max-w-3xl">
+                  <h3 className="font-serif font-bold text-lg text-foreground flex items-center gap-2">
+                    <Code className="w-5 h-5 text-primary" />
+                    Skills & Toolkit Management
+                  </h3>
+                  <div>
+                    <label className="block text-xs font-semibold mb-1">Technical Skills (comma-separated)</label>
+                    <input
+                      type="text"
+                      value={(content.skills?.technical || []).join(", ")}
+                      onChange={(e) => setContent({ ...content, skills: { ...content.skills, technical: e.target.value.split(",").map((s) => s.trim()) } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold mb-1">Non-Technical Skills (comma-separated)</label>
+                    <input
+                      type="text"
+                      value={(content.skills?.nonTechnical || []).join(", ")}
+                      onChange={(e) => setContent({ ...content, skills: { ...content.skills, nonTechnical: e.target.value.split(",").map((s) => s.trim()) } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold mb-1">Interpersonal Skills (comma-separated)</label>
+                    <input
+                      type="text"
+                      value={(content.skills?.interpersonal || []).join(", ")}
+                      onChange={(e) => setContent({ ...content, skills: { ...content.skills, interpersonal: e.target.value.split(",").map((s) => s.trim()) } })}
+                      className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* EVENTS */}
               {activeTab === "events" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -611,33 +946,6 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                               <option value="attended">Attended</option>
                             </select>
                           </div>
-                          <div>
-                            <label className="block text-muted-foreground mb-1">Year / Date</label>
-                            <input
-                              type="text"
-                              value={item.date}
-                              onChange={(e) => updateEventItem(idx, { date: e.target.value })}
-                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-muted-foreground mb-1">Attendees</label>
-                            <input
-                              type="text"
-                              value={item.attendees || ""}
-                              onChange={(e) => updateEventItem(idx, { attendees: e.target.value })}
-                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-muted-foreground mb-1">Link (Optional)</label>
-                            <input
-                              type="text"
-                              value={item.link || ""}
-                              onChange={(e) => updateEventItem(idx, { link: e.target.value })}
-                              className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
-                            />
-                          </div>
                         </div>
                       </div>
                     ))}
@@ -645,7 +953,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                 </div>
               )}
 
-              {/* SESSIONS TAB (Organised & Hosted) */}
+              {/* SESSIONS */}
               {activeTab === "sessions" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -717,7 +1025,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                 </div>
               )}
 
-              {/* ARTICLES TAB */}
+              {/* ARTICLES */}
               {activeTab === "articles" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -762,7 +1070,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                               value={item.platform}
                               onChange={(e) => updateArticleItem(idx, { platform: e.target.value })}
                               className="w-full px-2.5 py-1.5 rounded-md bg-background border border-border"
-                              placeholder="Medium, Hashnode, X Thread, etc."
+                              placeholder="Medium, Hashnode, LinkedIn, etc."
                             />
                           </div>
                           <div className="sm:col-span-3">
@@ -781,7 +1089,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                 </div>
               )}
 
-              {/* TESTIMONIALS TAB */}
+              {/* TESTIMONIALS */}
               {activeTab === "testimonials" && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -826,6 +1134,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                             />
                           </div>
                         </div>
+
                         <div>
                           <label className="block text-xs font-semibold mb-1">Testimonial Text</label>
                           <textarea
@@ -842,7 +1151,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
               )}
             </div>
 
-            {/* Footer Actions */}
+            {/* Footer Actions Bar */}
             <div className="p-4 border-t border-border bg-muted/30 flex items-center justify-between">
               <span className="text-xs text-muted-foreground">
                 All changes persist to local storage.

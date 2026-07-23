@@ -219,16 +219,16 @@ const WallOfLovePage = () => {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Nav />
       <div className="pt-24 pb-12 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <SectionHeading>Wall of Love</SectionHeading>
-          <div className="columns-1 md:columns-2 gap-6 sm:gap-8 mt-8">
+          <div className="space-y-6 mt-8 w-full text-left">
             {TESTIMONIALS.map((t) => (
               <blockquote
                 key={t.person}
-                className="border border-border rounded-xl p-7 sm:p-9 md:p-10 bg-card/80 text-left break-inside-avoid mb-6 sm:mb-8 shadow-sm hover:border-primary/40 transition-colors"
+                className="border border-border/80 rounded-xl p-6 sm:p-7 bg-card/40 text-left shadow-sm hover:border-foreground/30 transition-colors w-full"
               >
                 <span className="font-serif text-3xl sm:text-4xl text-primary/40 leading-none select-none block mb-2">"</span>
-                <p className="font-serif text-sm sm:text-base italic text-foreground/90 leading-relaxed mb-6 px-1">
+                <p className="font-serif text-base sm:text-lg italic text-foreground/90 leading-relaxed mb-6 px-1">
                   {t.text}
                 </p>
                 <footer className="flex items-center justify-between pt-4 border-t border-border/50">

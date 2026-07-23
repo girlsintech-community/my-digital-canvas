@@ -57,7 +57,6 @@ const Resume = () => {
         </div>
       </div>
       <Footer />
-      <ScrollToTop />
     </div>
   );
 };

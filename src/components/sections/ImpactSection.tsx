@@ -21,7 +21,7 @@ const ImpactSection = () => {
 
   return (
     <section id="impact" className="py-16 md:py-24 px-4 sm:px-6">
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-3xl mx-auto space-y-8">
         <SectionHeading
           eyebrow="Impact & Credibility"
           description="Quantifiable metrics and real-world impact created across technical communities, partnerships, and developer ecosystems."
