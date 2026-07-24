@@ -1,4 +1,5 @@
 import { useSiteContent } from "@/hooks/useSiteContent";
+import CompanyLogo from "@/components/CompanyLogo";
 
 const Certifications = () => {
   const content = useSiteContent();
@@ -18,13 +19,16 @@ const Certifications = () => {
             <ul className="list-disc list-outside pl-5 space-y-1">
               {c.items.map((item) => (
                 <li key={item.name} className="text-sm text-foreground/90 leading-relaxed">
-                  {item.link ? (
-                    <a href={item.link} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-muted-foreground transition-colors">
-                      {item.name}
-                    </a>
-                  ) : (
-                    item.name
-                  )}
+                  <span className="inline-flex items-center gap-1.5">
+                    <CompanyLogo name={item.name} size={16} />
+                    {item.link ? (
+                      <a href={item.link} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-muted-foreground transition-colors">
+                        {item.name}
+                      </a>
+                    ) : (
+                      <span>{item.name}</span>
+                    )}
+                  </span>
                 </li>
               ))}
             </ul>

@@ -1,4 +1,5 @@
 import SectionHeading from "./SectionHeading";
+import CompanyLogo from "@/components/CompanyLogo";
 
 const STATS = [
   { value: "4,000", label: "members" },
@@ -9,6 +10,9 @@ const STATS = [
 const Community = () => (
   <section id="community" className="py-20 md:py-28 px-6 border-t border-border bg-background">
     <div className="max-w-3xl mx-auto text-center">
+      <div className="flex justify-center mb-3">
+        <CompanyLogo name="Girls Leading Tech" size={44} className="rounded-xl shadow-xs" />
+      </div>
       <SectionHeading
         eyebrow="The Community I Am Building"
         description="A 4,000-girl-strong movement across India, building a future where every girl in tech feels seen, supported, and unstoppable."

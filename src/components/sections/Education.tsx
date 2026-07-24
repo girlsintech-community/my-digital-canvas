@@ -1,4 +1,5 @@
 import { useSiteContent } from "@/hooks/useSiteContent";
+import CompanyLogo from "@/components/CompanyLogo";
 
 const Education = () => {
   const content = useSiteContent();
@@ -15,7 +16,8 @@ const Education = () => {
         {educationList.map((e, index) => (
           <div key={e.id || index} className="text-left">
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between">
-              <h3 className="font-bold text-foreground text-base sm:text-[1.05rem]">
+              <h3 className="font-bold text-foreground text-base sm:text-[1.05rem] flex items-center gap-1.5">
+                <CompanyLogo name={e.institution} size={20} />
                 {e.link ? (
                   <a href={e.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
                     {e.institution}

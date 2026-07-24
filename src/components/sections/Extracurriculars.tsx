@@ -1,4 +1,5 @@
 import { useSiteContent } from "@/hooks/useSiteContent";
+import CompanyLogo from "@/components/CompanyLogo";
 
 const Extracurriculars = () => {
   const content = useSiteContent();
@@ -18,7 +19,12 @@ const Extracurriculars = () => {
             <h3 className="font-serif italic font-semibold text-foreground text-sm mb-1">Achievements</h3>
             <ul className="list-disc list-outside pl-5 space-y-1">
               {extra.achievements.map((a, i) => (
-                <li key={i} className="text-sm text-foreground/90 leading-relaxed">{a}</li>
+                <li key={i} className="text-sm text-foreground/90 leading-relaxed">
+                  <span className="inline-flex items-center gap-1.5">
+                    <CompanyLogo name={a} size={16} />
+                    <span>{a}</span>
+                  </span>
+                </li>
               ))}
             </ul>
           </div>
@@ -29,7 +35,12 @@ const Extracurriculars = () => {
             <h3 className="font-serif italic font-semibold text-foreground text-sm mb-1">Leadership Roles</h3>
             <ul className="list-disc list-outside pl-5 space-y-1">
               {extra.leadershipRoles.map((r, i) => (
-                <li key={i} className="text-sm text-foreground/90 leading-relaxed">{r}</li>
+                <li key={i} className="text-sm text-foreground/90 leading-relaxed">
+                  <span className="inline-flex items-center gap-1.5">
+                    <CompanyLogo name={r} size={16} />
+                    <span>{r}</span>
+                  </span>
+                </li>
               ))}
             </ul>
           </div>

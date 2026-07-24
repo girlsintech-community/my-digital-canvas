@@ -6,6 +6,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { Sparkles, Heart, Award, Users, Globe, ArrowRight, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import CompanyLogo from "@/components/CompanyLogo";
 
 const AboutPage = () => {
   const content = useSiteContent();
@@ -106,20 +107,20 @@ const AboutPage = () => {
               </h3>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-foreground/90 font-medium">
                 <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-primary" />
-                  Youngest CMX Director Worldwide
+                  <CompanyLogo name="CMX" size={18} />
+                  <span>Youngest CMX Director Worldwide</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-primary" />
-                  STEM Educator Award Winner
+                  <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
+                  <span>STEM Educator Award Winner</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-primary" />
-                  McKinsey Forward Fellow
+                  <CompanyLogo name="McKinsey" size={18} />
+                  <span>McKinsey Forward Fellow</span>
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-primary" />
-                  Founder, Girls Leading Tech (4,000+ Members)
+                  <CompanyLogo name="Girls Leading Tech" size={18} />
+                  <span>Founder, Girls Leading Tech (4,000+ Members)</span>
                 </li>
               </ul>
             </div>

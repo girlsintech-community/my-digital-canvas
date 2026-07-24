@@ -5,15 +5,7 @@ import Nav from "@/components/sections/Nav";
 import Footer from "@/components/sections/Footer";
 import SectionHeading from "@/components/sections/SectionHeading";
 import { getYouTubeThumb } from "@/lib/youtube";
-
-const ALL_COMMUNITY_IMAGES = Object.values(
-  import.meta.glob("@/assets/community/*.jpg", { eager: true, import: "default" })
-) as string[];
-
-const thirdLength = Math.ceil(ALL_COMMUNITY_IMAGES.length / 3);
-const SLIDESHOW_ROW1 = ALL_COMMUNITY_IMAGES.slice(0, thirdLength);
-const SLIDESHOW_ROW2 = ALL_COMMUNITY_IMAGES.slice(thirdLength, thirdLength * 2);
-const SLIDESHOW_ROW3 = ALL_COMMUNITY_IMAGES.slice(thirdLength * 2);
+import CompanyLogo from "@/components/CompanyLogo";
 
 const COMMUNITIES_BUILT = [
   {
@@ -342,7 +334,8 @@ const CommunityCard = ({ org, link, role, period, bullets }: {
           </span>
         )}
       </div>
-      <div className="mb-2">
+      <div className="mb-2 flex items-center gap-2">
+        <CompanyLogo name={org} size={22} />
         {link ? (
           <a
             href={link}
@@ -381,7 +374,8 @@ const VolunteerCard = ({ org, link, role, period, bullets }: { org: string; link
           </span>
         )}
       </div>
-      <div className="mb-2">
+      <div className="mb-2 flex items-center gap-2">
+        <CompanyLogo name={org} size={22} />
         {link ? (
           <a
             href={link}
@@ -472,32 +466,6 @@ const CommunityPage = () => {
       <div className="pt-24 pb-12 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <SectionHeading>Community Contributions</SectionHeading>
-
-          {/* Image Slideshow */}
-          <div className="mt-8 mb-6 overflow-hidden">
-            <style>{`
-              @keyframes scroll-left {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
-              }
-              @keyframes scroll-right {
-                0% { transform: translateX(-50%); }
-                100% { transform: translateX(0); }
-              }
-              .slideshow-row-left { animation: scroll-left 45s linear infinite; }
-              .slideshow-row-right { animation: scroll-right 45s linear infinite; }
-              .slideshow-row-left:hover, .slideshow-row-right:hover { animation-play-state: paused; }
-            `}</style>
-            {[SLIDESHOW_ROW1, SLIDESHOW_ROW2, SLIDESHOW_ROW3].map((row, rowIdx) => (
-              <div key={rowIdx} className="overflow-hidden mb-3 last:mb-0">
-                <div className={`flex gap-3 w-max ${rowIdx % 2 === 0 ? "slideshow-row-left" : "slideshow-row-right"}`}>
-                  {[...row, ...row].map((src, i) => (
-                    <img key={i} src={src} alt="" className="h-28 sm:h-36 w-auto rounded-lg object-cover flex-shrink-0" loading="eager" decoding="async" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
 
           {/* Communities I Built */}
           <div className="mt-12 text-left">

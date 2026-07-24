@@ -1,4 +1,5 @@
 import { useSiteContent } from "@/hooks/useSiteContent";
+import CompanyLogo from "@/components/CompanyLogo";
 
 const WorkExperience = () => {
   const content = useSiteContent();
@@ -23,7 +24,8 @@ const WorkExperience = () => {
               </span>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mt-0.5">
-              <p className="font-serif italic text-muted-foreground text-sm">
+              <p className="font-serif italic text-muted-foreground text-sm flex items-center gap-1.5">
+                <CompanyLogo name={e.company} size={20} />
                 {e.website ? (
                   <a
                     href={e.website}

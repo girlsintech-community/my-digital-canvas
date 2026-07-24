@@ -2,6 +2,7 @@ import { useState } from "react";
 import SectionHeading from "./SectionHeading";
 import { Award, ExternalLink } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
+import CompanyLogo from "@/components/CompanyLogo";
 
 const INITIAL_COUNT = 3;
 
@@ -33,8 +34,9 @@ const Awards = () => {
                     </a>
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground mt-0.5">
-                  {a.issuer}{a.date ? ` · ${a.date}` : ""}
+                <p className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5">
+                  <CompanyLogo name={a.issuer} size={16} />
+                  <span>{a.issuer}{a.date ? ` · ${a.date}` : ""}</span>
                 </p>
                 {a.description && (
                   <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{a.description}</p>
