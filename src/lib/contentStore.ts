@@ -124,6 +124,18 @@ export interface SiteContent {
   eventsOrganised: EventItem[];
   sessionsOrganised: SessionItem[];
   articlesWritten: ArticleItem[];
+  settings: {
+    resumeUrl: string;
+    resumeFileName: string;
+    email: string;
+    linkedin: string;
+    github: string;
+    youtube: string;
+    twitter: string;
+    instagram: string;
+    metaTitle: string;
+    metaDescription: string;
+  };
 }
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
