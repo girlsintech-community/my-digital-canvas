@@ -14,6 +14,7 @@ const Resume = () => {
   const content = useSiteContent();
   const resumeUrl = content.settings?.resumeUrl || "";
   const resumeFileName = content.settings?.resumeFileName || "Manik_Resume.pdf";
+  const [showPdf, setShowPdf] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,6 +43,14 @@ const Resume = () => {
       <div className="pt-24 pb-12 px-4 sm:px-6 print:pt-0 print:pb-0 print:px-0">
         <div className="max-w-3xl mx-auto overflow-hidden">
           <div className="flex flex-wrap justify-end gap-2 mb-6 print:hidden">
+            {resumeUrl && (
+              <button
+                onClick={() => setShowPdf((v) => !v)}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-muted transition-colors text-foreground"
+              >
+                {showPdf ? <><EyeOff size={16} /> Hide Resume</> : <><Eye size={16} /> View Resume</>}
+              </button>
+            )}
             <button
               onClick={handleDownload}
               className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-muted transition-colors text-foreground"
@@ -60,7 +69,7 @@ const Resume = () => {
             </a>
           </div>
 
-          {resumeUrl && (
+          {resumeUrl && showPdf && (
             <div className="mb-8 rounded-2xl border border-border overflow-hidden bg-card shadow-sm print:hidden">
               <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-muted/30">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -84,6 +93,7 @@ const Resume = () => {
               </object>
             </div>
           )}
+
 
           <div className="border border-border rounded-2xl p-6 sm:p-10 shadow-sm bg-card print:border-none print:shadow-none print:p-0">
             <div className="text-center pb-6 mb-6 border-b border-foreground/20">
