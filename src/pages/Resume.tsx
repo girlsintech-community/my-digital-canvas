@@ -115,6 +115,32 @@ const Resume = () => {
             <Skills />
             <Certifications />
             <Extracurriculars />
+
+            <section id="github-contributions" className="mb-8 text-left">
+              <div className="border-b border-foreground/30 pb-1 mb-4">
+                <h2 className="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase text-foreground">
+                  GitHub Contributions
+                </h2>
+              </div>
+              <a
+                href="https://github.com/manik-007"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-xl border border-border/60 bg-card/40 p-4 hover:border-foreground/30 transition-colors"
+                aria-label="View GitHub profile"
+              >
+                <img
+                  src="https://ghchart.rshah.org/22c55e/manik-007"
+                  alt="Manik's GitHub contributions graph"
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+                <p className="mt-2 text-xs text-muted-foreground text-center">
+                  Live from <span className="underline">github.com/manik-007</span>
+                </p>
+              </a>
+            </section>
+
             <Recommendations />
           </div>
         </div>
