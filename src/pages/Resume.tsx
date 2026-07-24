@@ -15,6 +15,22 @@ const Resume = () => {
   const resumeUrl = content.settings?.resumeUrl || "";
   const resumeFileName = content.settings?.resumeFileName || "Manik_Resume.pdf";
   const [showPdf, setShowPdf] = useState(false);
+  const [ghTotal, setGhTotal] = useState<number | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("https://github-contributions-api.jogruber.de/v4/manik-007?y=all")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { total?: Record<string, number> } | null) => {
+        if (cancelled || !d?.total) return;
+        const sum = Object.values(d.total).reduce((a, b) => a + b, 0);
+        setGhTotal(sum);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
