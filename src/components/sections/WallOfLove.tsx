@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
@@ -6,8 +8,15 @@ const WallOfLove = () => {
   const navigate = useNavigate();
   const content = useSiteContent();
   const testimonials = content.testimonials && content.testimonials.length > 0
-    ? content.testimonials.slice(0, 6)
+    ? content.testimonials
     : [];
+  const [index, setIndex] = useState(0);
+
+  const total = testimonials.length;
+  const t = total > 0 ? testimonials[index] : null;
+
+  const next = () => setIndex((i) => (i + 1) % total);
+  const prev = () => setIndex((i) => (i - 1 + total) % total);
 
   return (
     <section id="testimonials" className="py-16 md:py-28 px-4 sm:px-6 border-t border-border overflow-hidden">
@@ -18,11 +27,12 @@ const WallOfLove = () => {
         >
           What people say
         </SectionHeading>
-        <div className="space-y-6 text-left w-full">
-          {testimonials.map((t, idx) => (
+
+        {t && (
+          <div className="text-left w-full">
             <blockquote
-              key={t.id || idx}
-              className="border border-border/80 rounded-xl p-6 sm:p-7 bg-card/40 flex flex-col justify-between shadow-sm hover:border-foreground/30 transition-colors w-full"
+              key={t.id || index}
+              className="border border-border/80 rounded-xl p-6 sm:p-8 bg-card/40 shadow-sm w-full min-h-[220px] flex flex-col justify-between"
             >
               <div>
                 <span className="font-serif text-3xl sm:text-4xl text-primary/40 leading-none select-none block mb-2">"</span>
@@ -52,8 +62,29 @@ const WallOfLove = () => {
                 )}
               </footer>
             </blockquote>
-          ))}
-        </div>
+
+            <div className="flex items-center justify-between mt-5">
+              <button
+                onClick={prev}
+                aria-label="Previous testimonial"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-border text-foreground hover:bg-muted transition-colors text-sm"
+              >
+                <ChevronLeft size={16} /> Prev
+              </button>
+              <span className="font-sans text-xs text-muted-foreground tabular-nums">
+                {index + 1} / {total}
+              </span>
+              <button
+                onClick={next}
+                aria-label="Next testimonial"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-border text-foreground hover:bg-muted transition-colors text-sm"
+              >
+                Next <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="text-center mt-10">
           <button
             onClick={() => navigate("/wall-of-love")}
@@ -68,3 +99,4 @@ const WallOfLove = () => {
 };
 
 export default WallOfLove;
+
