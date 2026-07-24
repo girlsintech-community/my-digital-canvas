@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Nav from "@/components/sections/Nav";
 import Education from "@/components/sections/Education";
 import WorkExperience from "@/components/sections/WorkExperience";
@@ -7,7 +7,7 @@ import Recommendations from "@/components/sections/Recommendations";
 import Extracurriculars from "@/components/sections/Extracurriculars";
 import Skills from "@/components/sections/Skills";
 import Footer from "@/components/sections/Footer";
-import { Download, ExternalLink, FileText } from "lucide-react";
+import { Download, ExternalLink, FileText, Eye, EyeOff } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
 const Resume = () => {
