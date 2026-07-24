@@ -14,6 +14,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
   });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [authError, setAuthError] = useState("");
 
   const [activeTab, setActiveTab] = useState<
