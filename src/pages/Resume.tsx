@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Nav from "@/components/sections/Nav";
 import Education from "@/components/sections/Education";
 import WorkExperience from "@/components/sections/WorkExperience";
@@ -7,13 +7,14 @@ import Recommendations from "@/components/sections/Recommendations";
 import Extracurriculars from "@/components/sections/Extracurriculars";
 import Skills from "@/components/sections/Skills";
 import Footer from "@/components/sections/Footer";
-import { Download, ExternalLink, FileText } from "lucide-react";
+import { Download, ExternalLink, FileText, Eye, EyeOff } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
 const Resume = () => {
   const content = useSiteContent();
   const resumeUrl = content.settings?.resumeUrl || "";
   const resumeFileName = content.settings?.resumeFileName || "Manik_Resume.pdf";
+  const [showPdf, setShowPdf] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,6 +43,14 @@ const Resume = () => {
       <div className="pt-24 pb-12 px-4 sm:px-6 print:pt-0 print:pb-0 print:px-0">
         <div className="max-w-3xl mx-auto overflow-hidden">
           <div className="flex flex-wrap justify-end gap-2 mb-6 print:hidden">
+            {resumeUrl && (
+              <button
+                onClick={() => setShowPdf((v) => !v)}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-muted transition-colors text-foreground"
+              >
+                {showPdf ? <><EyeOff size={16} /> Hide Resume</> : <><Eye size={16} /> View Resume</>}
+              </button>
+            )}
             <button
               onClick={handleDownload}
               className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-muted transition-colors text-foreground"
@@ -60,7 +69,7 @@ const Resume = () => {
             </a>
           </div>
 
-          {resumeUrl && (
+          {resumeUrl && showPdf && (
             <div className="mb-8 rounded-2xl border border-border overflow-hidden bg-card shadow-sm print:hidden">
               <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-muted/30">
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -85,6 +94,7 @@ const Resume = () => {
             </div>
           )}
 
+
           <div className="border border-border rounded-2xl p-6 sm:p-10 shadow-sm bg-card print:border-none print:shadow-none print:p-0">
             <div className="text-center pb-6 mb-6 border-b border-foreground/20">
               <h1 className="font-serif text-3xl sm:text-4xl font-bold tracking-wider uppercase text-foreground mb-1">
@@ -105,6 +115,32 @@ const Resume = () => {
             <Skills />
             <Certifications />
             <Extracurriculars />
+
+            <section id="github-contributions" className="mb-8 text-left">
+              <div className="border-b border-foreground/30 pb-1 mb-4">
+                <h2 className="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase text-foreground">
+                  GitHub Contributions
+                </h2>
+              </div>
+              <a
+                href="https://github.com/manik-007"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-xl border border-border/60 bg-card/40 p-4 hover:border-foreground/30 transition-colors"
+                aria-label="View GitHub profile"
+              >
+                <img
+                  src="https://ghchart.rshah.org/22c55e/manik-007"
+                  alt="Manik's GitHub contributions graph"
+                  className="w-full h-auto"
+                  loading="lazy"
+                />
+                <p className="mt-2 text-xs text-muted-foreground text-center">
+                  Live from <span className="underline">github.com/manik-007</span>
+                </p>
+              </a>
+            </section>
+
             <Recommendations />
           </div>
         </div>

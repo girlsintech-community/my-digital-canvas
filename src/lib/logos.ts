@@ -28,10 +28,12 @@ export const LOGO_MAP: Record<string, string> = {
   "web3 conf": "/logos/web3conf-goa.png",
   "kotlin": "/logos/kotlin-conf.png",
   "outdefine": "/logos/outdefine.png",
-  "hackarcode": "/logos/devrel-uni.png",
+  "hackarcode": "/logos/hackarcode.png",
   "devrel": "/logos/devrel-uni.png",
   "gdg cloud": "/logos/gdg-cloud-chandigarh.png",
-  "police dav": "/logos/police-dav-public-school.png"
+  "police dav": "/logos/police-dav-public-school.png",
+  "shecancode": "/logos/shecancode.png",
+  "she can code": "/logos/shecancode.png"
 };
 
 export function getLogoForName(name: string): string | null {
@@ -65,6 +67,7 @@ export function getLogoForName(name: string): string | null {
   if (lower.includes("kotlin")) return LOGO_MAP["kotlin"];
   if (lower.includes("outdefine")) return LOGO_MAP["outdefine"];
   if (lower.includes("hackarcode")) return LOGO_MAP["hackarcode"];
+  if (lower.includes("shecancode") || lower.includes("she can code")) return LOGO_MAP["shecancode"];
   if (lower.includes("devrel")) return LOGO_MAP["devrel"];
   if (lower.includes("police dav")) return LOGO_MAP["police dav"];
   if (lower.includes("cmx")) return LOGO_MAP["cmx"];
