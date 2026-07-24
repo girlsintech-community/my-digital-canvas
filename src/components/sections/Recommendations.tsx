@@ -2,6 +2,12 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
+const AVATARS = import.meta.glob("@/assets/recs/*.webp", { eager: true, import: "default" }) as Record<string, string>;
+const avatarFor = (slug: string): string | undefined => {
+  const entry = Object.entries(AVATARS).find(([p]) => p.endsWith(`/${slug}.webp`));
+  return entry?.[1];
+};
+
 const RECS = [
   {
     name: "Shivam Garg",
