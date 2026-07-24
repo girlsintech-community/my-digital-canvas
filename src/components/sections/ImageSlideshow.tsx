@@ -1,5 +1,5 @@
 const ALL_COMMUNITY_IMAGES = Object.values(
-  import.meta.glob("@/assets/community/*.jpg", { eager: true, import: "default" })
+  import.meta.glob("@/assets/community/*.webp", { eager: true, import: "default" })
 ) as string[];
 
 const thirdLength = Math.ceil(ALL_COMMUNITY_IMAGES.length / 3);

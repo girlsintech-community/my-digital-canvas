@@ -32,11 +32,11 @@ const WallOfLove = () => {
           <div className="text-left w-full">
             <blockquote
               key={t.id || index}
-              className="border border-border/80 rounded-xl p-6 sm:p-8 bg-card/40 shadow-sm w-full min-h-[220px] flex flex-col justify-between"
+              className="border border-border/80 rounded-xl p-6 sm:p-8 bg-card/40 shadow-sm w-full h-[340px] sm:h-[320px] flex flex-col"
             >
-              <div>
-                <span className="font-serif text-3xl sm:text-4xl text-primary/40 leading-none select-none block mb-2">"</span>
-                <p className="font-serif text-base sm:text-lg italic text-foreground/90 leading-relaxed mb-6 px-1 break-words">
+              <span className="font-serif text-3xl sm:text-4xl text-primary/40 leading-none select-none block mb-2">"</span>
+              <div className="flex-1 min-h-0 overflow-y-auto pr-1">
+                <p className="font-serif text-base sm:text-lg italic text-foreground/90 leading-relaxed px-1 break-words">
                   {t.text}
                 </p>
               </div>

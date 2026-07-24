@@ -2,6 +2,12 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
+const AVATARS = import.meta.glob("@/assets/recs/*.webp", { eager: true, import: "default" }) as Record<string, string>;
+const avatarFor = (slug: string): string | undefined => {
+  const entry = Object.entries(AVATARS).find(([p]) => p.endsWith(`/${slug}.webp`));
+  return entry?.[1];
+};
+
 const RECS = [
   {
     name: "Shivam Garg",
@@ -85,9 +91,17 @@ const RECS = [
   },
 ];
 
+const slugFor = (name: string): string => {
+  const n = name.toLowerCase().replace(/\(.*\)/g, "").replace(/^dr\.?\s+/, "").trim();
+  if (n.startsWith("hirva")) return "hirva";
+  if (n.startsWith("shruti")) return "shruti-sharma";
+  return n.split(/\s+/).slice(0, 2).join("-").replace(/[^a-z-]/g, "");
+};
+
 const RecCard = ({ r }: { r: typeof RECS[0] }) => {
   const [expanded, setExpanded] = useState(false);
   const preview = r.text.slice(0, 120) + "...";
+  const avatar = avatarFor(slugFor(r.name));
 
   return (
     <blockquote className="border border-border rounded-xl p-6 sm:p-8 md:p-9 overflow-hidden bg-card/60 hover:border-primary/40 transition-colors shadow-sm">
@@ -101,15 +115,29 @@ const RecCard = ({ r }: { r: typeof RECS[0] }) => {
         {expanded ? "Show less" : "Read more"}
         <ChevronDown size={14} className={`transition-transform duration-200 ${expanded ? "rotate-180" : ""}`} />
       </button>
-      <footer>
-        <div className="flex items-center gap-2 flex-wrap">
-          <p className="font-sans text-sm font-semibold text-foreground">{r.name}</p>
-          <a href={r.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
+      <footer className="flex items-start gap-3">
+        {avatar ? (
+          <img
+            src={avatar}
+            alt={r.name}
+            className="w-10 h-10 rounded-full object-cover border border-border shrink-0"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-10 h-10 rounded-full border border-border bg-muted shrink-0 flex items-center justify-center text-xs font-semibold text-muted-foreground">
+            {r.name.charAt(0)}
+          </div>
+        )}
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="font-sans text-sm font-semibold text-foreground">{r.name}</p>
+            <a href={r.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+          <p className="font-sans text-xs text-muted-foreground break-words">{r.title}</p>
+          {r.relation && <p className="font-sans text-xs text-muted-foreground mt-0.5">{r.relation}{r.date ? `, ${r.date}` : ""}</p>}
         </div>
-        <p className="font-sans text-xs text-muted-foreground break-words">{r.title}</p>
-        {r.relation && <p className="font-sans text-xs text-muted-foreground mt-0.5">{r.relation}{r.date ? `, ${r.date}` : ""}</p>}
       </footer>
     </blockquote>
   );
