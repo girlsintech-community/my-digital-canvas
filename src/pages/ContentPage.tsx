@@ -184,6 +184,24 @@ const PODCASTS = [
   },
 ];
 
+const DEVREL_UNI_EPISODES = [
+  { name: "Asilbek Abdullaev", role: "Cloud & DevOps Engineer at EPAM", location: "Tashkent, Uzbekistan", youtube: "https://youtu.be/YUmeZLNJ6BY", linkedin: "https://www.linkedin.com/in/asilbek0311/" },
+  { name: "Lupe Canaviri Maydana", role: "Ex Frontend Engineer at Microsoft", location: "Seattle, USA", youtube: "https://youtu.be/YLw9PueK9jA", linkedin: "https://www.linkedin.com/in/luucamay/" },
+  { name: "Surya Gupta", role: "Growth & Partnerships at Mizzle", location: "New Delhi, India", youtube: "https://youtu.be/P-I_B8lZslY", linkedin: "https://www.linkedin.com/in/surya-gupta-ai/" },
+  { name: "Atharva Shah", role: "Technical Content Lead and DevRel at AccuKnox", location: "Pune, India", youtube: "https://youtu.be/k7vxMo_dl2o", linkedin: "https://www.linkedin.com/in/atharva-shah-tech/" },
+  { name: "Jay Makwana", role: "Smart Contract & Full Stack Developer", location: "Mumbai, India", youtube: "https://youtu.be/V3weSaIJNKo", linkedin: "https://www.linkedin.com/in/jay-makwana-313b411a5/" },
+  { name: "Yerang Kim", role: "Global Advisor at PUAC", location: "Berlin, Germany", youtube: "https://youtu.be/K2SGlXTVerI", linkedin: "https://www.linkedin.com/in/yerang-kim/" },
+  { name: "Alex Stoicescu", role: "Advisor at Claimr", location: "Berlin, Germany", youtube: "https://youtu.be/GFregk6dRA0", linkedin: "https://www.linkedin.com/in/alexstoicescu/" },
+  { name: "Dayana Mick Forero", role: "Fellow at Dev3Pack", location: "Berlin, Germany", youtube: "https://youtu.be/DPMYgsKX_nQ", linkedin: "https://www.linkedin.com/in/dayanamick/" },
+  { name: "Purple Zhang", role: "Developer Relations at SECBIT Labs", location: "Suzhou, China", youtube: "https://youtu.be/bBquq_57ZqQ", linkedin: "https://www.linkedin.com/in/purple-zhang-7b0673180/" },
+  { name: "Parul Yadav", role: "DevRel at Kleros", location: "India", youtube: "https://youtu.be/dBTkuamJTJM", linkedin: "https://www.linkedin.com/in/parulyadav18/" },
+  { name: "Kevin Raúl Padilla Islas", role: "CTO at EVVM", location: "Puebla, Mexico", youtube: "https://youtu.be/_0VDppjUUoo", linkedin: "https://www.linkedin.com/in/kevin-padilla-islas/" },
+  { name: "Hardik Bandhiya", role: "AWS Campus Leader", location: "Gujarat, India", youtube: "https://youtu.be/UzFeRDMJig8", linkedin: "https://www.linkedin.com/in/bandhiya-hardik/" },
+  { name: "Gopika Chauhan", role: "Community Contributor", location: "Haryana, India", youtube: "https://youtu.be/XjcGnYg4SiM", linkedin: "https://www.linkedin.com/in/gopika-chauhan18/" },
+  { name: "Henry Tong", role: "Web3 Builder", location: "Mendoza, Argentina", youtube: "https://youtu.be/mSo_lbOCP1Y", linkedin: "https://www.linkedin.com/in/henry-tong-info/" },
+  { name: "Akhil Nanavati", role: "Web3 Contributor", location: "Mumbai, India", youtube: "https://youtu.be/AxswgAe0btA", linkedin: "https://www.linkedin.com/in/akhil-nanavati-386867190/" },
+];
+
 const INITIAL_ARTICLES = 4;
 
 const ContentPage = () => {
@@ -305,6 +323,32 @@ const ContentPage = () => {
                 </div>
                 );
               })}
+            </div>
+
+            <div className="mt-16 border-t border-border pt-12">
+              <SectionHeading eyebrow="Special series" description="Conversations with builders and developer relations professionals across the world.">DevRel Uni Journeys</SectionHeading>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {DEVREL_UNI_EPISODES.map((episode, index) => {
+                  const thumb = getYouTubeThumb(episode.youtube);
+                  return (
+                    <article key={episode.youtube} className="group overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-foreground/40">
+                      <a href={episode.youtube} target="_blank" rel="noopener noreferrer" className="relative block aspect-video overflow-hidden bg-muted">
+                        {thumb && <img src={thumb} alt={`${episode.name} podcast thumbnail`} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />}
+                        <span className="absolute left-3 top-3 rounded bg-background/90 px-2 py-1 text-xs font-semibold text-foreground">EP {String(index + 1).padStart(2, "0")}</span>
+                        <span className="absolute bottom-3 right-3 grid h-9 w-9 place-items-center rounded-full bg-foreground text-background"><Youtube size={16} /></span>
+                      </a>
+                      <div className="p-4 text-left">
+                        <h3 className="font-semibold text-foreground">{episode.name}</h3>
+                        <p className="no-justify mt-1 text-xs text-muted-foreground">{episode.role}</p>
+                        <div className="mt-3 flex items-center justify-between gap-3 text-xs text-muted-foreground">
+                          <span>{episode.location}</span>
+                          <a href={episode.linkedin} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">LinkedIn</a>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
