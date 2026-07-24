@@ -133,10 +133,15 @@ const Resume = () => {
             <Extracurriculars />
 
             <section id="github-contributions" className="mb-8 text-left">
-              <div className="border-b border-foreground/30 pb-1 mb-4">
+              <div className="border-b border-foreground/30 pb-1 mb-4 flex items-baseline justify-between gap-4 flex-wrap">
                 <h2 className="font-serif text-lg sm:text-xl font-bold tracking-wider uppercase text-foreground">
                   GitHub Contributions
                 </h2>
+                {ghTotal !== null && (
+                  <span className="text-xs text-muted-foreground">
+                    <strong className="text-foreground font-semibold">{ghTotal.toLocaleString()}</strong> contributions all-time
+                  </span>
+                )}
               </div>
               <a
                 href="https://github.com/manik-007"
