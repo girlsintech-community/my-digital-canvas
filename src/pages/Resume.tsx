@@ -3,18 +3,18 @@ import Nav from "@/components/sections/Nav";
 import Education from "@/components/sections/Education";
 import WorkExperience from "@/components/sections/WorkExperience";
 import Certifications from "@/components/sections/Certifications";
+import Awards from "@/components/sections/Awards";
 import Recommendations from "@/components/sections/Recommendations";
 import Extracurriculars from "@/components/sections/Extracurriculars";
 import Skills from "@/components/sections/Skills";
 import Footer from "@/components/sections/Footer";
-import { Download, ExternalLink, FileText, Eye, EyeOff } from "lucide-react";
+import { Download, Eye } from "lucide-react";
 import { useSiteContent } from "@/hooks/useSiteContent";
 
 const Resume = () => {
   const content = useSiteContent();
   const resumeUrl = content.settings?.resumeUrl || "";
   const resumeFileName = content.settings?.resumeFileName || "Manik_Resume.pdf";
-  const [showPdf, setShowPdf] = useState(false);
   const [ghTotal, setGhTotal] = useState<number | null>(null);
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const Resume = () => {
   const handleDownload = async () => {
     try {
       const res = await fetch(resumeUrl);
+      if (!res.ok) throw new Error("Resume download failed");
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -47,10 +48,14 @@ const Resume = () => {
       document.body.appendChild(a);
       a.click();
       a.remove();
-      URL.revokeObjectURL(url);
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch {
       window.open(resumeUrl, "_blank");
     }
+  };
+
+  const handleViewResume = () => {
+    if (resumeUrl) window.open(resumeUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -61,10 +66,10 @@ const Resume = () => {
           <div className="flex flex-wrap justify-end gap-2 mb-6 print:hidden">
             {resumeUrl && (
               <button
-                onClick={() => setShowPdf((v) => !v)}
+                onClick={handleViewResume}
                 className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-muted transition-colors text-foreground"
               >
-                {showPdf ? <><EyeOff size={16} /> Hide Resume</> : <><Eye size={16} /> View Resume</>}
+                <Eye size={16} /> View Resume
               </button>
             )}
             <button
@@ -74,41 +79,7 @@ const Resume = () => {
               <Download size={16} />
               Download PDF
             </button>
-            <a
-              href={resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-muted transition-colors text-foreground"
-            >
-              <ExternalLink size={16} />
-              Open in New Tab
-            </a>
           </div>
-
-          {resumeUrl && showPdf && (
-            <div className="mb-8 rounded-2xl border border-border overflow-hidden bg-card shadow-sm print:hidden">
-              <div className="flex items-center justify-between px-4 py-2 border-b border-border bg-muted/30">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <FileText size={14} />
-                  <span className="font-medium">{resumeFileName}</span>
-                </div>
-              </div>
-              <object
-                data={`${resumeUrl}#view=FitH`}
-                type="application/pdf"
-                className="w-full h-[80vh] bg-background"
-                aria-label="Resume PDF preview"
-              >
-                <iframe
-                  src={`https://docs.google.com/viewer?url=${encodeURIComponent(
-                    window.location.origin + resumeUrl
-                  )}&embedded=true`}
-                  className="w-full h-[80vh]"
-                  title="Resume PDF preview"
-                />
-              </object>
-            </div>
-          )}
 
 
           <div className="border border-border rounded-2xl p-6 sm:p-10 shadow-sm bg-card print:border-none print:shadow-none print:p-0">
@@ -130,6 +101,7 @@ const Resume = () => {
             <Education />
             <Skills />
             <Certifications />
+            <Awards />
             <Extracurriculars />
 
             <section id="github-contributions" className="mb-8 text-left">

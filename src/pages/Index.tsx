@@ -6,7 +6,6 @@ import ImageSlideshow from "@/components/sections/ImageSlideshow";
 import About from "@/components/sections/About";
 import WhatIDo from "@/components/sections/WhatIDo";
 import ExperienceCompact from "@/components/sections/ExperienceCompact";
-import Awards from "@/components/sections/Awards";
 import WallOfLove from "@/components/sections/WallOfLove";
 import Footer from "@/components/sections/Footer";
 
@@ -32,7 +31,6 @@ const Index = () => {
       <About />
       <WhatIDo />
       <ExperienceCompact />
-      <Awards />
       <WallOfLove />
       <Footer />
     </div>
