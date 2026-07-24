@@ -28,10 +28,12 @@ export const LOGO_MAP: Record<string, string> = {
   "web3 conf": "/logos/web3conf-goa.png",
   "kotlin": "/logos/kotlin-conf.png",
   "outdefine": "/logos/outdefine.png",
-  "hackarcode": "/logos/devrel-uni.png",
+  "hackarcode": "/logos/hackarcode.png",
   "devrel": "/logos/devrel-uni.png",
   "gdg cloud": "/logos/gdg-cloud-chandigarh.png",
-  "police dav": "/logos/police-dav-public-school.png"
+  "police dav": "/logos/police-dav-public-school.png",
+  "shecancode": "/logos/shecancode.png",
+  "she can code": "/logos/shecancode.png"
 };
 
 export function getLogoForName(name: string): string | null {
