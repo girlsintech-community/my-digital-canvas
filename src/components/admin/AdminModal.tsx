@@ -17,6 +17,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
   const [authError, setAuthError] = useState("");
 
   const [activeTab, setActiveTab] = useState<
+    | "settings"
     | "hero"
     | "about"
     | "whatido"
@@ -31,7 +32,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
     | "sessions"
     | "articles"
     | "testimonials"
-  >("hero");
+  >("settings");
 
   const [content, setContent] = useState<SiteContent>(getSiteContent());
 
