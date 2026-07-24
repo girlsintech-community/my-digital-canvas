@@ -124,6 +124,18 @@ export interface SiteContent {
   eventsOrganised: EventItem[];
   sessionsOrganised: SessionItem[];
   articlesWritten: ArticleItem[];
+  settings: {
+    resumeUrl: string;
+    resumeFileName: string;
+    email: string;
+    linkedin: string;
+    github: string;
+    youtube: string;
+    twitter: string;
+    instagram: string;
+    metaTitle: string;
+    metaDescription: string;
+  };
 }
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
@@ -517,6 +529,18 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       category: "Community",
     },
   ],
+  settings: {
+    resumeUrl: "/__l5e/assets-v1/e28e1218-9790-44cf-a32b-70a85216d50f/Manik_Resume.pdf",
+    resumeFileName: "Manik_Resume.pdf",
+    email: "manik.officialwork@gmail.com",
+    linkedin: "https://www.linkedin.com/in/mrmanik/",
+    github: "https://github.com/manik-007",
+    youtube: "https://www.youtube.com/@manikofficialll",
+    twitter: "https://x.com/manikofficialll",
+    instagram: "https://www.instagram.com/manikofficialll/",
+    metaTitle: "Manik's Portfolio",
+    metaDescription: "Builder, community architect, and growth catalyst. Founder of Girls Leading Tech.",
+  },
 };
 
 const STORAGE_KEY = "manik_portfolio_site_content";
@@ -544,6 +568,7 @@ export const getSiteContent = (): SiteContent => {
       eventsOrganised: parsed.eventsOrganised || DEFAULT_SITE_CONTENT.eventsOrganised,
       sessionsOrganised: parsed.sessionsOrganised || DEFAULT_SITE_CONTENT.sessionsOrganised,
       articlesWritten: parsed.articlesWritten || DEFAULT_SITE_CONTENT.articlesWritten,
+      settings: { ...DEFAULT_SITE_CONTENT.settings, ...(parsed.settings || {}) },
     };
   } catch (e) {
     console.error("Failed to load content from localStorage", e);

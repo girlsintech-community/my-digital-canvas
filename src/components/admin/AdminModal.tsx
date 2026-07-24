@@ -17,6 +17,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
   const [authError, setAuthError] = useState("");
 
   const [activeTab, setActiveTab] = useState<
+    | "settings"
     | "hero"
     | "about"
     | "whatido"
@@ -31,7 +32,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
     | "sessions"
     | "articles"
     | "testimonials"
-  >("hero");
+  >("settings");
 
   const [content, setContent] = useState<SiteContent>(getSiteContent());
 
@@ -328,6 +329,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
             <div className="flex items-center justify-between px-6 py-2.5 border-b border-border bg-muted/20 overflow-x-auto gap-2">
               <div className="flex items-center gap-1.5 flex-wrap">
                 {[
+                  { id: "settings", label: "Site Settings" },
                   { id: "hero", label: "Hero & Bio" },
                   { id: "about", label: "About Page" },
                   { id: "whatido", label: "What I Do" },
@@ -335,6 +337,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                   { id: "impact", label: `Impact (${content.impact.length})` },
                   { id: "education", label: `Education (${content.education.length})` },
                   { id: "awards", label: `Awards (${content.awards.length})` },
+                  { id: "certifications", label: `Certifications (${content.certifications.length})` },
                   { id: "extracurriculars", label: "Leadership & Extracurriculars" },
                   { id: "skills", label: "Skills & Toolkit" },
                   { id: "events", label: `Events (${content.eventsOrganised.length})` },
@@ -374,6 +377,195 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
 
             {/* Active Tab Content Panel */}
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              {/* SITE SETTINGS */}
+              {activeTab === "settings" && (
+                <div className="space-y-5 max-w-3xl">
+                  <div>
+                    <h3 className="font-serif font-bold text-lg text-foreground">Site Settings & Resume</h3>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Resume file, social links, and SEO meta. Upload a new resume to the CDN and paste the URL here to update the /resume page.
+                    </p>
+                  </div>
+
+                  <div className="p-4 rounded-xl border border-border bg-card space-y-3">
+                    <h4 className="font-semibold text-sm text-foreground">Resume</h4>
+                    <div>
+                      <label className="block text-xs font-medium mb-1">Resume PDF URL</label>
+                      <input
+                        type="text"
+                        value={content.settings.resumeUrl}
+                        onChange={(e) => setContent({ ...content, settings: { ...content.settings, resumeUrl: e.target.value } })}
+                        className="w-full px-3 py-2 text-xs font-mono rounded-lg bg-background border border-border"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium mb-1">Download Filename</label>
+                      <input
+                        type="text"
+                        value={content.settings.resumeFileName}
+                        onChange={(e) => setContent({ ...content, settings: { ...content.settings, resumeFileName: e.target.value } })}
+                        className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
+                      />
+                    </div>
+                    {content.settings.resumeUrl && (
+                      <a
+                        href={content.settings.resumeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+                      >
+                        Preview current resume ↗
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="p-4 rounded-xl border border-border bg-card space-y-3">
+                    <h4 className="font-semibold text-sm text-foreground">Social & Contact</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {([
+                        ["email", "Email"],
+                        ["linkedin", "LinkedIn"],
+                        ["github", "GitHub"],
+                        ["youtube", "YouTube"],
+                        ["twitter", "Twitter / X"],
+                        ["instagram", "Instagram"],
+                      ] as const).map(([key, label]) => (
+                        <div key={key}>
+                          <label className="block text-xs font-medium mb-1">{label}</label>
+                          <input
+                            type="text"
+                            value={(content.settings as any)[key]}
+                            onChange={(e) => setContent({ ...content, settings: { ...content.settings, [key]: e.target.value } })}
+                            className="w-full px-3 py-2 text-xs rounded-lg bg-background border border-border font-mono"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="p-4 rounded-xl border border-border bg-card space-y-3">
+                    <h4 className="font-semibold text-sm text-foreground">SEO Meta</h4>
+                    <div>
+                      <label className="block text-xs font-medium mb-1">Page Title</label>
+                      <input
+                        type="text"
+                        value={content.settings.metaTitle}
+                        onChange={(e) => setContent({ ...content, settings: { ...content.settings, metaTitle: e.target.value } })}
+                        className="w-full px-3 py-2 text-sm rounded-lg bg-background border border-border"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium mb-1">Meta Description</label>
+                      <textarea
+                        rows={3}
+                        value={content.settings.metaDescription}
+                        onChange={(e) => setContent({ ...content, settings: { ...content.settings, metaDescription: e.target.value } })}
+                        className="w-full px-3 py-2 text-xs rounded-lg bg-background border border-border"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* CERTIFICATIONS */}
+              {activeTab === "certifications" && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="font-serif font-bold text-lg text-foreground">Certifications by Category</h3>
+                    <button
+                      onClick={() => {
+                        const newCat: CertCategory = {
+                          id: "cert_cat_" + Date.now(),
+                          category: "New Category",
+                          items: [{ name: "Certification name", link: "" }],
+                        };
+                        setContent({ ...content, certifications: [...content.certifications, newCat] });
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-primary text-primary-foreground"
+                    >
+                      <Plus size={14} /> Add Category
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {content.certifications.map((cat, cIdx) => (
+                      <div key={cat.id || cIdx} className="p-4 rounded-xl border border-border bg-card space-y-3">
+                        <div className="flex items-center justify-between border-b border-border/50 pb-2 gap-2">
+                          <input
+                            type="text"
+                            value={cat.category}
+                            onChange={(e) => {
+                              const upd = [...content.certifications];
+                              upd[cIdx] = { ...cat, category: e.target.value };
+                              setContent({ ...content, certifications: upd });
+                            }}
+                            className="flex-1 px-2 py-1 rounded-md bg-background border border-border text-sm font-semibold"
+                          />
+                          <button
+                            onClick={() => setContent({ ...content, certifications: content.certifications.filter((_, i) => i !== cIdx) })}
+                            className="p-1 text-rose-500 hover:bg-rose-500/10 rounded-lg text-xs flex items-center gap-1"
+                          >
+                            <Trash2 size={14} /> Delete
+                          </button>
+                        </div>
+                        <div className="space-y-2">
+                          {cat.items.map((it, iIdx) => (
+                            <div key={iIdx} className="flex gap-2 items-start">
+                              <input
+                                type="text"
+                                placeholder="Certification name"
+                                value={it.name}
+                                onChange={(e) => {
+                                  const upd = [...content.certifications];
+                                  const items = [...cat.items];
+                                  items[iIdx] = { ...it, name: e.target.value };
+                                  upd[cIdx] = { ...cat, items };
+                                  setContent({ ...content, certifications: upd });
+                                }}
+                                className="flex-1 px-2 py-1.5 text-xs rounded-md bg-background border border-border"
+                              />
+                              <input
+                                type="text"
+                                placeholder="Link (optional)"
+                                value={it.link || ""}
+                                onChange={(e) => {
+                                  const upd = [...content.certifications];
+                                  const items = [...cat.items];
+                                  items[iIdx] = { ...it, link: e.target.value };
+                                  upd[cIdx] = { ...cat, items };
+                                  setContent({ ...content, certifications: upd });
+                                }}
+                                className="flex-1 px-2 py-1.5 text-xs rounded-md bg-background border border-border font-mono"
+                              />
+                              <button
+                                onClick={() => {
+                                  const upd = [...content.certifications];
+                                  upd[cIdx] = { ...cat, items: cat.items.filter((_, i) => i !== iIdx) };
+                                  setContent({ ...content, certifications: upd });
+                                }}
+                                className="p-1.5 text-rose-500 hover:bg-rose-500/10 rounded-lg"
+                              >
+                                <Trash2 size={14} />
+                              </button>
+                            </div>
+                          ))}
+                          <button
+                            onClick={() => {
+                              const upd = [...content.certifications];
+                              upd[cIdx] = { ...cat, items: [...cat.items, { name: "", link: "" }] };
+                              setContent({ ...content, certifications: upd });
+                            }}
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-md border border-border hover:bg-muted"
+                          >
+                            <Plus size={12} /> Add Certification
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* HERO & BIO */}
               {activeTab === "hero" && (
                 <div className="space-y-5 max-w-3xl">
