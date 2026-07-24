@@ -67,6 +67,7 @@ export function getLogoForName(name: string): string | null {
   if (lower.includes("kotlin")) return LOGO_MAP["kotlin"];
   if (lower.includes("outdefine")) return LOGO_MAP["outdefine"];
   if (lower.includes("hackarcode")) return LOGO_MAP["hackarcode"];
+  if (lower.includes("shecancode") || lower.includes("she can code")) return LOGO_MAP["shecancode"];
   if (lower.includes("devrel")) return LOGO_MAP["devrel"];
   if (lower.includes("police dav")) return LOGO_MAP["police dav"];
   if (lower.includes("cmx")) return LOGO_MAP["cmx"];
