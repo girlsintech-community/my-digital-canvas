@@ -568,6 +568,7 @@ export const getSiteContent = (): SiteContent => {
       eventsOrganised: parsed.eventsOrganised || DEFAULT_SITE_CONTENT.eventsOrganised,
       sessionsOrganised: parsed.sessionsOrganised || DEFAULT_SITE_CONTENT.sessionsOrganised,
       articlesWritten: parsed.articlesWritten || DEFAULT_SITE_CONTENT.articlesWritten,
+      settings: { ...DEFAULT_SITE_CONTENT.settings, ...(parsed.settings || {}) },
     };
   } catch (e) {
     console.error("Failed to load content from localStorage", e);
