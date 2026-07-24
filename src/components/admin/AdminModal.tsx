@@ -329,6 +329,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
             <div className="flex items-center justify-between px-6 py-2.5 border-b border-border bg-muted/20 overflow-x-auto gap-2">
               <div className="flex items-center gap-1.5 flex-wrap">
                 {[
+                  { id: "settings", label: "Site Settings" },
                   { id: "hero", label: "Hero & Bio" },
                   { id: "about", label: "About Page" },
                   { id: "whatido", label: "What I Do" },
@@ -336,6 +337,7 @@ export const AdminModal = ({ isOpen, onClose }: AdminModalProps) => {
                   { id: "impact", label: `Impact (${content.impact.length})` },
                   { id: "education", label: `Education (${content.education.length})` },
                   { id: "awards", label: `Awards (${content.awards.length})` },
+                  { id: "certifications", label: `Certifications (${content.certifications.length})` },
                   { id: "extracurriculars", label: "Leadership & Extracurriculars" },
                   { id: "skills", label: "Skills & Toolkit" },
                   { id: "events", label: `Events (${content.eventsOrganised.length})` },
