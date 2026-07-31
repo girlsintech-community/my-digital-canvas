@@ -7,8 +7,9 @@ const Footer = () => {
   const [isAdminOpen, setIsAdminOpen] = useState(false);
 
   return (
-    <footer className="border-t border-border px-6 pt-16 pb-8">
-      <div className="max-w-5xl mx-auto">
+    <footer className="border-t border-border px-6 sm:px-10 pt-16 pb-8">
+      <div className="max-w-3xl mx-auto">
+
         <div className="border-y border-border py-12 sm:py-16 text-center">
           <p className="no-justify text-xs font-semibold uppercase text-muted-foreground">Have an idea worth building?</p>
           <h2 className="mt-4 text-3xl sm:text-5xl font-semibold text-foreground">Let’s create something meaningful.</h2>

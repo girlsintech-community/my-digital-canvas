@@ -5,11 +5,13 @@ import VisitorCounter from "./VisitorCounter";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
 
 const WORK_SUB_LINKS = [
+  { label: "Projects", href: "/projects" },
   { label: "Content", href: "/content" },
   { label: "Community", href: "/community" },
   { label: "Impact", href: "/impact" },
   { label: "Testimonials", href: "/wall-of-love" },
 ];
+
 
 const TIMEZONES = [
   { label: "IST", zone: "Asia/Kolkata" },
