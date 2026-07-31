@@ -61,7 +61,7 @@ const Resume = () => {
   return (
     <div className="min-h-screen bg-background text-foreground print:bg-white print:text-black">
       <Nav />
-      <div className="pt-24 pb-12 px-4 sm:px-6 print:pt-0 print:pb-0 print:px-0">
+      <div className="pt-24 pb-12 px-6 sm:px-10 print:pt-0 print:pb-0 print:px-0">
         <div className="max-w-3xl mx-auto overflow-hidden">
           <div className="flex flex-wrap justify-end gap-2 mb-6 print:hidden">
             {resumeUrl && (

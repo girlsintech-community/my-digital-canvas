@@ -2,7 +2,7 @@ import { Calendar } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 
 const Connect = () => (
-  <section id="connect" className="py-16 md:py-24 px-4 sm:px-6 border-t border-border">
+  <section id="connect" className="py-16 md:py-24 px-6 sm:px-10 border-t border-border">
     <div className="max-w-3xl mx-auto text-center">
       <SectionHeading
         eyebrow="Get in touch"

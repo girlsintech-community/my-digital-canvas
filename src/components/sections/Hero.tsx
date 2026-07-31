@@ -56,7 +56,7 @@ const Hero = () => {
   const typedRole = useTypingAnimation(heroRoles);
 
   return (
-    <section className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6">
+    <section className="pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-10">
       <div className="max-w-3xl mx-auto">
         {/* Intro: photo + name/role. Mobile stacks name-above, image-middle. */}
         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 mb-8">

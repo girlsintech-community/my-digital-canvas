@@ -218,7 +218,7 @@ const ContentPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <div className="pt-24 pb-12 px-4 sm:px-6">
+      <div className="pt-24 pb-12 px-6 sm:px-10">
         <div className="max-w-3xl mx-auto">
           {/* Articles Section */}
           <SectionHeading>Articles & Threads</SectionHeading>

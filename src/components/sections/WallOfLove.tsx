@@ -19,7 +19,7 @@ const WallOfLove = () => {
   const prev = () => setIndex((i) => (i - 1 + total) % total);
 
   return (
-    <section id="testimonials" className="py-16 md:py-28 px-4 sm:px-6 border-t border-border overflow-hidden">
+    <section id="testimonials" className="py-16 md:py-28 px-6 sm:px-10 border-t border-border overflow-hidden">
       <div className="max-w-3xl mx-auto w-full">
         <SectionHeading
           eyebrow="Wall of Love"

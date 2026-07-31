@@ -20,7 +20,7 @@ const ImpactSection = () => {
   const impactItems = content.impact || [];
 
   return (
-    <section id="impact" className="py-16 md:py-24 px-4 sm:px-6">
+    <section id="impact" className="py-16 md:py-24 px-6 sm:px-10">
       <div className="max-w-3xl mx-auto space-y-8">
         <SectionHeading
           eyebrow="Impact & Credibility"

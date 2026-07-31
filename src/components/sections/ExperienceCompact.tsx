@@ -10,7 +10,7 @@ const ExperienceCompact = () => {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <section id="experience" className="py-16 md:py-24 px-4 sm:px-6 border-t border-border">
+    <section id="experience" className="py-16 md:py-24 px-6 sm:px-10 border-t border-border">
       <div className="max-w-3xl mx-auto w-full">
         <SectionHeading
           eyebrow="Experience"
