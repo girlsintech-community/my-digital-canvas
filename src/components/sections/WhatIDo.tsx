@@ -6,7 +6,7 @@ const WhatIDo = () => {
   const cards = content.whatIDo && content.whatIDo.length > 0 ? content.whatIDo : [];
 
   return (
-    <section id="whatido" className="py-20 md:py-28 px-6 border-t border-border bg-background">
+    <section id="whatido" className="py-20 md:py-28 px-6 sm:px-10 border-t border-border bg-background">
       <div className="max-w-3xl mx-auto">
         <SectionHeading
           eyebrow="What I Do"
