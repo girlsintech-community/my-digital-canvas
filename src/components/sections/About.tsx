@@ -10,7 +10,7 @@ const About = () => {
   const paragraphs = content.about?.paragraphs || [];
 
   return (
-    <section id="about" className="py-20 md:py-28 px-6 border-t border-border">
+    <section id="about" className="py-20 md:py-28 px-6 sm:px-10 border-t border-border">
       <div className="max-w-3xl mx-auto">
         <SectionHeading
           eyebrow={content.about?.eyebrow || "About"}

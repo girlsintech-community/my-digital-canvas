@@ -48,7 +48,7 @@ const EventsAttendedPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <div className="pt-24 pb-12 px-4 sm:px-6">
+      <div className="pt-24 pb-12 px-6 sm:px-10">
         <div className="max-w-3xl mx-auto">
           <Link to="/community" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6">
             <ArrowLeft size={16} /> Back to Community

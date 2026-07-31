@@ -15,6 +15,8 @@ import DiaryPage from "./pages/DiaryPage.tsx";
 import WallOfLovePage from "./pages/WallOfLovePage.tsx";
 import PodcastsPage from "./pages/PodcastsPage.tsx";
 import ContentPage from "./pages/ContentPage.tsx";
+import ProjectsPage from "./pages/ProjectsPage.tsx";
+
 import EventsAttendedPage from "./pages/EventsAttendedPage.tsx";
 import ConnectPage from "./pages/ConnectPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -50,6 +52,8 @@ const App = () => {
             <Route path="/wall-of-love" element={<WallOfLovePage />} />
             <Route path="/podcasts" element={<PodcastsPage />} />
             <Route path="/content" element={<ContentPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+
             <Route path="/events-attended" element={<EventsAttendedPage />} />
             <Route path="/connect" element={<ConnectPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

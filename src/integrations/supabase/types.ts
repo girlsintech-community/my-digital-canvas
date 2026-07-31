@@ -263,6 +263,24 @@ export type Database = {
         }
         Relationships: []
       }
+      visitor_counter: {
+        Row: {
+          count: number
+          id: number
+          updated_at: string
+        }
+        Insert: {
+          count?: number
+          id?: number
+          updated_at?: string
+        }
+        Update: {
+          count?: number
+          id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       work_experiences: {
         Row: {
           bullets: Json
@@ -314,6 +332,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      increment_visitor_count: { Args: never; Returns: number }
     }
     Enums: {
       app_role: "admin" | "user"

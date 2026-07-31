@@ -31,7 +31,7 @@ const Podcasts = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="podcasts" className="py-20 md:py-28 px-6 border-t border-border">
+    <section id="podcasts" className="py-20 md:py-28 px-6 sm:px-10 border-t border-border">
       <div className="max-w-3xl mx-auto text-center">
         <SectionHeading
           eyebrow="On the mic"

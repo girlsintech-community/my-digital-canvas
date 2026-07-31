@@ -476,7 +476,7 @@ const CommunityPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Nav />
-      <div className="pt-24 pb-12 px-4 sm:px-6">
+      <div className="pt-24 pb-12 px-6 sm:px-10">
         <div className="max-w-3xl mx-auto">
           <SectionHeading>Community Contributions</SectionHeading>
 

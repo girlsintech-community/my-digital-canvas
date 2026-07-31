@@ -9,7 +9,7 @@ const SLIDESHOW_ROW3 = ALL_COMMUNITY_IMAGES.slice(thirdLength * 2);
 
 const ImageSlideshow = () => {
   return (
-    <section className="py-12 border-t border-border bg-background px-6">
+    <section className="py-12 border-t border-border bg-background px-6 sm:px-10">
       <div className="max-w-3xl mx-auto overflow-hidden rounded-2xl">
         <style>{`
           @keyframes scroll-left {

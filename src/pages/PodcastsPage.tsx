@@ -114,53 +114,32 @@ const PodcastsPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Nav />
-      <div className="pt-24 pb-12 px-4 sm:px-6">
+      <div className="pt-24 pb-12 px-6 sm:px-10">
         <div className="max-w-3xl mx-auto">
           <SectionHeading>Podcasts</SectionHeading>
-          <div className="space-y-4 mt-8">
-            {PODCASTS.map((p) => {
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {PODCASTS.map((p, index) => {
               const thumb = getYouTubeThumb(p.youtube);
               return (
-              <div
-                key={p.youtube}
-                className="flex flex-row items-start gap-3 sm:gap-5 border-b border-border py-4 text-left"
-              >
-                {thumb && (
-                  <a href={p.youtube} target="_blank" rel="noopener noreferrer" className="shrink-0 block w-24 sm:w-36 aspect-video overflow-hidden rounded-md border border-border bg-muted">
-                    <img src={thumb} alt={`${p.title} thumbnail`} loading="lazy" className="w-full h-full object-cover" />
+                <article key={p.youtube} className="group overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-foreground/40">
+                  <a href={p.youtube} target="_blank" rel="noopener noreferrer" className="relative block aspect-video overflow-hidden bg-muted">
+                    {thumb && <img src={thumb} alt={`${p.title} podcast thumbnail`} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />}
+                    <span className="absolute left-3 top-3 rounded bg-background/90 px-2 py-1 text-xs font-semibold text-foreground">EP {String(index + 1).padStart(2, "0")}</span>
+                    <span className="absolute bottom-3 right-3 grid h-9 w-9 place-items-center rounded-full bg-foreground text-background"><Youtube size={16} /></span>
                   </a>
-                )}
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-serif text-sm sm:text-base md:text-lg font-medium text-foreground leading-snug">
-                    {p.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                    with{" "}
-                    <a
-                      href={p.guestLinkedIn}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline underline-offset-4 hover:text-foreground transition-colors"
-                    >
-                      {p.guest}
-                    </a>
-                    <span className="mx-1.5">,</span>
-                    {p.guestRole}
-                  </p>
-                </div>
-                <a
-                  href={p.youtube}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-foreground hover:text-muted-foreground transition-colors pt-0.5"
-                >
-                  <Youtube size={15} />
-                  Watch
-                </a>
-              </div>
+                  <div className="p-4 text-left">
+                    <h3 className="no-justify font-semibold text-foreground leading-snug">{p.title}</h3>
+                    <p className="no-justify mt-1 text-xs text-muted-foreground">{p.guestRole}</p>
+                    <div className="mt-3 flex items-center justify-between gap-3 text-xs text-muted-foreground">
+                      <span>with {p.guest}</span>
+                      <a href={p.guestLinkedIn} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">LinkedIn</a>
+                    </div>
+                  </div>
+                </article>
               );
             })}
           </div>
+
         </div>
       </div>
       <Footer />

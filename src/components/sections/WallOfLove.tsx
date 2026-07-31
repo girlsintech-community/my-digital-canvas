@@ -19,7 +19,7 @@ const WallOfLove = () => {
   const prev = () => setIndex((i) => (i - 1 + total) % total);
 
   return (
-    <section id="testimonials" className="py-16 md:py-28 px-4 sm:px-6 border-t border-border overflow-hidden">
+    <section id="testimonials" className="py-16 md:py-28 px-6 sm:px-10 border-t border-border overflow-hidden">
       <div className="max-w-3xl mx-auto w-full">
         <SectionHeading
           eyebrow="Wall of Love"
@@ -32,7 +32,7 @@ const WallOfLove = () => {
           <div className="text-left w-full">
             <blockquote
               key={t.id || index}
-              className="border border-border/80 rounded-xl p-6 sm:p-8 bg-card/40 shadow-sm w-full h-[340px] sm:h-[320px] flex flex-col"
+              className="border border-border/80 rounded-xl p-5 sm:p-7 bg-card/40 shadow-sm w-full h-[250px] sm:h-[240px] flex flex-col"
             >
               <span className="font-serif text-3xl sm:text-4xl text-primary/40 leading-none select-none block mb-2">"</span>
               <div className="flex-1 min-h-0 overflow-y-auto pr-1">
